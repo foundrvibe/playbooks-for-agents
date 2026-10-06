@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/templates/business-plan/0.1.0",
+  "x-id": "business-plan",
+  "x-version": "0.1.0",
+  "x-title": "Business Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["company_name", "problem", "solution", "customer"],
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Name of the company.",
+      "x-ask": "What is the company name?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "owner": {
+      "type": ["string", "null"],
+      "description": "Person responsible for the plan.",
+      "x-ask": "Who owns this business plan?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "status": {
+      "type": ["string", "null"],
+      "description": "Document status, such as Draft.",
+      "x-ask": "What status should this plan show?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "description": "Date the user says the plan was last updated.",
+      "x-ask": "What date should we use for last updated?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The problem the company addresses, in the user's words.",
+      "x-ask": "What problem does the company solve?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "solution": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the company offers as the solution.",
+      "x-ask": "What is the solution?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who the customer is. Do not invent customer names.",
+      "x-ask": "Who is the customer?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "offer": {
+      "type": ["string", "null"],
+      "description": "What is sold and how it is packaged.",
+      "x-ask": "What exactly do you sell, and how is it packaged?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "go_to_market": {
+      "type": ["string", "null"],
+      "description": "How the user plans to reach customers.",
+      "x-ask": "How will you reach the first customers?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "team": {
+      "type": ["array", "null"],
+      "description": "People the user named. Do not add anyone they did not name.",
+      "x-ask": "Who is on the team, and what does each person do? Skip anyone you don't want named.",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "role"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A person the user named."
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "description": "That person's role."
+          }
+        }
+      }
+    },
+    "starting_capital": {
+      "type": ["number", "null"],
+      "description": "Starting capital the user stated. Leave null when they did not give a number.",
+      "x-ask": "How much starting capital do you have? Say if you don't want a number in the plan.",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "financials": {
+      "type": ["object", "null"],
+      "description": "One numeric series for the financials chart. Omit the chart when this is null.",
+      "x-ask": "Do you have financial figures to chart? If so, share the period labels, the series name, and one number per period.",
+      "x-source": "user_data",
+      "x-unknown": "No data provided",
+      "x-chart": "mermaid-xy",
+      "additionalProperties": false,
+      "required": ["x", "series"],
+      "properties": {
+        "x": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Category labels, one per point."
+        },
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "number" },
+          "description": "Numeric values the user provided, one per label."
+        },
+        "seriesName": {
+          "type": "string",
+          "description": "Name of the series, such as Monthly revenue."
+        }
+      }
+    },
+    "assumptions": {
+      "type": ["array", "null"],
+      "description": "Assumptions the user explicitly asked to include.",
+      "x-ask": "Which assumptions should be labeled in the plan?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One assumption the user stated."
+          }
+        }
+      }
+    },
+    "missing_info": {
+      "type": ["array", "null"],
+      "description": "Required fields the user declined to answer. The agent fills this while validating.",
+      "x-ask": "Which required facts are you leaving unanswered?",
+      "x-source": "derived",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A required fact that is still missing."
+          }
+        }
+      }
+    }
+  }
+}

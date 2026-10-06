@@ -1,0 +1,236 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/templates/prd/0.1.0",
+  "x-id": "prd",
+  "x-version": "0.1.0",
+  "x-title": "Product Requirements Document",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["product_name", "summary", "problem"],
+  "properties": {
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Name of the product.",
+      "x-ask": "What is the product name?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "owner": {
+      "type": ["string", "null"],
+      "description": "Person responsible for the document.",
+      "x-ask": "Who owns this PRD?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "status": {
+      "type": ["string", "null"],
+      "description": "Document status, such as Draft or In review.",
+      "x-ask": "What status should this PRD show?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "description": "Date the user says the document was last updated.",
+      "x-ask": "What date should we use for last updated?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "launch_date": {
+      "type": ["string", "null"],
+      "description": "Target launch date. Leave null when the user has not set one.",
+      "x-ask": "What is the target launch date? Say if you don't have one.",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short statement of what the product is.",
+      "x-ask": "In a few sentences, what is this product?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The problem this product exists to solve, in the user's words.",
+      "x-ask": "What problem does this product solve?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "goals": {
+      "type": ["array", "null"],
+      "description": "Outcomes the product must achieve.",
+      "x-ask": "What are the goals for this product?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One goal."
+          }
+        }
+      }
+    },
+    "non_goals": {
+      "type": ["array", "null"],
+      "description": "Work this product will not do.",
+      "x-ask": "What is explicitly out of scope?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One non-goal."
+          }
+        }
+      }
+    },
+    "users": {
+      "type": ["array", "null"],
+      "description": "Who the product is for and what they need.",
+      "x-ask": "Who are the users, and what does each one need?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "need"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A role the user named. Do not invent a person."
+          },
+          "need": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What that role needs."
+          }
+        }
+      }
+    },
+    "user_stories": {
+      "type": ["array", "null"],
+      "description": "User stories the user supplied.",
+      "x-ask": "Which user stories should be in the PRD?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "action"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The role in the story."
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What that role does, without the leading 'I'."
+          }
+        }
+      }
+    },
+    "requirements": {
+      "type": ["array", "null"],
+      "description": "Requirements the user wants listed.",
+      "x-ask": "Which requirements should this PRD include?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "text"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Requirement id, such as FR-1."
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The requirement."
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": ["array", "null"],
+      "description": "Success-metric rows. The chart is drawn only from these numbers.",
+      "x-ask": "Which success metrics do you have real numbers for? Share a label and value for each, or say you have no data yet.",
+      "x-source": "user_data",
+      "x-unknown": "No data provided",
+      "x-chart": "table",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "value"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Metric name."
+          },
+          "value": {
+            "type": "number",
+            "description": "Numeric value the user provided."
+          }
+        }
+      }
+    },
+    "open_questions": {
+      "type": ["array", "null"],
+      "description": "Questions the user still wants listed as open.",
+      "x-ask": "Which questions are still open?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One open question."
+          }
+        }
+      }
+    },
+    "missing_info": {
+      "type": ["array", "null"],
+      "description": "Required fields the user declined to answer. The agent fills this while validating. An empty list means nothing required is missing.",
+      "x-ask": "Which required facts are you leaving unanswered?",
+      "x-source": "derived",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A required fact that is still missing."
+          }
+        }
+      }
+    }
+  }
+}

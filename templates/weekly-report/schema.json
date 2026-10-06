@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/templates/weekly-report/0.1.0",
+  "x-id": "weekly-report",
+  "x-version": "0.1.0",
+  "x-title": "Weekly Report",
+  "description": "Stub. Not ready for intent matching.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["week_label"],
+  "properties": {
+    "week_label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The week this report covers, as the user stated it.",
+      "x-ask": "Which week is this report for?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "highlights": {
+      "type": ["array", "null"],
+      "description": "Highlights the user listed for the week.",
+      "x-ask": "What were the highlights this week?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One highlight."
+          }
+        }
+      }
+    },
+    "blockers": {
+      "type": ["array", "null"],
+      "description": "Blockers the user listed.",
+      "x-ask": "What is blocking progress?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One blocker."
+          }
+        }
+      }
+    },
+    "missing_info": {
+      "type": ["array", "null"],
+      "description": "Required fields the user declined to answer.",
+      "x-ask": "Which required facts are you leaving unanswered?",
+      "x-source": "derived",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A required fact that is still missing."
+          }
+        }
+      }
+    }
+  }
+}

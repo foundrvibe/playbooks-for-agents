@@ -1,0 +1,32 @@
+{
+  "product_name": "FoundrVibe Templates",
+  "owner": "Koceila Abbas",
+  "status": "Draft",
+  "last_updated": "2026-10-06",
+  "launch_date": null,
+  "summary": "A public set of document templates that agents fill from facts the user provides.",
+  "problem": "Agents change the document structure on every run and fill gaps with made-up numbers.",
+  "goals": [
+    { "text": "Give agents a fixed document shape." },
+    { "text": "Ask for missing required facts instead of guessing." }
+  ],
+  "non_goals": [
+    { "text": "A live chart rendering service." }
+  ],
+  "users": [
+    { "role": "Founder", "need": "A PRD with the same sections every time." }
+  ],
+  "user_stories": [
+    { "role": "founder", "action": "get the same sections every time I ask for a PRD" }
+  ],
+  "requirements": [
+    { "id": "FR-1", "text": "A catalog lists every template with id, version, and file URLs." }
+  ],
+  "metrics": [
+    { "label": "Templates ready", "value": 2 }
+  ],
+  "open_questions": [
+    { "text": "Which license to publish under is still open in the product PRD." }
+  ],
+  "missing_info": []
+}

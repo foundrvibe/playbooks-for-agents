@@ -1,0 +1,24 @@
+{
+  "company_name": "Northwind Studio",
+  "owner": "Amina Rahman",
+  "status": "Draft",
+  "last_updated": "2026-10-06",
+  "problem": "Small studios lose track of client work across email and spreadsheets.",
+  "solution": "One shared job board for briefs, files, and approvals.",
+  "customer": "Independent design studios with 2 to 10 people.",
+  "offer": "A monthly subscription for the studio, billed per workspace.",
+  "go_to_market": "Direct outreach to studios the founder already works with.",
+  "team": [
+    { "name": "Amina Rahman", "role": "Founder" }
+  ],
+  "starting_capital": null,
+  "financials": {
+    "seriesName": "Collected revenue",
+    "x": ["Jan", "Feb", "Mar"],
+    "series": [4200, 5100, 4800]
+  },
+  "assumptions": [
+    { "text": "The first ten studios come from the founder's existing network." }
+  ],
+  "missing_info": []
+}

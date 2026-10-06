@@ -1,0 +1,17 @@
+{
+  "id": "table",
+  "render": "markdown-table",
+  "description": "A two-column Markdown table. Fill only with numbers the user provided.",
+  "data": {
+    "type": "array",
+    "minItems": 1,
+    "items": {
+      "type": "object",
+      "required": ["label", "value"],
+      "properties": {
+        "label": { "type": "string" },
+        "value": { "type": "number" }
+      }
+    }
+  }
+}
