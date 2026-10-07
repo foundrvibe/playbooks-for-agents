@@ -1,19 +1,19 @@
 ---
 name: fill-template
 description: >-
-  Fills a FoundrVibe document template from facts the user provided. Use when
-  the user asks to write or fill a PRD, product requirements document, business
-  plan, letter, weekly report, or investor update, or when they give a
-  FoundrVibe template URL, template id, or catalog intent.
+  Fills a document template from facts the user provided. Use when the user
+  asks to fill a template, gives a template URL or template id, or describes a
+  document that should match an intent in catalog.json. The catalog is the
+  list of templates, including any added later.
 ---
 
-# Fill a FoundrVibe template
+# Fill a template
 
 Fill one template from facts the user actually gave. The document shape stays fixed. Numbers, dates, names, and quotes that the user did not provide stay blank.
 
-Before filling, read and follow [rules/fill.md](../../rules/fill.md). On GitHub that file is `https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md`. Those rules are the contract. This skill is the procedure.
+Before filling, read and follow [rules/fill.md](../../rules/fill.md). Those rules are the contract. This skill is the procedure.
 
-The catalog is [catalog.json](../../catalog.json), or `https://raw.githubusercontent.com/foundrvibe/templates/main/catalog.json`.
+The catalog is [catalog.json](../../catalog.json). Read it at fill time. Do not assume a fixed set of templates. A new template is a catalog entry plus `template.md`, `schema.json`, and `example.json`. Use whatever is listed there.
 
 ## 1. Resolve the template
 
@@ -21,7 +21,7 @@ Use the first case that fits.
 
 - **URL.** The user pasted a raw URL to `template.md`, `schema.json`, or a template folder. Fetch `template.md`, `schema.json`, and `example.json` from that folder.
 - **Id.** Find `id` in `catalog.json`. Fetch the three files at `files.template`, `files.schema`, and `files.example`.
-- **Intent.** Compare the user's request to `intents` on templates whose `status` is `ready`. Ignore `status: "stub"`. If one ready template matches, use it. If more than one matches, ask which one. If none match, say so and list the ready template ids.
+- **Intent.** Compare the user's request to `intents` on templates whose `status` is `ready`. Ignore `status: "stub"`. If one ready template matches, use it. If more than one matches, ask which one. If none match, say so and list the ready template ids from the catalog you just read.
 
 `example.json` shows a valid shape, including a blank optional field. Do not copy its facts into the user's document.
 
@@ -33,7 +33,7 @@ Read the conversation and any files the user attached. Map values onto schema fi
 
 - Use a value only when the user stated it or it is in data they provided (`x-source` of `user` or `user_data`).
 - A `derived` value may be computed only from those numbers, and the document must say which inputs it came from.
-- Do not take facts from `example.json`, from memory of a typical company, or from a plausible guess.
+- Do not take facts from `example.json`, from memory of a typical case, or from a plausible guess.
 - Do not invent revenue, prices, market size, growth rates, user counts, dates, percentages, customers, testimonials, team members, or partners.
 
 ## 3. Ask for what is missing
@@ -48,17 +48,19 @@ An assumption is allowed only when the user said to assume it. Render it with th
 
 ## 4. Fill the Markdown
 
-Use `template.md` as the only layout.
+Use `template.md` as the only layout. Section headings come from that file. Do not add, drop, or rename them because a different template used different sections.
 
 - Replace `{{field}}` with the value. If the value is null or missing, use `x-unknown`.
 - Repeat a `{{#each collection}}` block once per item, replacing the inner placeholders from that item. If the collection is null or missing, render the field's `x-unknown` text once instead of the block. If the collection is an empty array, keep the section and render no items.
-- Do not add, drop, or rename sections. The Missing info section is already in the template. List each `missing_info` item there. An empty `missing_info` array means nothing required was declined, so that section has no bullets.
+- If the template has a Missing info section, list each `missing_info` item there. An empty `missing_info` array means nothing required was declined, so that section has no bullets.
 
 ## 5. Charts
 
-A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is the spec id in `charts/` (`table` or `mermaid-xy`). Fetch that spec. Draw the chart only when the field's value matches the spec. Otherwise replace the slot with `No data provided`. Never use placeholder numbers.
+A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id under [charts/](../../charts/). Fetch `charts/{id}.json`. Draw the chart only when the field's value matches that spec's `data` shape. Otherwise replace the slot with `No data provided`. Never use placeholder numbers.
 
-**`table`** (`charts/table.json`): the value is an array of `{ "label": string, "value": number }` with at least one row. Render:
+New templates reuse these render types by setting `x-chart`. Read `render` from the spec:
+
+**`markdown-table`:** the value is an array of `{ "label": string, "value": number }` with at least one row. Render:
 
 ```markdown
 | Label | Value |
@@ -66,9 +68,11 @@ A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` v
 | <label> | <value> |
 ```
 
-**`mermaid-xy`** (`charts/mermaid-xy.json`): the value is an object with `x` (strings), `series` (numbers), and optional `seriesName`. `x` and `series` must be the same length and non-empty. Render a Mermaid `xychart-beta` whose `bar` values are `series` and whose axis labels are `x`. Set the y-axis range from the minimum and maximum of `series` only, and say in a following line that the range is derived from those values.
+**`mermaid-xy`:** the value is an object with `x` (strings), `series` (numbers), and optional `seriesName`. `x` and `series` must be the same length and non-empty. Render a Mermaid `xychart-beta` whose `bar` values are `series` and whose axis labels are `x`. Set the y-axis range from the minimum and maximum of `series` only, and say in a following line that the range is derived from those values.
 
 If any `x` label contains a double quote, a bracket, or a line break, render a two-column Markdown table of `x` and `series` instead of Mermaid.
+
+If `render` is anything else, do not invent a chart. Write `No data provided` and tell the user that render type is not supported yet.
 
 ## 6. Validate and return
 

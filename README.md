@@ -8,7 +8,7 @@ Ready templates: `prd`, `business-plan`. `letter` and `weekly-report` are stubs 
 
 Raw files use this base URL:
 
-`https://raw.githubusercontent.com/foundrvibe/templates/main/`
+`https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/`
 
 Paste any prompt below into ChatGPT, Claude, or a Cursor agent chat.
 
@@ -19,10 +19,10 @@ The agent fetches the template files directly.
 **ChatGPT**
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md
+Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load this template by URL and also fetch schema.json and example.json from the same folder:
-https://raw.githubusercontent.com/foundrvibe/templates/main/templates/prd/template.md
+https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/template.md
 
 Write a PRD from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
@@ -30,10 +30,10 @@ Write a PRD from facts I give you. Ask for every required field you do not have.
 **Claude**
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md
+Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load this template by URL and also fetch schema.json and example.json from the same folder:
-https://raw.githubusercontent.com/foundrvibe/templates/main/templates/prd/template.md
+https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/template.md
 
 Write a PRD from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
@@ -41,7 +41,7 @@ Write a PRD from facts I give you. Ask for every required field you do not have.
 **Cursor**
 
 ```text
-Follow skills/fill-template/SKILL.md and rules/fill.md in this repo. If you cannot read the repo, fetch https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md
+Follow skills/fill-template/SKILL.md and rules/fill.md in this repo. If you cannot read the repo, fetch https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load templates/prd/template.md plus its schema.json and example.json.
 
@@ -55,8 +55,8 @@ The agent resolves the id through the catalog.
 **ChatGPT**
 
 ```text
-Read https://raw.githubusercontent.com/foundrvibe/templates/main/catalog.json
-Follow https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md
+Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
+Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load template id "business-plan".
 Write the plan from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
@@ -65,8 +65,8 @@ Write the plan from facts I give you. Ask for every required field you do not ha
 **Claude**
 
 ```text
-Read https://raw.githubusercontent.com/foundrvibe/templates/main/catalog.json
-Follow https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md
+Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
+Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load template id "business-plan".
 Write the plan from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
@@ -75,7 +75,7 @@ Write the plan from facts I give you. Ask for every required field you do not ha
 **Cursor**
 
 ```text
-Read catalog.json and follow skills/fill-template/SKILL.md and rules/fill.md. If you cannot read the repo, use the raw files under https://raw.githubusercontent.com/foundrvibe/templates/main/
+Read catalog.json and follow skills/fill-template/SKILL.md and rules/fill.md. If you cannot read the repo, use the raw files under https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/
 
 Load template id "business-plan".
 Write the plan from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
@@ -88,8 +88,8 @@ The agent matches the request to `intents` on ready templates. If more than one 
 **ChatGPT**
 
 ```text
-Read https://raw.githubusercontent.com/foundrvibe/templates/main/catalog.json
-Follow https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md
+Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
+Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Match this request to one ready template intent. If several match, ask me which template to use.
 
@@ -99,8 +99,8 @@ Request: write a PRD for a shared client inbox for freelance studios.
 **Claude**
 
 ```text
-Read https://raw.githubusercontent.com/foundrvibe/templates/main/catalog.json
-Follow https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md
+Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
+Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Match this request to one ready template intent. If several match, ask me which template to use.
 
@@ -110,7 +110,7 @@ Request: write a PRD for a shared client inbox for freelance studios.
 **Cursor**
 
 ```text
-Read catalog.json and follow skills/fill-template/SKILL.md and rules/fill.md. If you cannot read the repo, use the raw files under https://raw.githubusercontent.com/foundrvibe/templates/main/
+Read catalog.json and follow skills/fill-template/SKILL.md and rules/fill.md. If you cannot read the repo, use the raw files under https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/
 
 Match this request to one ready template intent. If several match, ask me which template to use.
 

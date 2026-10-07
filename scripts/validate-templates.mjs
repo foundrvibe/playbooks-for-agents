@@ -4,7 +4,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const rawBase = "https://raw.githubusercontent.com/foundrvibe/templates/main/";
+const rawBase = "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/";
 const errors = [];
 const ajv = new Ajv({ allErrors: true, strict: false });
 

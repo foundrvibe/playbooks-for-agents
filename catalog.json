@@ -1,9 +1,9 @@
 {
   "name": "FoundrVibe Templates",
   "rules": "rules/fill.md",
-  "rulesUrl": "https://raw.githubusercontent.com/foundrvibe/templates/main/rules/fill.md",
+  "rulesUrl": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md",
   "skill": "skills/fill-template/SKILL.md",
-  "skillUrl": "https://raw.githubusercontent.com/foundrvibe/templates/main/skills/fill-template/SKILL.md",
+  "skillUrl": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md",
   "templates": [
     {
       "id": "prd",
@@ -21,15 +21,15 @@
       "files": {
         "template": {
           "path": "templates/prd/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/prd/template.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/template.md"
         },
         "schema": {
           "path": "templates/prd/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/prd/schema.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/schema.json"
         },
         "example": {
           "path": "templates/prd/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/prd/example.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/example.json"
         }
       }
     },
@@ -48,15 +48,15 @@
       "files": {
         "template": {
           "path": "templates/business-plan/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/business-plan/template.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/template.md"
         },
         "schema": {
           "path": "templates/business-plan/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/business-plan/schema.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/schema.json"
         },
         "example": {
           "path": "templates/business-plan/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/business-plan/example.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/example.json"
         }
       }
     },
@@ -70,15 +70,15 @@
       "files": {
         "template": {
           "path": "templates/letter/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/letter/template.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/letter/template.md"
         },
         "schema": {
           "path": "templates/letter/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/letter/schema.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/letter/schema.json"
         },
         "example": {
           "path": "templates/letter/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/letter/example.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/letter/example.json"
         }
       }
     },
@@ -92,15 +92,15 @@
       "files": {
         "template": {
           "path": "templates/weekly-report/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/weekly-report/template.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/weekly-report/template.md"
         },
         "schema": {
           "path": "templates/weekly-report/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/weekly-report/schema.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/weekly-report/schema.json"
         },
         "example": {
           "path": "templates/weekly-report/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates/main/templates/weekly-report/example.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/weekly-report/example.json"
         }
       }
     }
