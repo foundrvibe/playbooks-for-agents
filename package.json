@@ -1,0 +1,16 @@
+{
+  "name": "templates-for-agents",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-templates.mjs",
+    "check": "node scripts/check-fill.mjs",
+    "render": "node scripts/render-fill.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  }
+}

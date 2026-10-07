@@ -1,6 +1,6 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
-import { checkFill, readJson, renderFill, root, sourceTypes } from "./lib/fill.mjs";
+import { checkFill, formatTypes, loadTheme, readJson, renderFill, root, sourceTypes } from "./lib/fill.mjs";
 
 const rawBase = "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/";
 const templateFiles = ["example.json", "research.md", "schema.json", "template.md"];
@@ -75,6 +75,9 @@ function checkSources(schema, label) {
     if (!sourceTypes.includes(prop["x-source"])) {
       fail(`${label}: ${name} x-source must be one of ${sourceTypes.join(", ")}`);
     }
+    if (prop["x-format"] !== undefined && !formatTypes.includes(prop["x-format"])) {
+      fail(`${label}: ${name} x-format must be one of ${formatTypes.join(", ")}`);
+    }
     if (prop["x-source"] === "research") researchFields.push(name);
   }
   if (researchFields.length > 0) {
@@ -125,8 +128,8 @@ function checkFolder(id, charts) {
   checkResearchGuide(folder, researchFields, id);
 
   try {
-    const markdown = renderFill(template, schema, example);
-    for (const error of checkFill({ schema, fill: example, markdown })) fail(`${id} example: ${error}`);
+    const markdown = renderFill(template, schema, example, theme);
+    for (const error of checkFill({ schema, fill: example, markdown, theme })) fail(`${id} example: ${error}`);
   } catch (error) {
     fail(`${id} example: ${error.message}`);
   }
@@ -135,6 +138,10 @@ function checkFolder(id, charts) {
 }
 
 const charts = loadCharts();
+const theme = loadTheme();
+for (const key of ["colors", "fonts", "page", "chart", "numbers"]) {
+  if (!theme[key]) fail(`themes/default.json: missing ${key}`);
+}
 const catalog = readJson(join(root, "catalog.json"));
 const templateRoot = join(root, "templates");
 const folders = readdirSync(templateRoot).filter((name) => statSync(join(templateRoot, name)).isDirectory());

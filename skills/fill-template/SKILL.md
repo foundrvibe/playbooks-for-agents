@@ -66,11 +66,21 @@ Use `template.md` as the only layout. Section headings come from that file. Do n
 
 A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id under [charts/](../../charts/). Fetch `charts/{id}.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values.
 
+**If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself with [charts/render_chart.py](../../charts/render_chart.py). Fetch the script, run it in your Python tool with the slot's JSON value, and show the PNG:
+
+```text
+python render_chart.py --kind <x-chart> --data '<slot JSON>' --currency <currency> --language <two-letter code> --out <slot_id>.png
+```
+
+Use the currency of `market_country` when the field has `x-format: currency`, and the language code of `document_language`. Do not write your own plotting code or change the colors. In the Markdown, replace the slot with `![<seriesName>](<slot_id>.png)` followed by the same values as a Markdown table, so every number stays readable and checkable.
+
+**If you cannot run Python,** render the slot as text instead, as below.
+
 **`markdown-table`:** the value is an array of `{ "label": string, "value": number }` with at least one row. Render:
 
 ```markdown
 | Label | Value |
-|---|---|
+|---|---:|
 | <label> | <value> |
 ```
 

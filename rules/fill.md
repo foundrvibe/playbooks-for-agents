@@ -8,7 +8,7 @@ Every fill must follow these rules.
 4. **Never invent a source.** Cite only a page you opened during this fill. If you cannot browse, say so before you fill, set `research_mode` to `offline`, leave `sources` empty, and label every researched field `Assumption:`. A plausible URL you did not open is an invented source.
 5. **Numbers need a source.** Revenue, prices, market size, growth rates, user counts, dates, and percentages must come from the user's context or a cited source. An estimate is allowed only when you label it `Assumption:` and show the inputs it comes from.
 6. **No blank sections.** Do not render `_Unknown — not provided_`, "No data provided", or an empty optional section. Draft the section from context and research.
-7. **Charts are projections you can explain.** Fill a chart slot from cited figures or from a labeled assumption built only from those figures. Say what the series is and where it came from.
+7. **Charts are projections you can explain.** Fill a chart slot from cited figures or from a labeled assumption built only from those figures. Say what the series is and where it came from. If you can run Python, draw it with `charts/render_chart.py` and put the same values in a table below the image.
 8. **Don't invent people.** Do not create names, quotes, testimonials, or partners that are not in the context or a public source. If no one is named, list the roles the business needs.
 9. **Label recommendations.** Legal form, funding amount, pricing, and cash on hand are recommendations when they are not in the context or a public filing. Put each one in Assumptions.
 10. **Cite fully.** Every source has a title, publisher, URL, and the date you opened it. Every researched claim matches one source.

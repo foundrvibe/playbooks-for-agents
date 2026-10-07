@@ -366,14 +366,16 @@
       "description": "Capital on hand from the context or a public filing. Otherwise a cited startup-cost estimate labeled Assumption. Do not present the estimate as cash the company holds.",
       "x-ask": "How much capital does the business have now? Say if you don't want a number in the plan.",
       "x-source": "research",
-      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "x-format": "currency"
     },
     "funding_request": {
       "type": "number",
       "description": "Funding amount from the context, or a recommended amount labeled Assumption and based on cited costs.",
       "x-ask": "How much funding are you requesting, and say if you are not raising?",
       "x-source": "research",
-      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "x-format": "currency"
     },
     "use_of_funds": {
       "type": "string",
@@ -417,7 +419,8 @@
           "type": "string",
           "description": "Name of the series, such as Collected revenue."
         }
-      }
+      },
+      "x-format": "currency"
     },
     "assumptions": {
       "type": "array",

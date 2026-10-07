@@ -1,29 +1,34 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { checkFill, loadTemplate, readJson, renderFill } from "./lib/fill.mjs";
+import { parseArgs } from "node:util";
+import { checkFill, loadTemplate, loadTheme, readJson, renderFill } from "./lib/fill.mjs";
 
-const args = process.argv.slice(2);
-const expectIndex = args.indexOf("--expect");
-const expectPath = expectIndex === -1 ? null : args[expectIndex + 1];
-const positional = expectIndex === -1 ? args : args.filter((_, index) => index !== expectIndex && index !== expectIndex + 1);
-const [id, fillPath, markdownPath] = positional;
+const { values, positionals } = parseArgs({
+  allowPositionals: true,
+  options: {
+    expect: { type: "string" },
+    theme: { type: "string", default: "default" },
+  },
+});
+const [id, fillPath, markdownPath] = positionals;
 
-if (!id || !fillPath || (expectIndex !== -1 && !expectPath)) {
-  console.error("Usage: node scripts/check-fill.mjs <template-id> <fill.json> [filled.md] [--expect tests/contexts/<name>.json]");
+if (!id || !fillPath) {
+  console.error("Usage: node scripts/check-fill.mjs <template-id> <fill.json> [filled.md] [--expect tests/contexts/<name>.json] [--theme default]");
   process.exit(2);
 }
 
 const { template, schema } = loadTemplate(id);
+const theme = loadTheme(values.theme);
 const fill = readJson(resolve(fillPath));
-const markdown = markdownPath ? readFileSync(resolve(markdownPath), "utf8") : renderFill(template, schema, fill);
-const testCase = expectPath ? readJson(resolve(expectPath)) : null;
+const markdown = markdownPath ? readFileSync(resolve(markdownPath), "utf8") : renderFill(template, schema, fill, theme);
+const testCase = values.expect ? readJson(resolve(values.expect)) : null;
 
 if (testCase && testCase.template !== id) {
-  console.error(`${expectPath} is for template "${testCase.template}", not "${id}"`);
+  console.error(`${values.expect} is for template "${testCase.template}", not "${id}"`);
   process.exit(2);
 }
 
-const errors = checkFill({ schema, fill, markdown, expect: testCase?.expect });
+const errors = checkFill({ schema, fill, markdown, expect: testCase?.expect, theme });
 
 if (errors.length > 0) {
   for (const error of errors) console.error(error);
