@@ -3,7 +3,7 @@ name: Validate templates
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
   validate:
@@ -13,5 +13,28 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: npm install ajv@8
+      - run: npm install --no-save ajv@8
       - run: node scripts/validate-templates.mjs
+
+  tag-versions:
+    if: github.event_name == 'push'
+    needs: validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Tag new template versions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for tag in $(node -e 'for (const t of require("./catalog.json").templates) console.log(`${t.id}-v${t.version}`)'); do
+            if git rev-parse -q --verify "refs/tags/$tag" >/dev/null; then
+              echo "$tag already exists"
+            else
+              git tag -a "$tag" -m "$tag"
+              git push origin "$tag"
+            fi
+          done

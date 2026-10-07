@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/templates/_starter/0.1.0",
+  "x-id": "_starter",
+  "x-version": "0.1.0",
+  "x-title": "Starter",
+  "description": "Copy this folder to start a template. Rename x-id to the new folder name and add it to catalog.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "summary", "document_language", "research_mode", "sources"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Document title, from the context.",
+      "x-ask": "What is this document about?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the document covers, in the user's words.",
+      "x-ask": "In a few sentences, what should this document say?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Use the language of the user's request unless they asked for another. Section headings stay as written in template.md.",
+      "x-ask": "Which language should the document be written in?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when you opened the cited sources during this fill. offline when you could not browse, so every researched field is an Assumption and sources is empty.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "background": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Researched background for the topic, from cited sources.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "sources": {
+      "type": "array",
+      "description": "Public sources used for researched fields. May be empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1, "description": "Title of the page or report." },
+          "publisher": { "type": "string", "minLength": 1, "description": "Organization that published it." },
+          "url": { "type": "string", "minLength": 1, "description": "Public URL you opened during this fill." },
+          "accessed": { "type": "string", "minLength": 1, "description": "Date you opened the URL, in YYYY-MM-DD." }
+        }
+      }
+    },
+    "missing_info": {
+      "type": ["array", "null"],
+      "description": "Required context the user refused to give.",
+      "x-ask": "Which required facts are you leaving unanswered?",
+      "x-source": "derived",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1, "description": "A required fact that is still missing." }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "research_mode": { "const": "web" } }, "required": ["research_mode"] },
+      "then": { "properties": { "sources": { "minItems": 1 } } }
+    }
+  ]
+}

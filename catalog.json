@@ -8,9 +8,10 @@
     {
       "id": "business-plan",
       "name": "Business Plan",
-      "version": "1.0.0",
+      "version": "3.0.0",
       "status": "ready",
-      "description": "A traditional business plan: executive summary, company overview, products, market, marketing, operations, and financials. Names, prices, market size, and funding amounts are included only when the user supplied them.",
+      "category": "planning",
+      "description": "A traditional business plan. The user supplies context. The agent researches the market, competitors, pricing, operations, and projections for the market country, and cites sources.",
       "intents": [
         "business plan",
         "company plan",
@@ -29,6 +30,10 @@
         "example": {
           "path": "templates/business-plan/example.json",
           "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/example.json"
+        },
+        "research": {
+          "path": "templates/business-plan/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/research.md"
         }
       }
     }

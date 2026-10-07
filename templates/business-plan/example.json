@@ -1,50 +1,93 @@
 {
   "company_name": "Northwind Studio",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
   "owner": "Amina Rahman",
   "status": "Draft",
   "last_updated": "2026-10-06",
   "plan_format": "traditional",
   "audience": "A lender reviewing a funding request",
   "location": "Austin, Texas",
-  "legal_structure": "LLC",
-  "executive_summary": "Northwind Studio sells a shared job board so independent design studios can track briefs, files, and approvals in one place. The target customer is studios with 2 to 10 people. No funding amount or market-size figure was provided.",
+  "legal_structure": "Assumption: LLC, a common structure for a small U.S. software company. This is not a filed document.",
+  "executive_summary": "Northwind Studio sells a shared job board so independent design studios can track briefs, files, and approvals in one place. The target customer is studios with 2 to 10 people. Pricing, capital, and the funding amount below are labeled assumptions, not company actuals.",
   "business_concept": "A shared job board for briefs, files, and approvals so small studios can stop tracking client work in email and spreadsheets.",
   "business_model": "B2B",
-  "industry": "Software for design studios",
-  "competitive_advantage": null,
+  "industry": "Software publishers (NAICS 513210).",
+  "competitive_advantage": "General work-management tools such as Asana and Monday.com serve many kinds of teams. Northwind Studio is limited to the design-studio workflow of briefs, files, and client approvals.",
   "mission": "Give small studios one place to run client work.",
   "values": [
-    { "text": "Only ship features a studio asked for." }
+    { "text": "Assumption: only ship features a studio asked for." }
   ],
   "objectives": [
-    { "horizon": "Next year", "text": "Serve the studios the founder already works with." }
+    {
+      "horizon": "Next year",
+      "text": "Assumption: sign the first ten studios from the founder's existing network within 12 months."
+    }
   ],
   "team": [
-    { "name": "Amina Rahman", "role": "Founder", "background": null }
+    {
+      "name": "Amina Rahman",
+      "role": "Founder",
+      "background": "Named in the context as the founder."
+    }
   ],
   "products_and_services": "A monthly subscription for the studio, billed per workspace. One job board covers briefs, files, and approvals.",
-  "pricing": null,
-  "sourcing": "The founder builds and hosts the product. No outside manufacturer was named.",
-  "market_analysis": "The only demand evidence provided is studios in the founder's existing network. No market-size figure was provided.",
+  "pricing": "Assumption: a per-workspace monthly subscription priced against the public plans of Asana and Monday.com.",
+  "sourcing": "The founder builds and hosts the software. No outside manufacturer is involved.",
+  "market_analysis": "The target is independent U.S. design studios with 2 to 10 people. Sizing should count establishments in the specialized design services industry from Census business counts and apply the share with 2 to 10 employees.",
   "target_customer": "Independent design studios with 2 to 10 people.",
-  "competitors": [],
-  "strengths": null,
-  "weaknesses": null,
-  "opportunities": null,
-  "threats": null,
-  "marketing_plan": "Direct outreach to studios the founder already works with.",
-  "operations": null,
-  "starting_capital": null,
-  "funding_request": null,
-  "use_of_funds": null,
+  "competitors": [
+    {
+      "name": "Asana",
+      "url": "https://asana.com",
+      "difference": "Asana is general work management for many kinds of teams. Northwind Studio is built only for studio briefs, files, and client approvals."
+    },
+    {
+      "name": "Monday.com",
+      "url": "https://monday.com",
+      "difference": "Monday.com is a configurable work platform. Northwind Studio ships one fixed studio workflow."
+    }
+  ],
+  "strengths": "The founder already works with the studios the first year depends on.",
+  "weaknesses": "One founder builds, sells, and supports the product.",
+  "opportunities": "Small studios still track client work in email and spreadsheets.",
+  "threats": "General work-management tools can add studio templates.",
+  "marketing_plan": "Direct outreach to studios the founder already works with. Measure studios signed per month.",
+  "operations": "The founder builds and hosts the software and supports studios directly.",
+  "starting_capital": 0,
+  "funding_request": 0,
+  "use_of_funds": "Assumption: no funding is requested in the first year, so there is no spend plan.",
   "financials": {
-    "seriesName": "Collected revenue",
+    "seriesName": "Projected collected revenue",
     "x": ["Jan", "Feb", "Mar"],
     "series": [4200, 5100, 4800]
   },
   "assumptions": [
-    { "text": "The first ten studios come from the founder's existing network." }
+    {
+      "text": "The first ten studios come from the founder's existing network. The revenue series is sample data that shows the chart shape."
+    }
   ],
-  "review_cadence": "Quarterly while the studio is still finding its first customers.",
+  "review_cadence": "Quarterly while the studio is finding its first customers, and earlier if a competitor launches a studio workflow.",
+  "sources": [
+    {
+      "title": "Write your business plan",
+      "publisher": "U.S. Small Business Administration",
+      "url": "https://www.sba.gov/business-guide/plan-your-business/write-your-business-plan",
+      "accessed": "2026-10-06"
+    },
+    {
+      "title": "Asana",
+      "publisher": "Asana",
+      "url": "https://asana.com",
+      "accessed": "2026-10-06"
+    },
+    {
+      "title": "Monday.com",
+      "publisher": "monday.com",
+      "url": "https://monday.com",
+      "accessed": "2026-10-06"
+    }
+  ],
   "missing_info": []
 }

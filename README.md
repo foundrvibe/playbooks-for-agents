@@ -1,6 +1,6 @@
 # Templates
 
-Fillable document templates for AI agents. Each template is Markdown plus a JSON Schema and an example fill. One fill skill covers every template: required gaps get asked, unknown optional fields stay blank, and numbers are never invented.
+Fillable document templates for AI agents. Each template is Markdown plus a JSON Schema and an example fill. One fill skill covers every template. The user supplies context. The agent researches the other sections, cites sources, and does not leave a section unknown.
 
 The fill contract is [rules/fill.md](rules/fill.md). The procedure is [skills/fill-template/SKILL.md](skills/fill-template/SKILL.md). The index is [catalog.json](catalog.json).
 
@@ -14,7 +14,36 @@ Paste any prompt below into ChatGPT, Claude, or a Cursor agent chat. Replace `<i
 
 ## Add a template
 
-Copy a folder under `templates/<id>/` with `template.md`, `schema.json`, and `example.json`. Add a catalog entry with that `id`, `name`, `version`, `status`, `description`, `intents`, and the three file paths. Set `status` to `ready` and fill `intents` when a request should select it. Leave `intents` empty while it is a stub. No new skill is required.
+1. Copy `templates/_starter/` to `templates/<id>/`. Set `x-id` in `schema.json` to the new id.
+2. Edit `template.md`, `schema.json`, and `example.json`. Mark each field `x-source` as `user`, `user_data`, `derived`, or `research`.
+3. In `research.md`, name every `research` field and link the shared guide in [research/](research/) it uses. Add a new shared guide only when none fits.
+4. Add a catalog entry with `id`, `name`, `version`, `status`, `category`, `description`, `intents`, and the four file paths. Set `status` to `ready` and fill `intents` when a request should select it. Leave `intents` empty while it is a stub.
+5. Run `npm install --no-save ajv@8 && node scripts/validate-templates.mjs`.
+
+No new skill is required. CI fails if two ready templates share an intent, if `research.md` misses a research field, or if the example does not pass the fill check.
+
+## Pin a version
+
+Each template version is tagged as `<id>-v<version>`, for example `business-plan-v3.0.0`. Replace `dev` in any raw URL with the tag to keep a fixed shape:
+
+`https://raw.githubusercontent.com/foundrvibe/templates-for-agents/business-plan-v3.0.0/templates/business-plan/template.md`
+
+A tag pins the rules and skill at that commit too. A breaking schema change gets a new major version.
+
+## Check a fill
+
+Save the JSON the agent returns, and optionally its Markdown, then run:
+
+```text
+npm install --no-save ajv@8
+node scripts/check-fill.mjs business-plan fill.json filled.md
+```
+
+It fails when the JSON does not match the schema, the Markdown still has an unknown marker or a placeholder, `sources` is empty in `web` mode, or a number in the Markdown is not in the JSON. Without `filled.md`, it renders the JSON with `scripts/render-fill.mjs` first.
+
+## Test contexts
+
+[tests/contexts/](tests/contexts/) holds real contexts, such as `zedcut.json`. Paste its `context` into each agent, save the fill, and add `--expect tests/contexts/zedcut.json` to the check to compare the fields it lists.
 
 ## By URL
 
@@ -25,10 +54,10 @@ The agent fetches the template files directly.
 ```text
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Load this template by URL and also fetch schema.json and example.json from the same folder:
+Load this template by URL and also fetch schema.json, example.json, and research.md from the same folder:
 https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/<id>/template.md
 
-Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+I will give you the context only. Research every other section, cite sources, and do not leave a section unknown. Do not invent people's names. If you cannot browse the web, say so first and do not cite pages you did not open.
 ```
 
 **Claude**
@@ -36,10 +65,10 @@ Fill it from facts I give you. Ask for every required field you do not have. Do 
 ```text
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Load this template by URL and also fetch schema.json and example.json from the same folder:
+Load this template by URL and also fetch schema.json, example.json, and research.md from the same folder:
 https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/<id>/template.md
 
-Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+I will give you the context only. Research every other section, cite sources, and do not leave a section unknown. Do not invent people's names. If you cannot browse the web, say so first and do not cite pages you did not open.
 ```
 
 **Cursor**
@@ -47,9 +76,9 @@ Fill it from facts I give you. Ask for every required field you do not have. Do 
 ```text
 Follow skills/fill-template/SKILL.md and rules/fill.md in this repo. If you cannot read the repo, fetch https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Load templates/<id>/template.md plus its schema.json and example.json.
+Load templates/<id>/template.md plus its schema.json, example.json, and research.md.
 
-Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+I will give you the context only. Research every other section, cite sources, and do not leave a section unknown. Do not invent people's names. If you cannot browse the web, say so first and do not cite pages you did not open.
 ```
 
 ## By id
@@ -63,7 +92,7 @@ Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catal
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load template id "<id>".
-Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+I will give you the context only. Research every other section, cite sources, and do not leave a section unknown. Do not invent people's names. If you cannot browse the web, say so first and do not cite pages you did not open.
 ```
 
 **Claude**
@@ -73,7 +102,7 @@ Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catal
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load template id "<id>".
-Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+I will give you the context only. Research every other section, cite sources, and do not leave a section unknown. Do not invent people's names. If you cannot browse the web, say so first and do not cite pages you did not open.
 ```
 
 **Cursor**
@@ -82,7 +111,7 @@ Fill it from facts I give you. Ask for every required field you do not have. Do 
 Read catalog.json and follow skills/fill-template/SKILL.md and rules/fill.md. If you cannot read the repo, use the raw files under https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/
 
 Load template id "<id>".
-Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+I will give you the context only. Research every other section, cite sources, and do not leave a section unknown. Do not invent people's names. If you cannot browse the web, say so first and do not cite pages you did not open.
 ```
 
 ## By intent
@@ -123,4 +152,4 @@ Request: <what you want written>
 
 ## What comes back
 
-The agent returns the filled Markdown and a JSON object of the field values. Chart slots become a Markdown table or a Mermaid `xychart-beta` only when the matching numbers were provided. Otherwise the slot says `No data provided`.
+The agent returns the filled Markdown and a JSON object of the field values. Chart slots become a Markdown table or a Mermaid `xychart-beta` from cited figures or from a labeled assumption. Sources are listed in the document.

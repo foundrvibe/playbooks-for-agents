@@ -8,7 +8,10 @@
 | **Format** | {{plan_format}} |
 | **Audience** | {{audience}} |
 | **Location** | {{location}} |
+| **Market** | {{market_country}} |
+| **Language** | {{document_language}} |
 | **Legal structure** | {{legal_structure}} |
+| **Research** | {{research_mode}} |
 
 ## Executive summary
 
@@ -61,7 +64,7 @@
 ### Competitors
 
 {{#each competitors}}
-- **{{name}}:** {{difference}}
+- **{{name}}** ({{url}}): {{difference}}
 {{/each}}
 
 ### SWOT
@@ -100,6 +103,12 @@
 ## Review
 
 {{review_cadence}}
+
+## Sources
+
+{{#each sources}}
+- {{title}}, {{publisher}}. {{url}} (accessed {{accessed}})
+{{/each}}
 
 ## Missing info
 

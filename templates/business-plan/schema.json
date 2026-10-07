@@ -1,12 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/templates/business-plan/1.0.0",
+  "$id": "https://foundrvibe.com/templates/business-plan/3.0.0",
   "x-id": "business-plan",
-  "x-version": "1.0.0",
+  "x-version": "3.0.0",
   "x-title": "Business Plan",
   "type": "object",
   "additionalProperties": false,
-  "required": ["company_name", "business_concept", "target_customer", "products_and_services"],
+  "required": [
+    "company_name",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "business_concept",
+    "target_customer",
+    "products_and_services",
+    "sources"
+  ],
   "properties": {
     "company_name": {
       "type": "string",
@@ -16,61 +25,96 @@
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },
-    "owner": {
-      "type": ["string", "null"],
-      "description": "Person responsible for the plan.",
-      "x-ask": "Who owns this business plan?",
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country whose market, sources, currency, and regulations the research should use.",
+      "x-ask": "Which country is the main market?",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Use the language of the user's request unless they asked for another. Section headings stay as written in template.md.",
+      "x-ask": "Which language should the plan be written in?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": [
+        "web",
+        "offline"
+      ],
+      "description": "web when you opened the cited sources during this fill. offline when you could not browse, so every researched field is an Assumption and sources is empty.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "owner": {
+      "type": "string",
+      "description": "Owner named in the context. If none is named, the role responsible, such as Founder. Do not invent a personal name.",
+      "x-ask": "Who owns this business plan?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "status": {
-      "type": ["string", "null"],
-      "description": "Document status, such as Draft.",
+      "type": "string",
+      "description": "Draft, unless the context says otherwise.",
       "x-ask": "What status should this plan show?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "last_updated": {
-      "type": ["string", "null"],
-      "description": "Date the user says the plan was last updated.",
+      "type": "string",
+      "description": "The date of this fill in YYYY-MM-DD.",
       "x-ask": "What date should we use for last updated?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "plan_format": {
-      "type": ["string", "null"],
-      "description": "traditional for lenders and investors, or lean for internal planning. The section headings stay the same either way.",
+      "type": "string",
+      "description": "traditional when the plan is for a lender or investor, otherwise lean. Infer from the context. The section headings stay the same either way.",
       "x-ask": "Is this a traditional plan for a lender or investor, or a lean plan for internal use?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "audience": {
-      "type": ["string", "null"],
-      "description": "Who will read the plan, such as a lender, an investor, or the team.",
+      "type": "string",
+      "description": "Who will read the plan, inferred from the context, such as a lender, an investor, or the team.",
       "x-ask": "Who is this plan for?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "location": {
-      "type": ["string", "null"],
-      "description": "Headquarters and where the company does business, if the user stated it.",
+      "type": "string",
+      "description": "Where the company is based and does business, from the context. If only a country is known, use the market country.",
       "x-ask": "Where is the company based, and where does it do business?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "legal_structure": {
-      "type": ["string", "null"],
-      "description": "Legal structure the user stated, such as sole proprietorship, LLC, or S corp.",
+      "type": "string",
+      "description": "Legal structure from the context or a public registry. Otherwise a recommendation labeled Assumption, with the cited reason for it.",
       "x-ask": "What is the legal structure?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "executive_summary": {
-      "type": ["string", "null"],
-      "description": "Short summary written only from facts already in this fill: concept, customer, offer, advantage, objectives, and any funding or revenue figures the user supplied.",
+      "type": "string",
+      "description": "Short summary written only from the rest of this fill: concept, customer, offer, advantage, objectives, and the funding and revenue figures above.",
       "x-ask": "What must a reader understand before the rest of the plan?",
       "x-source": "derived",
-      "x-unknown": "_Unknown — not provided_"
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "business_concept": {
       "type": "string",
@@ -81,43 +125,49 @@
       "x-unknown": "_Unknown — not provided_"
     },
     "business_model": {
-      "type": ["string", "null"],
-      "description": "How the company sells, such as B2C, DTC, B2B, C2C, or C2B, only if the user named it.",
+      "type": "string",
+      "description": "How the company sells, such as B2C, DTC, B2B, C2C, or C2B, inferred from the context.",
       "x-ask": "Which business model is this: B2C, DTC, B2B, C2C, or C2B?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "industry": {
-      "type": ["string", "null"],
-      "description": "Industry or niche the user named.",
+      "type": "string",
+      "description": "Industry and its classification code, such as a NAICS code, from a cited source.",
       "x-ask": "What industry or niche is this in?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "competitive_advantage": {
-      "type": ["string", "null"],
-      "description": "What the user says the company has that alternatives do not. Do not invent a differentiator.",
+      "type": "string",
+      "description": "What sets the company apart, based on the context compared with the researched competitors.",
       "x-ask": "What is the competitive advantage?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "mission": {
-      "type": ["string", "null"],
-      "description": "Why the company exists, in the user's words.",
+      "type": "string",
+      "description": "Why the company exists, drafted from the context.",
       "x-ask": "What is the mission?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
     },
     "values": {
-      "type": ["array", "null"],
-      "description": "Brand values the user stated.",
+      "type": "array",
+      "description": "Values drafted from the context. Label each one the user did not state as Assumption.",
       "x-ask": "Which values should the plan list?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["text"],
+        "required": [
+          "text"
+        ],
         "properties": {
           "text": {
             "type": "string",
@@ -125,18 +175,22 @@
             "description": "One value."
           }
         }
-      }
+      },
+      "minItems": 1
     },
     "objectives": {
-      "type": ["array", "null"],
-      "description": "Short-term and longer-term objectives the user stated. Include a metric or deadline only when the user gave one.",
+      "type": "array",
+      "description": "Short-term and one-to-five-year objectives, each with a measure and deadline. Label each one the user did not state as Assumption.",
       "x-ask": "What do you want to achieve in the next year, and in the next one to five years?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["horizon", "text"],
+        "required": [
+          "horizon",
+          "text"
+        ],
         "properties": {
           "horizon": {
             "type": "string",
@@ -146,26 +200,30 @@
           "text": {
             "type": "string",
             "minLength": 1,
-            "description": "The objective, including a measure and deadline only if the user supplied them."
+            "description": "The objective, with a measure and a deadline."
           }
         }
-      }
+      },
+      "minItems": 1
     },
     "team": {
-      "type": ["array", "null"],
-      "description": "People the user named. Do not add anyone they did not name, and do not invent credentials or pay.",
+      "type": "array",
+      "description": "People named in the context or in a public source. If nobody is named, list the roles the business needs with no personal names.",
       "x-ask": "Who is on the leadership team, what does each person do, and what background should the plan include?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["name", "role"],
+        "required": [
+          "name",
+          "role"
+        ],
         "properties": {
           "name": {
             "type": "string",
             "minLength": 1,
-            "description": "A person the user named."
+            "description": "A person named in the context or a public source, or the role title when nobody is named."
           },
           "role": {
             "type": "string",
@@ -173,11 +231,13 @@
             "description": "That person's role."
           },
           "background": {
-            "type": ["string", "null"],
-            "description": "Credentials or background the user stated for this person."
+            "type": "string",
+            "description": "Background from the context or a public source, or what the role is responsible for.",
+            "minLength": 1
           }
         }
-      }
+      },
+      "minItems": 1
     },
     "products_and_services": {
       "type": "string",
@@ -188,25 +248,28 @@
       "x-unknown": "_Unknown — not provided_"
     },
     "pricing": {
-      "type": ["string", "null"],
-      "description": "Prices and the reason for them, only when the user gave the numbers and the rationale.",
+      "type": "string",
+      "description": "A price from the context, or a recommended price labeled Assumption and based on cited competitor pricing.",
       "x-ask": "What is the price of each offer, and what informed that price?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "sourcing": {
-      "type": ["string", "null"],
-      "description": "How the offer is made or sourced, including suppliers the user named and risks they named.",
+      "type": "string",
+      "description": "How the offer is built or sourced, from the context and cited operating norms for this kind of business.",
       "x-ask": "How do you source or produce what you sell, and which suppliers matter?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "market_analysis": {
-      "type": ["string", "null"],
-      "description": "Market size, growth, trends, and gaps the user provided. Do not add a market-size figure.",
-      "x-ask": "What market size, growth, trends, or gaps do you want in the plan? Skip any number you do not have.",
-      "x-source": "user_data",
-      "x-unknown": "_Unknown — not provided_"
+      "type": "string",
+      "description": "Market size, growth, trends, and gaps from cited public sources that fit the target customer and market country.",
+      "x-ask": "What market should be researched if the context does not already name the customer and geography?",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "target_customer": {
       "type": "string",
@@ -217,113 +280,138 @@
       "x-unknown": "_Unknown — not provided_"
     },
     "competitors": {
-      "type": ["array", "null"],
-      "description": "Competitors the user named, and the difference the user stated.",
+      "type": "array",
+      "description": "Real competitors found in public sources for this customer and market country, and how the offer differs from each.",
       "x-ask": "Which competitors should the plan name, and how are you different from each?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["name", "difference"],
+        "required": [
+          "name",
+          "url",
+          "difference"
+        ],
         "properties": {
           "name": {
             "type": "string",
             "minLength": 1,
-            "description": "A competitor the user named."
+            "description": "A competitor found in a public source."
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The competitor's public website."
           },
           "difference": {
             "type": "string",
             "minLength": 1,
-            "description": "How the user's offer differs, in their words."
+            "description": "How the offer differs, based on the competitor's public site and the context."
           }
         }
-      }
+      },
+      "minItems": 1
     },
     "strengths": {
-      "type": ["string", "null"],
-      "description": "Strengths the user listed for a SWOT.",
+      "type": "string",
+      "description": "Strengths drawn from the context and the competitor research.",
       "x-ask": "What strengths should the SWOT include?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "weaknesses": {
-      "type": ["string", "null"],
-      "description": "Weaknesses the user listed for a SWOT.",
+      "type": "string",
+      "description": "Weaknesses drawn from the context and the competitor research.",
       "x-ask": "What weaknesses should the SWOT include?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "opportunities": {
-      "type": ["string", "null"],
-      "description": "Opportunities the user listed for a SWOT.",
+      "type": "string",
+      "description": "Opportunities drawn from the cited market research.",
       "x-ask": "What opportunities should the SWOT include?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "threats": {
-      "type": ["string", "null"],
-      "description": "Threats the user listed for a SWOT.",
+      "type": "string",
+      "description": "Threats drawn from the cited market and competitor research.",
       "x-ask": "What threats should the SWOT include?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "marketing_plan": {
-      "type": ["string", "null"],
-      "description": "Positioning, channels, tactics, and how results will be measured, only as the user described them.",
+      "type": "string",
+      "description": "Positioning, channels, tactics, and measures, chosen from cited research on where the target customer looks for products.",
       "x-ask": "How will customers find you, and how will you measure that?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "operations": {
-      "type": ["string", "null"],
-      "description": "Suppliers, production, fulfillment, and inventory practices the user described, including backups they named.",
+      "type": "string",
+      "description": "How the company will deliver, support, and run the offer, from the context and cited operating norms.",
       "x-ask": "How will you source, produce, store, and deliver what you sell?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "starting_capital": {
-      "type": ["number", "null"],
-      "description": "Capital the business has now, as a number the user stated. Leave null when they did not give one.",
+      "type": "number",
+      "description": "Capital on hand from the context or a public filing. Otherwise a cited startup-cost estimate labeled Assumption. Do not present the estimate as cash the company holds.",
       "x-ask": "How much capital does the business have now? Say if you don't want a number in the plan.",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
     },
     "funding_request": {
-      "type": ["number", "null"],
-      "description": "Amount of funding the user is requesting. Leave null when they are not raising or did not give a number.",
+      "type": "number",
+      "description": "Funding amount from the context, or a recommended amount labeled Assumption and based on cited costs.",
       "x-ask": "How much funding are you requesting, and say if you are not raising?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
     },
     "use_of_funds": {
-      "type": ["string", "null"],
-      "description": "How the user will spend any funding they named.",
+      "type": "string",
+      "description": "How the funding will be used, from the context or the cited costs behind the recommended amount.",
       "x-ask": "If you are raising, how will you use the money?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "minLength": 1
     },
     "financials": {
-      "type": ["object", "null"],
-      "description": "Revenue figures the user provided, one number per period. Omit the chart when this is null. Do not forecast years the user did not supply.",
-      "x-ask": "Which revenue figures should the chart show? Share the period labels, the series name, and one number per period, or say you have no figures yet.",
-      "x-source": "user_data",
-      "x-unknown": "No data provided",
+      "type": "object",
+      "description": "Revenue by period from the context, or a projection labeled Assumption and built only from cited inputs. The chart is required.",
+      "x-ask": "Which periods should the revenue projection cover if the context does not say?",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
       "x-chart": "mermaid-xy",
       "additionalProperties": false,
-      "required": ["x", "series"],
+      "required": [
+        "x",
+        "series"
+      ],
       "properties": {
         "x": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "Period labels, one per point."
         },
         "series": {
           "type": "array",
           "minItems": 1,
-          "items": { "type": "number" },
-          "description": "Revenue numbers the user provided, one per label."
+          "items": {
+            "type": "number"
+          },
+          "description": "Revenue figures from the context, or projected figures built from cited inputs."
         },
         "seriesName": {
           "type": "string",
@@ -332,33 +420,79 @@
       }
     },
     "assumptions": {
-      "type": ["array", "null"],
-      "description": "Assumptions the user explicitly asked to include. Projections in the plan must trace back to these or to supplied data.",
+      "type": "array",
+      "description": "Every estimate or recommendation in the plan, with the cited inputs it uses.",
       "x-ask": "Which assumptions should be labeled in the plan?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["text"],
+        "required": [
+          "text"
+        ],
         "properties": {
           "text": {
             "type": "string",
             "minLength": 1,
-            "description": "One assumption the user stated."
+            "description": "One assumption and the inputs it comes from."
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "review_cadence": {
+      "type": "string",
+      "description": "When the plan should be reviewed, such as quarterly while the business is new, and the events that should trigger an earlier review.",
+      "x-ask": "How often should this plan be reviewed?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "description": "Public sources used for researched fields. Every researched claim must match one entry. May be empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "publisher",
+          "url",
+          "accessed"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Title of the page or report."
+          },
+          "publisher": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Organization that published it."
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Public URL you opened during this fill."
+          },
+          "accessed": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Date you opened the URL, in YYYY-MM-DD."
           }
         }
       }
     },
-    "review_cadence": {
-      "type": ["string", "null"],
-      "description": "When the user wants the plan reviewed, such as quarterly or annually, and any earlier triggers they named.",
-      "x-ask": "How often should this plan be reviewed?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
-    },
     "missing_info": {
-      "type": ["array", "null"],
+      "type": [
+        "array",
+        "null"
+      ],
       "description": "Required fields the user declined to answer. The agent fills this while validating.",
       "x-ask": "Which required facts are you leaving unanswered?",
       "x-source": "derived",
@@ -366,7 +500,9 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["text"],
+        "required": [
+          "text"
+        ],
         "properties": {
           "text": {
             "type": "string",
@@ -376,5 +512,26 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "research_mode": {
+            "const": "web"
+          }
+        },
+        "required": [
+          "research_mode"
+        ]
+      },
+      "then": {
+        "properties": {
+          "sources": {
+            "minItems": 1
+          }
+        }
+      }
+    }
+  ]
 }

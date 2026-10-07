@@ -2,13 +2,14 @@
 
 Every fill must follow these rules.
 
-1. **Keep the shape.** Use the template's sections in order. Don't add, drop, or rename sections.
-2. **Required missing → ask.** Before writing, list every required field you don't have and ask the user. Use `x-ask` questions. Group them in one message where possible.
-3. **Never invent numbers.** No revenue, prices, market size, growth rates, user counts, dates, or percentages unless the user gave them or they come from data the user provided.
-4. **Unknowns stay blank.** If an optional field isn't known, render it as unknown. Don't guess, don't use "approximately", don't fill with plausible filler.
-5. **Derived values must show their source.** If you compute something (e.g. a total from given line items), it must come only from provided numbers and say so.
-6. **Charts only from real data.** Fill a chart slot only if the data was provided and matches the chart spec. Otherwise drop it or mark "no data provided".
-7. **Don't fake names or quotes.** No invented customers, testimonials, team members, or partners.
-8. **Flag assumptions.** If the user says "assume X", label it in the doc as an assumption.
-9. **Validate before returning.** Check the fill against `schema.json`. If a required field is still missing (the user declined to answer), render it as unknown and list it at the end under "Missing info".
-10. **Prose is allowed, facts are not.** The agent can write clear sentences around the user's facts. It can't add new facts.
+1. **Keep the shape.** Use the template's sections in order. Don't add, drop, or rename sections. Headings stay as written in `template.md`, even when the prose is in another language.
+2. **Ask only for context.** Before writing, ask for required fields you cannot get from the user's context. Use `x-ask`. Group them in one message. Do not ask the user to supply fields you can research.
+3. **Research the rest.** For every `x-source` of `research`, follow the template's `research.md` and fill the field before you return the document. Research the `market_country` and write in the `document_language`.
+4. **Never invent a source.** Cite only a page you opened during this fill. If you cannot browse, say so before you fill, set `research_mode` to `offline`, leave `sources` empty, and label every researched field `Assumption:`. A plausible URL you did not open is an invented source.
+5. **Numbers need a source.** Revenue, prices, market size, growth rates, user counts, dates, and percentages must come from the user's context or a cited source. An estimate is allowed only when you label it `Assumption:` and show the inputs it comes from.
+6. **No blank sections.** Do not render `_Unknown — not provided_`, "No data provided", or an empty optional section. Draft the section from context and research.
+7. **Charts are projections you can explain.** Fill a chart slot from cited figures or from a labeled assumption built only from those figures. Say what the series is and where it came from.
+8. **Don't invent people.** Do not create names, quotes, testimonials, or partners that are not in the context or a public source. If no one is named, list the roles the business needs.
+9. **Label recommendations.** Legal form, funding amount, pricing, and cash on hand are recommendations when they are not in the context or a public filing. Put each one in Assumptions.
+10. **Cite fully.** Every source has a title, publisher, URL, and the date you opened it. Every researched claim matches one source.
+11. **Validate before returning.** Check the fill against `schema.json`. Missing info lists only required context the user refused to give. The rest of the document is filled.

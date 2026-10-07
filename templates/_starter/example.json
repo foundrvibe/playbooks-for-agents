@@ -1,0 +1,9 @@
+{
+  "title": "Starter document",
+  "summary": "A sample that shows the offline research mode.",
+  "document_language": "English",
+  "research_mode": "offline",
+  "background": "Assumption: the agent could not browse, so this background is written from the context only and has no citation.",
+  "sources": [],
+  "missing_info": []
+}
