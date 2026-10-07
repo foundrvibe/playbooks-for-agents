@@ -1,16 +1,20 @@
-# FoundrVibe Templates
+# Templates
 
 Fillable document templates for AI agents. Each template is Markdown plus a JSON Schema and an example fill. One fill skill covers every template: required gaps get asked, unknown optional fields stay blank, and numbers are never invented.
 
 The fill contract is [rules/fill.md](rules/fill.md). The procedure is [skills/fill-template/SKILL.md](skills/fill-template/SKILL.md). The index is [catalog.json](catalog.json).
 
-Ready templates: `prd`, `business-plan`. `letter` and `weekly-report` are stubs and are not chosen by intent.
+Read the catalog at use time. It is the list of templates, including ones added later. Intent matching uses entries whose `status` is `ready` and skips `stub`. Do not assume a fixed set of ids.
 
 Raw files use this base URL:
 
 `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/`
 
-Paste any prompt below into ChatGPT, Claude, or a Cursor agent chat.
+Paste any prompt below into ChatGPT, Claude, or a Cursor agent chat. Replace `<id>` with an id from the catalog.
+
+## Add a template
+
+Copy a folder under `templates/<id>/` with `template.md`, `schema.json`, and `example.json`. Add a catalog entry with that `id`, `name`, `version`, `status`, `description`, `intents`, and the three file paths. Set `status` to `ready` and fill `intents` when a request should select it. Leave `intents` empty while it is a stub. No new skill is required.
 
 ## By URL
 
@@ -22,9 +26,9 @@ The agent fetches the template files directly.
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load this template by URL and also fetch schema.json and example.json from the same folder:
-https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/template.md
+https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/<id>/template.md
 
-Write a PRD from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
 
 **Claude**
@@ -33,9 +37,9 @@ Write a PRD from facts I give you. Ask for every required field you do not have.
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
 Load this template by URL and also fetch schema.json and example.json from the same folder:
-https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/template.md
+https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/<id>/template.md
 
-Write a PRD from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
 
 **Cursor**
@@ -43,9 +47,9 @@ Write a PRD from facts I give you. Ask for every required field you do not have.
 ```text
 Follow skills/fill-template/SKILL.md and rules/fill.md in this repo. If you cannot read the repo, fetch https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Load templates/prd/template.md plus its schema.json and example.json.
+Load templates/<id>/template.md plus its schema.json and example.json.
 
-Write a PRD from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
 
 ## By id
@@ -58,8 +62,8 @@ The agent resolves the id through the catalog.
 Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Load template id "business-plan".
-Write the plan from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+Load template id "<id>".
+Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
 
 **Claude**
@@ -68,8 +72,8 @@ Write the plan from facts I give you. Ask for every required field you do not ha
 Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Load template id "business-plan".
-Write the plan from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+Load template id "<id>".
+Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
 
 **Cursor**
@@ -77,13 +81,13 @@ Write the plan from facts I give you. Ask for every required field you do not ha
 ```text
 Read catalog.json and follow skills/fill-template/SKILL.md and rules/fill.md. If you cannot read the repo, use the raw files under https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/
 
-Load template id "business-plan".
-Write the plan from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
+Load template id "<id>".
+Fill it from facts I give you. Ask for every required field you do not have. Do not invent numbers, dates, or names.
 ```
 
 ## By intent
 
-The agent matches the request to `intents` on ready templates. If more than one ready template matches, it asks which one. Stubs are skipped.
+The agent matches the request to `intents` on ready templates in the catalog. If more than one ready template matches, it asks which one. Stubs are skipped. Templates added later are included if they are `ready` and list intents.
 
 **ChatGPT**
 
@@ -91,9 +95,9 @@ The agent matches the request to `intents` on ready templates. If more than one 
 Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Match this request to one ready template intent. If several match, ask me which template to use.
+Match this request to one ready template intent in the catalog. If several match, ask me which template to use.
 
-Request: write a PRD for a shared client inbox for freelance studios.
+Request: <what you want written>
 ```
 
 **Claude**
@@ -102,9 +106,9 @@ Request: write a PRD for a shared client inbox for freelance studios.
 Read https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json
 Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md and https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md
 
-Match this request to one ready template intent. If several match, ask me which template to use.
+Match this request to one ready template intent in the catalog. If several match, ask me which template to use.
 
-Request: write a PRD for a shared client inbox for freelance studios.
+Request: <what you want written>
 ```
 
 **Cursor**
@@ -112,9 +116,9 @@ Request: write a PRD for a shared client inbox for freelance studios.
 ```text
 Read catalog.json and follow skills/fill-template/SKILL.md and rules/fill.md. If you cannot read the repo, use the raw files under https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/
 
-Match this request to one ready template intent. If several match, ask me which template to use.
+Match this request to one ready template intent in the catalog. If several match, ask me which template to use.
 
-Request: write a PRD for a shared client inbox for freelance studios.
+Request: <what you want written>
 ```
 
 ## What comes back
