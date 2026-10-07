@@ -1,17 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/templates/business-plan/0.1.0",
+  "$id": "https://foundrvibe.com/templates/business-plan/1.0.0",
   "x-id": "business-plan",
-  "x-version": "0.1.0",
+  "x-version": "1.0.0",
   "x-title": "Business Plan",
   "type": "object",
   "additionalProperties": false,
-  "required": ["company_name", "problem", "solution", "customer"],
+  "required": ["company_name", "business_concept", "target_customer", "products_and_services"],
   "properties": {
     "company_name": {
       "type": "string",
       "minLength": 1,
-      "description": "Name of the company.",
+      "description": "Legal or trading name of the company.",
       "x-ask": "What is the company name?",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
@@ -37,48 +37,124 @@
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },
-    "problem": {
-      "type": "string",
-      "minLength": 1,
-      "description": "The problem the company addresses, in the user's words.",
-      "x-ask": "What problem does the company solve?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
-    },
-    "solution": {
-      "type": "string",
-      "minLength": 1,
-      "description": "What the company offers as the solution.",
-      "x-ask": "What is the solution?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
-    },
-    "customer": {
-      "type": "string",
-      "minLength": 1,
-      "description": "Who the customer is. Do not invent customer names.",
-      "x-ask": "Who is the customer?",
-      "x-source": "user",
-      "x-unknown": "_Unknown — not provided_"
-    },
-    "offer": {
+    "plan_format": {
       "type": ["string", "null"],
-      "description": "What is sold and how it is packaged.",
-      "x-ask": "What exactly do you sell, and how is it packaged?",
+      "description": "traditional for lenders and investors, or lean for internal planning. The section headings stay the same either way.",
+      "x-ask": "Is this a traditional plan for a lender or investor, or a lean plan for internal use?",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },
-    "go_to_market": {
+    "audience": {
       "type": ["string", "null"],
-      "description": "How the user plans to reach customers.",
-      "x-ask": "How will you reach the first customers?",
+      "description": "Who will read the plan, such as a lender, an investor, or the team.",
+      "x-ask": "Who is this plan for?",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
+    },
+    "location": {
+      "type": ["string", "null"],
+      "description": "Headquarters and where the company does business, if the user stated it.",
+      "x-ask": "Where is the company based, and where does it do business?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "legal_structure": {
+      "type": ["string", "null"],
+      "description": "Legal structure the user stated, such as sole proprietorship, LLC, or S corp.",
+      "x-ask": "What is the legal structure?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "executive_summary": {
+      "type": ["string", "null"],
+      "description": "Short summary written only from facts already in this fill: concept, customer, offer, advantage, objectives, and any funding or revenue figures the user supplied.",
+      "x-ask": "What must a reader understand before the rest of the plan?",
+      "x-source": "derived",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "business_concept": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the company does, in the user's words.",
+      "x-ask": "What does the company do?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "business_model": {
+      "type": ["string", "null"],
+      "description": "How the company sells, such as B2C, DTC, B2B, C2C, or C2B, only if the user named it.",
+      "x-ask": "Which business model is this: B2C, DTC, B2B, C2C, or C2B?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "industry": {
+      "type": ["string", "null"],
+      "description": "Industry or niche the user named.",
+      "x-ask": "What industry or niche is this in?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "competitive_advantage": {
+      "type": ["string", "null"],
+      "description": "What the user says the company has that alternatives do not. Do not invent a differentiator.",
+      "x-ask": "What is the competitive advantage?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "mission": {
+      "type": ["string", "null"],
+      "description": "Why the company exists, in the user's words.",
+      "x-ask": "What is the mission?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "values": {
+      "type": ["array", "null"],
+      "description": "Brand values the user stated.",
+      "x-ask": "Which values should the plan list?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "One value."
+          }
+        }
+      }
+    },
+    "objectives": {
+      "type": ["array", "null"],
+      "description": "Short-term and longer-term objectives the user stated. Include a metric or deadline only when the user gave one.",
+      "x-ask": "What do you want to achieve in the next year, and in the next one to five years?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["horizon", "text"],
+        "properties": {
+          "horizon": {
+            "type": "string",
+            "minLength": 1,
+            "description": "When the objective applies, such as next year or one to five years."
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The objective, including a measure and deadline only if the user supplied them."
+          }
+        }
+      }
     },
     "team": {
       "type": ["array", "null"],
-      "description": "People the user named. Do not add anyone they did not name.",
-      "x-ask": "Who is on the team, and what does each person do? Skip anyone you don't want named.",
+      "description": "People the user named. Do not add anyone they did not name, and do not invent credentials or pay.",
+      "x-ask": "Who is on the leadership team, what does each person do, and what background should the plan include?",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_",
       "items": {
@@ -95,21 +171,142 @@
             "type": "string",
             "minLength": 1,
             "description": "That person's role."
+          },
+          "background": {
+            "type": ["string", "null"],
+            "description": "Credentials or background the user stated for this person."
           }
         }
       }
     },
+    "products_and_services": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the company sells or plans to offer, who it serves, and any launches or intellectual property the user described.",
+      "x-ask": "What do you sell or plan to offer, and who is it for?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "pricing": {
+      "type": ["string", "null"],
+      "description": "Prices and the reason for them, only when the user gave the numbers and the rationale.",
+      "x-ask": "What is the price of each offer, and what informed that price?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "sourcing": {
+      "type": ["string", "null"],
+      "description": "How the offer is made or sourced, including suppliers the user named and risks they named.",
+      "x-ask": "How do you source or produce what you sell, and which suppliers matter?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_analysis": {
+      "type": ["string", "null"],
+      "description": "Market size, growth, trends, and gaps the user provided. Do not add a market-size figure.",
+      "x-ask": "What market size, growth, trends, or gaps do you want in the plan? Skip any number you do not have.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who the customer is. Do not invent customer names or demographic stats.",
+      "x-ask": "Who is the target customer?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "competitors": {
+      "type": ["array", "null"],
+      "description": "Competitors the user named, and the difference the user stated.",
+      "x-ask": "Which competitors should the plan name, and how are you different from each?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "difference"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "A competitor the user named."
+          },
+          "difference": {
+            "type": "string",
+            "minLength": 1,
+            "description": "How the user's offer differs, in their words."
+          }
+        }
+      }
+    },
+    "strengths": {
+      "type": ["string", "null"],
+      "description": "Strengths the user listed for a SWOT.",
+      "x-ask": "What strengths should the SWOT include?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "weaknesses": {
+      "type": ["string", "null"],
+      "description": "Weaknesses the user listed for a SWOT.",
+      "x-ask": "What weaknesses should the SWOT include?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "opportunities": {
+      "type": ["string", "null"],
+      "description": "Opportunities the user listed for a SWOT.",
+      "x-ask": "What opportunities should the SWOT include?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "threats": {
+      "type": ["string", "null"],
+      "description": "Threats the user listed for a SWOT.",
+      "x-ask": "What threats should the SWOT include?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "marketing_plan": {
+      "type": ["string", "null"],
+      "description": "Positioning, channels, tactics, and how results will be measured, only as the user described them.",
+      "x-ask": "How will customers find you, and how will you measure that?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "operations": {
+      "type": ["string", "null"],
+      "description": "Suppliers, production, fulfillment, and inventory practices the user described, including backups they named.",
+      "x-ask": "How will you source, produce, store, and deliver what you sell?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
     "starting_capital": {
       "type": ["number", "null"],
-      "description": "Starting capital the user stated. Leave null when they did not give a number.",
-      "x-ask": "How much starting capital do you have? Say if you don't want a number in the plan.",
+      "description": "Capital the business has now, as a number the user stated. Leave null when they did not give one.",
+      "x-ask": "How much capital does the business have now? Say if you don't want a number in the plan.",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "funding_request": {
+      "type": ["number", "null"],
+      "description": "Amount of funding the user is requesting. Leave null when they are not raising or did not give a number.",
+      "x-ask": "How much funding are you requesting, and say if you are not raising?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "use_of_funds": {
+      "type": ["string", "null"],
+      "description": "How the user will spend any funding they named.",
+      "x-ask": "If you are raising, how will you use the money?",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },
     "financials": {
       "type": ["object", "null"],
-      "description": "One numeric series for the financials chart. Omit the chart when this is null.",
-      "x-ask": "Do you have financial figures to chart? If so, share the period labels, the series name, and one number per period.",
+      "description": "Revenue figures the user provided, one number per period. Omit the chart when this is null. Do not forecast years the user did not supply.",
+      "x-ask": "Which revenue figures should the chart show? Share the period labels, the series name, and one number per period, or say you have no figures yet.",
       "x-source": "user_data",
       "x-unknown": "No data provided",
       "x-chart": "mermaid-xy",
@@ -120,23 +317,23 @@
           "type": "array",
           "minItems": 1,
           "items": { "type": "string", "minLength": 1 },
-          "description": "Category labels, one per point."
+          "description": "Period labels, one per point."
         },
         "series": {
           "type": "array",
           "minItems": 1,
           "items": { "type": "number" },
-          "description": "Numeric values the user provided, one per label."
+          "description": "Revenue numbers the user provided, one per label."
         },
         "seriesName": {
           "type": "string",
-          "description": "Name of the series, such as Monthly revenue."
+          "description": "Name of the series, such as Collected revenue."
         }
       }
     },
     "assumptions": {
       "type": ["array", "null"],
-      "description": "Assumptions the user explicitly asked to include.",
+      "description": "Assumptions the user explicitly asked to include. Projections in the plan must trace back to these or to supplied data.",
       "x-ask": "Which assumptions should be labeled in the plan?",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_",
@@ -152,6 +349,13 @@
           }
         }
       }
+    },
+    "review_cadence": {
+      "type": ["string", "null"],
+      "description": "When the user wants the plan reviewed, such as quarterly or annually, and any earlier triggers they named.",
+      "x-ask": "How often should this plan be reviewed?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
     },
     "missing_info": {
       "type": ["array", "null"],

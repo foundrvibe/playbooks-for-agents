@@ -6,39 +6,11 @@
   "skillUrl": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md",
   "templates": [
     {
-      "id": "prd",
-      "name": "Product Requirements Document",
-      "version": "0.1.0",
-      "status": "ready",
-      "description": "A fixed PRD shape. Required facts are asked for. Metrics are charted only from numbers the user provides.",
-      "intents": [
-        "prd",
-        "product requirements",
-        "product requirements document",
-        "write a prd",
-        "draft a prd"
-      ],
-      "files": {
-        "template": {
-          "path": "templates/prd/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/template.md"
-        },
-        "schema": {
-          "path": "templates/prd/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/schema.json"
-        },
-        "example": {
-          "path": "templates/prd/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/prd/example.json"
-        }
-      }
-    },
-    {
       "id": "business-plan",
       "name": "Business Plan",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "status": "ready",
-      "description": "A fixed business-plan shape. Team names, prices, and financials are included only when the user supplied them.",
+      "description": "A traditional business plan: executive summary, company overview, products, market, marketing, operations, and financials. Names, prices, market size, and funding amounts are included only when the user supplied them.",
       "intents": [
         "business plan",
         "company plan",
@@ -57,50 +29,6 @@
         "example": {
           "path": "templates/business-plan/example.json",
           "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/example.json"
-        }
-      }
-    },
-    {
-      "id": "letter",
-      "name": "Letter",
-      "version": "0.1.0",
-      "status": "stub",
-      "description": "Stub. Not ready. Do not select this template by intent.",
-      "intents": [],
-      "files": {
-        "template": {
-          "path": "templates/letter/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/letter/template.md"
-        },
-        "schema": {
-          "path": "templates/letter/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/letter/schema.json"
-        },
-        "example": {
-          "path": "templates/letter/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/letter/example.json"
-        }
-      }
-    },
-    {
-      "id": "weekly-report",
-      "name": "Weekly Report",
-      "version": "0.1.0",
-      "status": "stub",
-      "description": "Stub. Not ready. Do not select this template by intent.",
-      "intents": [],
-      "files": {
-        "template": {
-          "path": "templates/weekly-report/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/weekly-report/template.md"
-        },
-        "schema": {
-          "path": "templates/weekly-report/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/weekly-report/schema.json"
-        },
-        "example": {
-          "path": "templates/weekly-report/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/weekly-report/example.json"
         }
       }
     }

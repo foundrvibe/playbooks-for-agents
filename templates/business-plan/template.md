@@ -5,36 +5,89 @@
 | **Owner** | {{owner}} |
 | **Status** | {{status}} |
 | **Last updated** | {{last_updated}} |
+| **Format** | {{plan_format}} |
+| **Audience** | {{audience}} |
+| **Location** | {{location}} |
+| **Legal structure** | {{legal_structure}} |
 
-## Problem
+## Executive summary
 
-{{problem}}
+{{executive_summary}}
 
-## Solution
+## Company overview
 
-{{solution}}
+{{business_concept}}
 
-## Customer
+**Business model:** {{business_model}}
 
-{{customer}}
+**Industry:** {{industry}}
 
-## Offer
+**Competitive advantage:** {{competitive_advantage}}
 
-{{offer}}
+**Mission:** {{mission}}
 
-## Go to market
+### Values
 
-{{go_to_market}}
-
-## Team
-
-{{#each team}}
-- **{{name}}** — {{role}}
+{{#each values}}
+- {{text}}
 {{/each}}
 
-## Financials
+### Objectives
 
-Starting capital: {{starting_capital}}
+{{#each objectives}}
+- **{{horizon}}:** {{text}}
+{{/each}}
+
+### Leadership
+
+{{#each team}}
+- **{{name}}** — {{role}}. {{background}}
+{{/each}}
+
+## Products and services
+
+{{products_and_services}}
+
+**Pricing:** {{pricing}}
+
+**Sourcing and production:** {{sourcing}}
+
+## Market analysis
+
+{{market_analysis}}
+
+**Target customer:** {{target_customer}}
+
+### Competitors
+
+{{#each competitors}}
+- **{{name}}:** {{difference}}
+{{/each}}
+
+### SWOT
+
+- **Strengths:** {{strengths}}
+- **Weaknesses:** {{weaknesses}}
+- **Opportunities:** {{opportunities}}
+- **Threats:** {{threats}}
+
+## Marketing plan
+
+{{marketing_plan}}
+
+## Operations
+
+{{operations}}
+
+## Financial plan
+
+**Capital on hand:** {{starting_capital}}
+
+**Funding request:** {{funding_request}}
+
+**Use of funds:** {{use_of_funds}}
+
+### Revenue projections
 
 {{chart:financials}}
 
@@ -43,6 +96,10 @@ Starting capital: {{starting_capital}}
 {{#each assumptions}}
 - Assumption: {{text}}
 {{/each}}
+
+## Review
+
+{{review_cadence}}
 
 ## Missing info
 

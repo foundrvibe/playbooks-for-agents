@@ -3,15 +3,40 @@
   "owner": "Amina Rahman",
   "status": "Draft",
   "last_updated": "2026-10-06",
-  "problem": "Small studios lose track of client work across email and spreadsheets.",
-  "solution": "One shared job board for briefs, files, and approvals.",
-  "customer": "Independent design studios with 2 to 10 people.",
-  "offer": "A monthly subscription for the studio, billed per workspace.",
-  "go_to_market": "Direct outreach to studios the founder already works with.",
-  "team": [
-    { "name": "Amina Rahman", "role": "Founder" }
+  "plan_format": "traditional",
+  "audience": "A lender reviewing a funding request",
+  "location": "Austin, Texas",
+  "legal_structure": "LLC",
+  "executive_summary": "Northwind Studio sells a shared job board so independent design studios can track briefs, files, and approvals in one place. The target customer is studios with 2 to 10 people. No funding amount or market-size figure was provided.",
+  "business_concept": "A shared job board for briefs, files, and approvals so small studios can stop tracking client work in email and spreadsheets.",
+  "business_model": "B2B",
+  "industry": "Software for design studios",
+  "competitive_advantage": null,
+  "mission": "Give small studios one place to run client work.",
+  "values": [
+    { "text": "Only ship features a studio asked for." }
   ],
+  "objectives": [
+    { "horizon": "Next year", "text": "Serve the studios the founder already works with." }
+  ],
+  "team": [
+    { "name": "Amina Rahman", "role": "Founder", "background": null }
+  ],
+  "products_and_services": "A monthly subscription for the studio, billed per workspace. One job board covers briefs, files, and approvals.",
+  "pricing": null,
+  "sourcing": "The founder builds and hosts the product. No outside manufacturer was named.",
+  "market_analysis": "The only demand evidence provided is studios in the founder's existing network. No market-size figure was provided.",
+  "target_customer": "Independent design studios with 2 to 10 people.",
+  "competitors": [],
+  "strengths": null,
+  "weaknesses": null,
+  "opportunities": null,
+  "threats": null,
+  "marketing_plan": "Direct outreach to studios the founder already works with.",
+  "operations": null,
   "starting_capital": null,
+  "funding_request": null,
+  "use_of_funds": null,
   "financials": {
     "seriesName": "Collected revenue",
     "x": ["Jan", "Feb", "Mar"],
@@ -20,5 +45,6 @@
   "assumptions": [
     { "text": "The first ten studios come from the founder's existing network." }
   ],
+  "review_cadence": "Quarterly while the studio is still finding its first customers.",
   "missing_info": []
 }
