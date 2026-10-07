@@ -21,7 +21,7 @@ jobs:
       - run: pip install matplotlib
       - name: Render example chart
         run: |
-          node -e 'process.stdout.write(JSON.stringify(require("./templates/business-plan/example.json").financials))' > financials.json
+          node -e 'process.stdout.write(JSON.stringify(require("./templates/planning/business-plan/example.json").financials))' > financials.json
           python charts/render_chart.py --kind mermaid-xy --data financials.json --currency USD --out financials.png
           test -s financials.png
 

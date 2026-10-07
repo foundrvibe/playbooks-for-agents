@@ -11,9 +11,21 @@ description: >-
 
 The user supplies context. You research and write the rest. The document shape stays fixed. Return a complete document. Do not leave sections unknown.
 
-Before filling, read and follow [rules/fill.md](../../rules/fill.md). Those rules are the contract. This skill is the procedure.
+This file is the only link a user needs to send. Fetch the other files yourself. Do not ask the user for more links.
 
-The catalog is [catalog.json](../../catalog.json). Read it at fill time. Do not assume a fixed set of templates. A new template is a catalog entry plus `template.md`, `schema.json`, and `example.json`. Use whatever is listed there.
+Base URL: `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/`
+
+| File | URL |
+|---|---|
+| Fill rules | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md` |
+| Catalog | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json` |
+| Chart script | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/render_chart.py` |
+| Chart specs | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/<id>.json` |
+| Shared research guides | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/research/<name>.md` |
+
+Read the fill rules before you write. They are the contract. This skill is the procedure.
+
+Read the catalog at fill time. It lists `categories`, and each category lists template ids. Do not assume a fixed set of templates. A new template is a catalog entry plus `template.md`, `schema.json`, `example.json`, and `research.md`. The catalog entries already contain the raw URL of each file.
 
 ## 1. Resolve the template
 
@@ -21,7 +33,7 @@ Use the first case that fits.
 
 - **URL.** The user pasted a raw URL to `template.md`, `schema.json`, or a template folder. Fetch `template.md`, `schema.json`, `example.json`, and `research.md` from that folder.
 - **Id.** Find `id` in `catalog.json`. Fetch the four files at `files.template`, `files.schema`, `files.example`, and `files.research`.
-- **Intent.** Compare the user's request to `intents` on templates whose `status` is `ready`. Ignore `status: "stub"`. If one ready template matches, use it. If more than one matches, ask which one. If none match, say so and list the ready template ids from the catalog you just read.
+- **Intent.** Compare the user's request to `intents` on templates whose `status` is `ready`. Ignore `status: "stub"`. If one ready template matches, use it. If more than one matches, ask which one and name its category. If none match, list the categories and their ready templates, and ask which one.
 
 `example.json` shows a valid shape. Do not copy its facts into the user's document.
 
@@ -41,7 +53,7 @@ Set `market_country` from the context when the template has it. Ask only if the 
 
 Before researching, check whether you can open web pages in this session. If you cannot, tell the user in one line, set `research_mode` to `offline`, leave `sources` empty, and write every research field as an `Assumption:` built from the context. Do not write a citation for a page you did not open. If you can browse, set `research_mode` to `web`.
 
-After you have the context, follow the template's `research.md`. It names each research field and links the shared guide under [research/](../../research/) that says where to look. Fill every field whose `x-source` is `research` or `derived` before you write the document.
+After you have the context, fetch the template's `research.md` from its catalog URL. It names each research field and links a shared guide. Fetch that guide from `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/research/<name>.md` (the file name in the link, such as `market-size.md`). Fill every field whose `x-source` is `research` or `derived` before you write the document.
 
 - Research for `market_country`: its statistics agency, registries, currency, and competitors that sell there.
 - Put each page you opened in `sources` with its title, publisher, URL, and the date you opened it. A researched claim in the document must match one of those sources.
@@ -64,9 +76,9 @@ Use `template.md` as the only layout. Section headings come from that file. Do n
 
 ## 5. Charts
 
-A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id under [charts/](../../charts/). Fetch `charts/{id}.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values.
+A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/<id>.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values.
 
-**If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself with [charts/render_chart.py](../../charts/render_chart.py). Fetch the script, run it in your Python tool with the slot's JSON value, and show the PNG:
+**If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/render_chart.py`, run it in your Python tool with the slot's JSON value, and show the PNG:
 
 ```text
 python render_chart.py --kind <x-chart> --data '<slot JSON>' --currency <currency> --language <two-letter code> --out <slot_id>.png

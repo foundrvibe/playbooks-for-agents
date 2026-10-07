@@ -4,6 +4,14 @@
   "rulesUrl": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md",
   "skill": "skills/fill-template/SKILL.md",
   "skillUrl": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md",
+  "categories": [
+    {
+      "id": "planning",
+      "name": "Planning",
+      "description": "Documents that plan a company: what it sells, who it serves, and how it will operate and earn money.",
+      "templates": ["business-plan"]
+    }
+  ],
   "templates": [
     {
       "id": "business-plan",
@@ -20,20 +28,20 @@
       ],
       "files": {
         "template": {
-          "path": "templates/business-plan/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/template.md"
+          "path": "templates/planning/business-plan/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/planning/business-plan/template.md"
         },
         "schema": {
-          "path": "templates/business-plan/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/schema.json"
+          "path": "templates/planning/business-plan/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/planning/business-plan/schema.json"
         },
         "example": {
-          "path": "templates/business-plan/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/example.json"
+          "path": "templates/planning/business-plan/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/planning/business-plan/example.json"
         },
         "research": {
-          "path": "templates/business-plan/research.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/business-plan/research.md"
+          "path": "templates/planning/business-plan/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/templates/planning/business-plan/research.md"
         }
       }
     }

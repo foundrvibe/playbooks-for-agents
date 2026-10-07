@@ -1,5 +1,5 @@
 import Ajv from "ajv/dist/2020.js";
-import { readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -20,8 +20,19 @@ export function readJson(path) {
   return JSON.parse(readFileSync(path, "utf8"));
 }
 
+export function templateFolder(id) {
+  const templateRoot = join(root, "templates");
+  if (id.startsWith("_") && existsSync(join(templateRoot, id, "schema.json"))) return join(templateRoot, id);
+  for (const category of readdirSync(templateRoot)) {
+    if (!statSync(join(templateRoot, category)).isDirectory() || category.startsWith("_")) continue;
+    const folder = join(templateRoot, category, id);
+    if (existsSync(join(folder, "schema.json"))) return folder;
+  }
+  throw new Error(`No template folder for ${id}`);
+}
+
 export function loadTemplate(id) {
-  const folder = join(root, "templates", id);
+  const folder = templateFolder(id);
   return {
     folder,
     template: readFileSync(join(folder, "template.md"), "utf8"),

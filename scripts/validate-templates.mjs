@@ -102,8 +102,7 @@ function checkResearchGuide(folder, researchFields, label) {
   }
 }
 
-function checkFolder(id, charts) {
-  const folder = join(root, "templates", id);
+function checkFolder(id, charts, folder) {
   const names = readdirSync(folder);
   for (const name of templateFiles) if (!names.includes(name)) fail(`templates/${id}: missing ${name}`);
   for (const name of names) if (!templateFiles.includes(name)) fail(`templates/${id}: unexpected file ${name}`);
@@ -144,11 +143,33 @@ for (const key of ["colors", "fonts", "page", "chart", "numbers"]) {
 }
 const catalog = readJson(join(root, "catalog.json"));
 const templateRoot = join(root, "templates");
-const folders = readdirSync(templateRoot).filter((name) => statSync(join(templateRoot, name)).isDirectory());
+const discovered = [];
+for (const name of readdirSync(templateRoot).filter((entry) => statSync(join(templateRoot, entry)).isDirectory())) {
+  const folder = join(templateRoot, name);
+  if (name.startsWith("_")) {
+    discovered.push({ id: name, category: null, folder });
+    continue;
+  }
+  const children = readdirSync(folder).filter((entry) => statSync(join(folder, entry)).isDirectory());
+  if (children.length === 0) fail(`templates/${name} has no templates`);
+  for (const child of children) discovered.push({ id: child, category: name, folder: join(folder, child) });
+}
 const listedIds = new Set();
 const intentOwners = new Map();
 
+if (!Array.isArray(catalog.categories) || catalog.categories.length === 0) {
+  fail("catalog.json: categories must be a non-empty array");
+}
 if (!Array.isArray(catalog.templates)) fail("catalog.json: templates must be an array");
+
+const categoryIds = new Map();
+for (const category of catalog.categories ?? []) {
+  if (!kebabCase.test(category.id ?? "")) fail(`catalog.json: category id "${category.id}" is not lowercase kebab-case`);
+  if (!category.name || !category.description) fail(`catalog.json: category ${category.id} needs a name and a description`);
+  if (!Array.isArray(category.templates)) fail(`catalog.json: category ${category.id} templates must be an array`);
+  if (categoryIds.has(category.id)) fail(`catalog.json: duplicate category ${category.id}`);
+  categoryIds.set(category.id, new Set(category.templates));
+}
 
 for (const entry of catalog.templates ?? []) {
   const id = entry.id;
@@ -157,11 +178,13 @@ for (const entry of catalog.templates ?? []) {
   if (!kebabCase.test(id ?? "")) fail(`catalog.json: id "${id}" is not lowercase kebab-case`);
   if (entry.status !== "ready" && entry.status !== "stub") fail(`catalog.json: ${id} status must be "ready" or "stub"`);
   if (!semver.test(entry.version ?? "")) fail(`catalog.json: ${id} version must be semver`);
-  if (typeof entry.category !== "string" || entry.category.length === 0) fail(`catalog.json: ${id} needs a category`);
+  const members = categoryIds.get(entry.category);
+  if (!members) fail(`catalog.json: ${id} category "${entry.category}" is not defined`);
+  if (!members.has(id)) fail(`catalog.json: category ${entry.category} does not list ${id}`);
 
   for (const [key, file] of Object.entries(catalogFileKeys)) {
     const listed = entry.files?.[key];
-    const path = `templates/${id}/${file}`;
+    const path = `templates/${entry.category}/${id}/${file}`;
     if (listed?.path !== path) fail(`catalog.json: ${id} files.${key}.path must be ${path}`);
     if (listed?.url !== rawBase + path) fail(`catalog.json: ${id} files.${key}.url must be ${rawBase}${path}`);
   }
@@ -176,22 +199,30 @@ for (const entry of catalog.templates ?? []) {
     }
   }
 
-  if (!folders.includes(id)) {
-    fail(`catalog.json: ${id} has no templates/${id} folder`);
+  const found = discovered.find((item) => item.id === id && item.category === entry.category);
+  if (!found) {
+    fail(`catalog.json: ${id} has no templates/${entry.category}/${id} folder`);
     continue;
   }
 
-  const schema = checkFolder(id, charts);
+  const schema = checkFolder(id, charts, found.folder);
   if (schema && schema["x-version"] !== entry.version) fail(`${id}: schema x-version does not match catalog version`);
 }
 
-for (const folder of folders) {
-  if (folder.startsWith("_")) {
-    if (listedIds.has(folder)) fail(`catalog.json: ${folder} is a starter and must not be listed`);
-    checkFolder(folder, charts);
+for (const [categoryId, members] of categoryIds) {
+  for (const member of members) {
+    if (!listedIds.has(member)) fail(`catalog.json: category ${categoryId} lists unknown template ${member}`);
+  }
+}
+
+for (const item of discovered) {
+  if (item.category === null) {
+    if (listedIds.has(item.id)) fail(`catalog.json: ${item.id} is a starter and must not be listed`);
+    checkFolder(item.id, charts, item.folder);
     continue;
   }
-  if (!listedIds.has(folder)) fail(`templates/${folder} is missing from catalog.json`);
+  if (!categoryIds.has(item.category)) fail(`templates/${item.category} is not a catalog category`);
+  if (!listedIds.has(item.id)) fail(`templates/${item.category}/${item.id} is missing from catalog.json`);
 }
 
 if (errors.length > 0) {
@@ -199,4 +230,5 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`Validated ${listedIds.size} catalog templates and ${folders.length - listedIds.size} starter folders.`);
+const starters = discovered.filter((item) => item.category === null).length;
+console.log(`Validated ${listedIds.size} catalog templates and ${starters} starter folders.`);
