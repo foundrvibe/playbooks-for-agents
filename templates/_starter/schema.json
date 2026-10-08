@@ -4,7 +4,7 @@
   "x-id": "_starter",
   "x-version": "0.1.0",
   "x-title": "Starter",
-  "description": "Copy this folder to start a template. Rename x-id to the new folder name and add it to catalog.json.",
+  "description": "Copy this folder to start a playbook. Rename x-id to the new folder name and add it to catalog.json.",
   "type": "object",
   "additionalProperties": false,
   "required": ["title", "summary", "document_language", "research_mode", "process", "sources"],
@@ -52,7 +52,7 @@
     "process": {
       "type": "string",
       "minLength": 1,
-      "description": "Mermaid source for the process the context describes, without code fences. Remove this field and its slot when a template has no diagram.",
+      "description": "Mermaid source for the process the context describes, without code fences. Remove this field and its slot when a playbook has no diagram.",
       "x-ask": "Leave this to the agent.",
       "x-source": "derived",
       "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",

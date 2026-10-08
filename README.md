@@ -1,53 +1,53 @@
-# Templates
+# Playbooks
 
-Fillable document templates for AI agents. Each template is Markdown plus a JSON Schema and an example fill. One fill skill covers every template. The user supplies context. The agent researches the other sections, cites sources, and does not leave a section unknown.
+A playbook is a manual process an agent repeats. You give the context. The agent asks only for what it cannot find, follows the playbook's steps, and returns the same result every time. One skill runs every playbook.
 
-The fill contract is [rules/fill.md](rules/fill.md). The procedure is [skills/fill-template/SKILL.md](skills/fill-template/SKILL.md). The index is [catalog.json](catalog.json).
+The contract is [rules/fill.md](rules/fill.md). The skill is [skills/fill-template/SKILL.md](skills/fill-template/SKILL.md). The index is [catalog.json](catalog.json).
 
-The catalog groups templates into categories. The first category is **Planning**, and it contains the business plan. Intent matching uses ready templates and skips stubs.
+The catalog groups playbooks into categories. The first category is **Planning**, and it contains the business plan. Intent matching uses ready playbooks and skips stubs.
 
 ## Use it
 
-Paste this into ChatGPT, Claude, or a Cursor agent chat. One link is enough. The skill fetches the rules, the catalog, and the template files.
+Paste this into ChatGPT, Claude, or a Cursor agent chat. One link is enough. The skill fetches the rules, the catalog, and the playbook files.
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md
+Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/fill-template/SKILL.md
 
 Create a business plan for ZedCut, a bilingual B2B SaaS for countertop fabrication shops in Canada.
 ```
 
-Replace the second line with your own request. If several templates match, the agent asks which one and names the category.
+Replace the second line with your own request. If several playbooks match, the agent asks which one and names the category.
 
-To choose the template yourself, name its id. The agent uses that template and does not match intents.
+To choose the playbook yourself, name its id. The agent uses that playbook and does not match intents.
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md
+Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/fill-template/SKILL.md
 
-Template: business-plan
+Playbook: business-plan
 ZedCut is a bilingual B2B SaaS for countertop fabrication shops in Canada.
 ```
 
-A raw URL to `template.md`, `schema.json`, or the template folder selects it the same way. Replace `dev` with a version tag to pin that template.
+A raw URL to `template.md`, `schema.json`, or the playbook folder selects it the same way. Replace `dev` with a version tag to pin that playbook.
 
 <details>
-<summary>Add a template</summary>
+<summary>Add a playbook</summary>
 
-1. Copy `templates/_starter/` to `templates/<category>/<id>/`. Set `x-id` in `schema.json` to the new id.
-2. Edit `template.md`, `schema.json`, and `example.json`. Mark each field `x-source` as `user`, `user_data`, `derived`, or `research`.
-3. In `research.md`, name every `research` field and link the shared guide as `../../../research/<name>.md`. Add a new shared guide only when none fits.
+1. Copy `templates/_starter/` to `templates/<category>/<id>/`. Set `x-id` in `schema.json` to the new id. The folder name stays `templates/` so existing links keep working.
+2. Edit `template.md`, `schema.json`, and `example.json`. `template.md` is the result. Mark each field `x-source` as `user`, `user_data`, `derived`, or `research`.
+3. In `research.md`, write `## Steps` in the order a person would do the job. Name every `research` field and link the shared guide as `../../../research/<name>.md`. Add a new shared guide only when none fits.
 4. Add a catalog entry with `id`, `name`, `version`, `status`, `category`, `description`, `intents`, and the four file paths. `category` must be an id in `categories`, and that category's `templates` list must include the new id. Create a category when none fits. Set `status` to `ready` and fill `intents` when a request should select it. Leave `intents` empty while it is a stub.
 5. Run `npm ci && npm run validate`.
 
-No new skill is required. CI fails if two ready templates share an intent, if `research.md` misses a research field, or if the example does not pass the fill check.
+No new skill is required. CI fails if two ready playbooks share an intent, if `research.md` misses `## Steps` or a research field, or if the example does not pass the fill check.
 
 </details>
 
 <details>
 <summary>Pin a version</summary>
 
-Each template version is tagged as `<id>-v<version>`, for example `business-plan-v3.0.0`. Replace `dev` in any raw URL with the tag to keep a fixed shape:
+Each playbook version is tagged as `<id>-v<version>`, for example `business-plan-v4.0.0`. Replace `dev` in any raw URL with the tag to keep a fixed shape:
 
-`https://raw.githubusercontent.com/foundrvibe/templates-for-agents/business-plan-v3.0.0/templates/planning/business-plan/template.md`
+`https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/business-plan-v4.0.0/templates/planning/business-plan/template.md`
 
 A tag pins the rules and skill at that commit too. A breaking schema change gets a new major version.
 
@@ -77,7 +77,7 @@ It fails when the JSON does not match the schema, the Markdown still has an unkn
 <details>
 <summary>What comes back</summary>
 
-The agent returns the filled Markdown. Sources are listed in the document. The field values stay in the agent's check and are not pasted after the plan.
+The agent returns only the finished result. Sources are inside that result. The field values stay in the agent's check and are not pasted after it.
 
 </details>
 

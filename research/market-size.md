@@ -1,6 +1,6 @@
 # Market size
 
-Use this for market size, growth, trends, and industry classification. Research the template's `market_country`. Do not mix countries in one figure.
+Use this for market size, growth, trends, and industry classification. Research the playbook's `market_country`. Do not mix countries in one figure.
 
 ## Where to look
 

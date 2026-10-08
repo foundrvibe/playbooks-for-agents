@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { checkFill, formatTypes, loadTheme, readJson, renderFill, root, sourceTypes } from "./lib/fill.mjs";
 
-const rawBase = "https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/";
+const rawBase = "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/";
 const templateFiles = ["example.json", "research.md", "schema.json", "template.md"];
 const catalogFileKeys = { template: "template.md", schema: "schema.json", example: "example.json", research: "research.md" };
 const errors = [];
@@ -118,6 +118,7 @@ function checkResearchGuide(folder, researchFields, label) {
   const path = join(folder, "research.md");
   if (!existsSync(path)) return;
   const guide = readFileSync(path, "utf8");
+  if (!/^## Steps\s*$/m.test(guide)) fail(`${label}: research.md needs a ## Steps section`);
   for (const name of researchFields) {
     if (!guide.includes(`\`${name}\``)) fail(`${label}: research.md does not cover \`${name}\``);
   }

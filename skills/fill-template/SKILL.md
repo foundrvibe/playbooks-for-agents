@@ -1,44 +1,44 @@
 ---
 name: fill-template
 description: >-
-  Fills a document template from the user's context plus public research. Use
-  when the user asks to fill a template, gives a template URL or template id,
-  or describes a document that should match an intent in catalog.json. The
-  catalog is the list of templates, including any added later.
+  Runs a playbook from the user's context plus public research. Use when the
+  user asks to run a playbook, gives a playbook URL or id, or describes work
+  that should match an intent in catalog.json. The catalog is the list of
+  playbooks, including any added later.
 ---
 
-# Fill a template
+# Run a playbook
 
-The user supplies context. You research and write the rest. The document shape stays fixed. Return a complete document. Do not leave sections unknown.
+A playbook is a manual process. The user supplies context. You ask only for what you cannot find, follow that playbook's steps, and return the finished result. The shape stays fixed. Do not leave a section unknown.
 
 This file is the only link a user needs to send. Fetch the other files yourself. Do not ask the user for more links.
 
-Base URL: `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/`
+Base URL: `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/`
 
 | File | URL |
 |---|---|
-| Fill rules | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/rules/fill.md` |
-| Catalog | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json` |
-| Chart script | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/render_chart.py` |
-| Chart specs | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/<id>.json` |
-| Diagram specs | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/diagrams/<id>.json` |
-| Shared research guides | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/research/<name>.md` |
+| Fill rules | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/rules/fill.md` |
+| Catalog | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/catalog.json` |
+| Chart script | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/render_chart.py` |
+| Chart specs | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/<id>.json` |
+| Diagram specs | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/diagrams/<id>.json` |
+| Shared research guides | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/research/<name>.md` |
 
-Read the fill rules before you write. They are the contract. This skill is the procedure.
+Read the fill rules before you write. They are the contract. This skill runs the playbook. The playbook's own `## Steps` are the job.
 
-Read the catalog at fill time. It lists `categories`, and each category lists template ids. Do not assume a fixed set of templates. A new template is a catalog entry plus `template.md`, `schema.json`, `example.json`, and `research.md`. The catalog entries already contain the raw URL of each file.
+Read the catalog at fill time. It lists `categories`, and each category lists playbook ids. Do not assume a fixed set. A new playbook is a catalog entry plus `template.md`, `schema.json`, `example.json`, and `research.md`. The catalog entries already contain the raw URL of each file. `template.md` is the result shape.
 
-## 1. Resolve the template
+## 1. Resolve the playbook
 
 Use the first case that fits.
 
-- **URL.** The user pasted a raw URL to `template.md`, `schema.json`, or a template folder. Fetch `template.md`, `schema.json`, `example.json`, and `research.md` from that folder.
-- **Id.** The user named a template with `Template: <id>`, or the message contains a catalog `id`. Find that `id` in `catalog.json` and skip intent matching. Fetch the four files at `files.template`, `files.schema`, `files.example`, and `files.research`. If the id is not in the catalog, list the categories and their ready templates, and ask which one.
-- **Intent.** Compare the user's request to `intents` on templates whose `status` is `ready`. Ignore `status: "stub"`. If one ready template matches, use it. If more than one matches, ask which one and name its category. If none match, list the categories and their ready templates, and ask which one.
+- **URL.** The user pasted a raw URL to `template.md`, `schema.json`, or a playbook folder. Fetch `template.md`, `schema.json`, `example.json`, and `research.md` from that folder.
+- **Id.** The user named a playbook with `Playbook: <id>` or `Template: <id>`, or the message contains a catalog `id`. Find that `id` in `catalog.json` and skip intent matching. Fetch the four files at `files.template`, `files.schema`, `files.example`, and `files.research`. If the id is not in the catalog, list the categories and their ready playbooks, and ask which one.
+- **Intent.** Compare the user's request to `intents` on playbooks whose `status` is `ready`. Ignore `status: "stub"`. If one ready playbook matches, use it. If more than one matches, ask which one and name its category. If none match, list the categories and their ready playbooks, and ask which one.
 
-`example.json` shows a valid shape. Do not copy its facts into the user's document.
+`example.json` shows a valid shape. Do not copy its facts into the user's result.
 
-If the chosen template is a stub and the user asked for it by id or URL, say that it is a stub, then continue only if they still want that shape.
+If the chosen playbook is a stub and the user asked for it by id or URL, say that it is a stub, then continue only if they still want that shape.
 
 ## 2. Collect context
 
@@ -50,7 +50,7 @@ Ask for every field whose `x-source` is `user` or `user_data` when the context d
 
 Do not ask for fields whose `x-source` is `research` or `derived`. Market size, competitors, industry, channels, and operations are research.
 
-Set `market_country` from the context when the template has it. Ask only if the context names no country. Set `document_language` to the language of the user's request unless they asked for another.
+Set `market_country` from the context when the playbook has it. Ask only if the context names no country. Set `document_language` to the language of the user's request unless they asked for another.
 
 When the user replies, treat "I don't know", "skip", "none", or "not raising" as an answer. Continue. Do not ask those questions again. A number they did not know is a labeled assumption, not a blank and not a question in the document.
 
@@ -58,7 +58,7 @@ When the user replies, treat "I don't know", "skip", "none", or "not raising" as
 
 Before researching, check whether you can open web pages in this session. If you cannot, tell the user in one line, set `research_mode` to `offline`, leave `sources` empty, and write every research field as an `Assumption:` built from the context. Do not write a citation for a page you did not open. If you can browse, set `research_mode` to `web`.
 
-After you have the context, fetch the template's `research.md` from its catalog URL. It names each research field and links a shared guide. Fetch that guide from `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/research/<name>.md` (the file name in the link, such as `market-size.md`). Fill every field whose `x-source` is `research` or `derived` before you write the document.
+After you have the context, fetch the playbook's `research.md` from its catalog URL. Follow `## Steps` in order. Where a step names a field, open the shared guide linked beside that field. Fetch that guide from `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/research/<name>.md` (the file name in the link, such as `market-size.md`). Fill every field whose `x-source` is `research` or `derived` before you write the result.
 
 - Research for `market_country`: its statistics agency, registries, currency, and competitors that sell there.
 - Put each page you opened in `sources` with its title, publisher, URL, and the date you opened it. A researched claim in the document must match one of those sources.
@@ -81,9 +81,9 @@ Use `template.md` as the only layout. Section headings come from that file. Do n
 
 ## 5. Charts
 
-A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/<id>.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values.
+A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/<id>.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values.
 
-**If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/render_chart.py`, run it in your Python tool with the slot's JSON value, and show the PNG:
+**If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/render_chart.py`, run it in your Python tool with the slot's JSON value, and show the PNG:
 
 ```text
 python render_chart.py --kind <x-chart> --data '<slot JSON>' --currency <currency> --language <two-letter code> --out <slot_id>.png
@@ -109,13 +109,13 @@ If `render` is anything else, render a Markdown table of the cited figures and s
 
 ## 6. Flowcharts and diagrams
 
-Generate a code diagram when the user asks for a flowchart or diagram, or when the template has a `{{diagram:slot_id}}` slot. Do not add a diagram to a fill just because the document could use one.
+Generate a code diagram when the user asks for a flowchart or diagram, or when the playbook has a `{{diagram:slot_id}}` slot. Do not add a diagram to a result just because it could use one.
 
 Use Mermaid. Return a fenced `mermaid` code block. Never replace that block with a photo, screenshot, or generated image.
 
-Read the template and schema before you write. Keep the section order and headings. Put the diagram in the slot, or in the existing section that describes the process. Do not add or rename a section to hold it.
+Read `template.md` and the schema before you write. Keep the section order and headings. Put the diagram in the slot, or in the existing section that describes the process. Do not add or rename a section to hold it.
 
-A `{{diagram:slot_id}}` placeholder is the schema field `slot_id`. Its `x-diagram` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/diagrams/<id>.json` and follow that spec. In the JSON, store the field as Mermaid source without code fences, starting with the spec's `mermaid` header, such as `flowchart TD`. In the Markdown, put that source in a fenced `mermaid` block where the slot was.
+A `{{diagram:slot_id}}` placeholder is the schema field `slot_id`. Its `x-diagram` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/diagrams/<id>.json` and follow that spec. In the JSON, store the field as Mermaid source without code fences, starting with the spec's `mermaid` header, such as `flowchart TD`. In the Markdown, put that source in a fenced `mermaid` block where the slot was.
 
 The diagram may only show steps, entities, decisions, and relationships from the user's context or cited research. If the process is incomplete, label the missing parts `Assumption:`. Do not invent integrations, decisions, or outcomes.
 

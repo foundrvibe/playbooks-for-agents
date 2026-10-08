@@ -1,8 +1,19 @@
 # Business plan research
 
-Read this after `schema.json`. Ask the user first for any `user` or `user_data` field the context does not already answer. Research the `market_country`, and write in the `document_language`.
+Read this after `schema.json`. Research the `market_country`, and write in the `document_language`.
 
-The seven sections follow a traditional plan: executive summary, company overview, products and services, market research, marketing and sales, operations, and finances. Put the support in the appendix.
+The seven sections follow a traditional plan: executive summary, company overview, products and services, market research, marketing and sales, operations, and finances. Put the support in the appendix. `template.md` is the result. These steps are the work.
+
+## Steps
+
+1. Ask for every `user` or `user_data` field the context does not already answer. Wait for the answer.
+2. Classify `industry` for the market country.
+3. Build `market_facts` and `market_analysis` from cited business counts. Then write `opportunities` and `threats`.
+4. Find at least three real `competitors`. Write `strengths` and `weaknesses` from those pages and the context.
+5. Fill offer prices, `marketing_channels`, and `sales_goals`. The revenue column of `sales_goals` is the `financials` series, in the same order.
+6. Fill `operations_items` and `expenses` for the first forecast year.
+7. Write the executive summary, mission, values, objectives, and team from the context and the rows above. Do not invent a person's name.
+8. List every estimate in `assumptions` and every page you opened in `sources`.
 
 ## Market
 
