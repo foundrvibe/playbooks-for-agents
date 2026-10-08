@@ -33,7 +33,24 @@ function loadCharts() {
   return charts;
 }
 
-function checkPlaceholders(template, schema, charts, label) {
+function loadDiagrams() {
+  const dir = join(root, "diagrams");
+  const diagrams = new Map();
+  const allowed = new Set(["flowchart TD", "flowchart LR", "sequenceDiagram", "erDiagram", "stateDiagram-v2"]);
+  for (const file of readdirSync(dir)) {
+    if (!file.endsWith(".json")) continue;
+    const spec = readJson(join(dir, file));
+    const expectedId = file.slice(0, -".json".length);
+    if (spec.id !== expectedId) fail(`diagrams/${file}: id "${spec.id}" does not match the file name`);
+    if (!allowed.has(spec.mermaid)) fail(`diagrams/${file}: mermaid type "${spec.mermaid}" is not supported`);
+    if (!Array.isArray(spec.inputs) || spec.inputs.length === 0) fail(`diagrams/${file}: missing inputs`);
+    if (!Array.isArray(spec.rules) || spec.rules.length === 0) fail(`diagrams/${file}: missing rules`);
+    diagrams.set(spec.id, spec);
+  }
+  return diagrams;
+}
+
+function checkPlaceholders(template, schema, charts, diagrams, label) {
   const stack = [schema];
   for (const match of template.matchAll(tokenPattern)) {
     const raw = match[1].trim();
@@ -59,6 +76,14 @@ function checkPlaceholders(template, schema, charts, label) {
       const prop = props[slot];
       if (!prop) fail(`${label}: {{chart:${slot}}} has no schema field`);
       else if (!charts.has(prop["x-chart"])) fail(`${label}: {{chart:${slot}}} has no chart spec`);
+      continue;
+    }
+
+    if (raw.startsWith("diagram:")) {
+      const slot = raw.slice("diagram:".length).trim();
+      const prop = props[slot];
+      if (!prop) fail(`${label}: {{diagram:${slot}}} has no schema field`);
+      else if (!diagrams.has(prop["x-diagram"])) fail(`${label}: {{diagram:${slot}}} has no diagram spec`);
       continue;
     }
 
@@ -122,7 +147,7 @@ function checkFolder(id, charts, folder) {
   if (schema["x-id"] !== id) fail(`${id}: schema x-id does not match the folder name`);
   if (!semver.test(schema["x-version"] ?? "")) fail(`${id}: schema x-version must be semver`);
 
-  checkPlaceholders(template, schema, charts, id);
+  checkPlaceholders(template, schema, charts, diagrams, id);
   const researchFields = checkSources(schema, id);
   checkResearchGuide(folder, researchFields, id);
 
@@ -137,6 +162,7 @@ function checkFolder(id, charts, folder) {
 }
 
 const charts = loadCharts();
+const diagrams = loadDiagrams();
 const theme = loadTheme();
 for (const key of ["colors", "fonts", "page", "chart", "numbers"]) {
   if (!theme[key]) fail(`themes/default.json: missing ${key}`);

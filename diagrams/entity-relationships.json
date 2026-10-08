@@ -1,0 +1,12 @@
+{
+  "id": "entity-relationships",
+  "mermaid": "erDiagram",
+  "description": "Entities, their attributes, and how they relate.",
+  "inputs": ["entities", "relationships"],
+  "nodeTypes": ["entity", "attribute", "relationship"],
+  "rules": [
+    "Each entity is a thing the context or a cited source describes.",
+    "Attributes are fields the user named. Do not invent columns.",
+    "Label each relationship with how the two entities connect."
+  ]
+}

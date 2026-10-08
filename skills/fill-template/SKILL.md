@@ -21,6 +21,7 @@ Base URL: `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev
 | Catalog | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/catalog.json` |
 | Chart script | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/render_chart.py` |
 | Chart specs | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/charts/<id>.json` |
+| Diagram specs | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/diagrams/<id>.json` |
 | Shared research guides | `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/research/<name>.md` |
 
 Read the fill rules before you write. They are the contract. This skill is the procedure.
@@ -102,7 +103,33 @@ If any `x` label contains a double quote, a bracket, or a line break, render a t
 
 If `render` is anything else, render a Markdown table of the cited figures and say the spec's render type is not supported yet.
 
-## 6. Validate and return
+## 6. Flowcharts and diagrams
+
+Generate a code diagram when the user asks for a flowchart or diagram, or when the template has a `{{diagram:slot_id}}` slot. Do not add a diagram to a fill just because the document could use one.
+
+Use Mermaid. Return a fenced `mermaid` code block. Never replace that block with a photo, screenshot, or generated image.
+
+Read the template and schema before you write. Keep the section order and headings. Put the diagram in the slot, or in the existing section that describes the process. Do not add or rename a section to hold it.
+
+A `{{diagram:slot_id}}` placeholder is the schema field `slot_id`. Its `x-diagram` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/diagrams/<id>.json` and follow that spec.
+
+The diagram may only show steps, entities, decisions, and relationships from the user's context or cited research. If the process is incomplete, label the missing parts `Assumption:`. Do not invent integrations, decisions, or outcomes.
+
+Pick the Mermaid type that fits:
+
+- `flowchart TD` or `flowchart LR` for a workflow, a decision tree, or a business process.
+- `sequenceDiagram` for people, systems, services, or APIs talking to each other.
+- `erDiagram` for entities, attributes, and relationships.
+- `stateDiagram-v2` for a lifecycle or status changes.
+- `architecture-beta` only when the viewer supports it. Otherwise use a flowchart.
+
+Use names a reader can understand. Label decision branches. Include a start and an end when the process has them. Split a long process into more than one diagram in the same section.
+
+Check the Mermaid before you return it: the header is valid, every arrow names a node you defined, and the diagram matches the prose.
+
+If the user asked for the diagram source, the code block is the result. If they asked for a rendered diagram, still return the code block and say it is Mermaid source, which their viewer can render. Do not say an image was produced when you only wrote the code.
+
+## 7. Validate and return
 
 Check the field object against `schema.json` before you return it. Required context is present. Research fields are filled. Sources is a non-empty list when `research_mode` is `web`. Every number in the Markdown also appears in the JSON. Chart series match the spec.
 

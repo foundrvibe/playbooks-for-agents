@@ -1,0 +1,12 @@
+{
+  "id": "system-sequence",
+  "mermaid": "sequenceDiagram",
+  "description": "Messages between people, systems, services, or APIs.",
+  "inputs": ["participants", "messages"],
+  "nodeTypes": ["participant", "message"],
+  "rules": [
+    "Name only participants the user or a cited source named.",
+    "Each message says who sends it, who receives it, and what is sent.",
+    "Do not add an integration that was not described."
+  ]
+}

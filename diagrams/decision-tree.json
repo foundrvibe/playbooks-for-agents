@@ -1,0 +1,12 @@
+{
+  "id": "decision-tree",
+  "mermaid": "flowchart TD",
+  "description": "A set of decisions and the branch taken for each answer.",
+  "inputs": ["question", "branches"],
+  "nodeTypes": ["decision", "outcome"],
+  "rules": [
+    "Every decision node has at least two labeled branches.",
+    "Each branch ends at an outcome or another decision.",
+    "Outcomes come from the context or cited research."
+  ]
+}
