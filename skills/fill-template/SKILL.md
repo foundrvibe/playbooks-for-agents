@@ -33,7 +33,7 @@ Read the catalog at fill time. It lists `categories`, and each category lists te
 Use the first case that fits.
 
 - **URL.** The user pasted a raw URL to `template.md`, `schema.json`, or a template folder. Fetch `template.md`, `schema.json`, `example.json`, and `research.md` from that folder.
-- **Id.** Find `id` in `catalog.json`. Fetch the four files at `files.template`, `files.schema`, `files.example`, and `files.research`.
+- **Id.** The user named a template with `Template: <id>`, or the message contains a catalog `id`. Find that `id` in `catalog.json` and skip intent matching. Fetch the four files at `files.template`, `files.schema`, `files.example`, and `files.research`. If the id is not in the catalog, list the categories and their ready templates, and ask which one.
 - **Intent.** Compare the user's request to `intents` on templates whose `status` is `ready`. Ignore `status: "stub"`. If one ready template matches, use it. If more than one matches, ask which one and name its category. If none match, list the categories and their ready templates, and ask which one.
 
 `example.json` shows a valid shape. Do not copy its facts into the user's document.

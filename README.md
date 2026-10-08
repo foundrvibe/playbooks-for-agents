@@ -18,6 +18,17 @@ Create a business plan for ZedCut, a bilingual B2B SaaS for countertop fabricati
 
 Replace the second line with your own request. If several templates match, the agent asks which one and names the category.
 
+To choose the template yourself, name its id. The agent uses that template and does not match intents.
+
+```text
+Follow https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/skills/fill-template/SKILL.md
+
+Template: business-plan
+ZedCut is a bilingual B2B SaaS for countertop fabrication shops in Canada.
+```
+
+A raw URL to `template.md`, `schema.json`, or the template folder selects it the same way. Replace `dev` with a version tag to pin that template.
+
 ## Add a template
 
 1. Copy `templates/_starter/` to `templates/<category>/<id>/`. Set `x-id` in `schema.json` to the new id.
