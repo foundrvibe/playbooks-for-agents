@@ -16,10 +16,10 @@
     {
       "id": "business-plan",
       "name": "Business Plan",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "status": "ready",
       "category": "planning",
-      "description": "A traditional business plan. The user supplies context. The agent researches the market, competitors, pricing, operations, and projections for the market country, and cites sources.",
+      "description": "A traditional business plan in seven sections, written mostly as tables, with a revenue chart. The agent asks for the private facts still missing, then researches the market, competitors, and projections.",
       "intents": [
         "business plan",
         "company plan",

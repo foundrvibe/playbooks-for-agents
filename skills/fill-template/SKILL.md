@@ -44,11 +44,15 @@ If the chosen template is a stub and the user asked for it by id or URL, say tha
 
 Read the conversation and any files the user attached. Map that context onto schema fields.
 
-The user does not need to provide every field. Treat their description of the company, product, and customer as the context. Ask only for required fields that this context still does not cover. Use each field's `x-ask`. Put those questions in one message, then wait.
+The first reply is only the questions that are still open. Do not send a draft in that reply.
 
-Do not ask for market size, competitors, pricing, funding, operations, or team names when those fields are `research`.
+Ask for every field whose `x-source` is `user` or `user_data` when the context does not already answer it. Use each field's `x-ask`. Put those questions in one message, then stop and wait. Skip a question the context already answers. If every such field is already answered, do not ask anything and continue to research.
+
+Do not ask for fields whose `x-source` is `research` or `derived`. Market size, competitors, industry, channels, and operations are research.
 
 Set `market_country` from the context when the template has it. Ask only if the context names no country. Set `document_language` to the language of the user's request unless they asked for another.
+
+When the user replies, treat "I don't know", "skip", "none", or "not raising" as an answer. Continue. Do not ask those questions again. A number they did not know is a labeled assumption, not a blank and not a question in the document.
 
 ## 3. Research
 
@@ -73,7 +77,7 @@ Use `template.md` as the only layout. Section headings come from that file. Do n
 - Repeat a `{{#each collection}}` block once per item. A collection that research can fill is not left empty.
 - List each assumption in the Assumptions section.
 - List each source in the Sources section.
-- Missing info lists only required context the user refused to give. When they gave the context, that section has no bullets.
+- Do not add a missing-info section, a confirmation list, or questions inside the document. Those were asked before the draft.
 
 ## 5. Charts
 

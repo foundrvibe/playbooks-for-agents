@@ -19,99 +19,162 @@
 
 ## Company overview
 
-{{business_concept}}
-
-**Business model:** {{business_model}}
-
-**Industry:** {{industry}}
-
-**Competitive advantage:** {{competitive_advantage}}
-
-**Mission:** {{mission}}
-
-### Values
-
-{{#each values}}
-- {{text}}
-{{/each}}
+| | |
+|---|---|
+| **Business structure** | {{legal_structure}} |
+| **Industry** | {{industry}} |
+| **Business model** | {{business_model}} |
+| **Background** | {{business_concept}} |
+| **Mission** | {{mission}} |
 
 ### Objectives
 
+| Horizon | Objective |
+|---|---|
 {{#each objectives}}
-- **{{horizon}}:** {{text}}
+| {{horizon}} | {{text}} |
+{{/each}}
+
+### Values
+
+| Value |
+|---|
+{{#each values}}
+| {{text}} |
 {{/each}}
 
 ### Leadership
 
+| Name | Role | Background |
+|---|---|---|
 {{#each team}}
-- **{{name}}** — {{role}}. {{background}}
+| {{name}} | {{role}} | {{background}} |
 {{/each}}
 
 ## Products and services
 
 {{products_and_services}}
 
-**Pricing:** {{pricing}}
+| Offer | Type | Price | Why it stands out |
+|---|---|---|---|
+{{#each offers}}
+| {{name}} | {{kind}} | {{price}} | {{difference}} |
+{{/each}}
 
-**Sourcing and production:** {{sourcing}}
+## Market research
 
-## Market analysis
+### Target customer
+
+| | |
+|---|---|
+| **Who** | {{target_customer}} |
+| **Problem** | {{customer_problem}} |
+| **Why this offer** | {{competitive_advantage}} |
+
+### Market opportunity
+
+| Fact | Figure | Note |
+|---|---|---|
+{{#each market_facts}}
+| {{label}} | {{figure}} | {{note}} |
+{{/each}}
 
 {{market_analysis}}
 
-**Target customer:** {{target_customer}}
-
 ### Competitors
 
+| Competitor | Where | Main offer | Strengths | Weaknesses | How we differ |
+|---|---|---|---|---|---|
 {{#each competitors}}
-- **{{name}}** ({{url}}): {{difference}}
+| {{name}} | {{location}} | {{offer}} | {{strengths}} | {{weaknesses}} | {{difference}} |
 {{/each}}
 
 ### SWOT
 
-- **Strengths:** {{strengths}}
-- **Weaknesses:** {{weaknesses}}
-- **Opportunities:** {{opportunities}}
-- **Threats:** {{threats}}
+| | Helpful | Harmful |
+|---|---|---|
+| **Internal** | {{strengths}} | {{weaknesses}} |
+| **External** | {{opportunities}} | {{threats}} |
 
-## Marketing plan
+## Marketing and sales
 
-{{marketing_plan}}
+| Channel | Monthly spend | Activities | Measure |
+|---|---:|---|---|
+{{#each marketing_channels}}
+| {{channel}} | {{monthly_spend}} | {{activities}} | {{measure}} |
+{{/each}}
+
+### Sales goals
+
+| Period | Customers | Price | Revenue |
+|---|---:|---:|---:|
+{{#each sales_goals}}
+| {{period}} | {{customers}} | {{price}} | {{revenue}} |
+{{/each}}
 
 ## Operations
 
-{{operations}}
+| Area | Plan |
+|---|---|
+{{#each operations_items}}
+| {{area}} | {{plan}} |
+{{/each}}
 
-## Financial plan
+## Finances
 
-**Capital on hand:** {{starting_capital}}
+### Current snapshot
 
-**Funding request:** {{funding_request}}
+| Metric | Value |
+|---|---:|
+| Paying customers | {{current_customers}} |
+| Current recurring revenue | {{current_revenue}} |
+{{#each snapshot}}
+| {{metric}} | {{value}} |
+{{/each}}
 
-**Use of funds:** {{use_of_funds}}
-
-### Revenue projections
+### Revenue forecast
 
 {{chart:financials}}
 
-## Assumptions
+### Expenses
 
-{{#each assumptions}}
-- Assumption: {{text}}
+| Category | Annual cost |
+|---|---:|
+{{#each expenses}}
+| {{category}} | {{annual_cost}} |
 {{/each}}
 
-## Review
+### Funding
+
+| | |
+|---|---|
+| **Capital on hand** | {{starting_capital}} |
+| **Funding request** | {{funding_request}} |
+
+| Use | Amount |
+|---|---:|
+{{#each use_of_funds}}
+| {{item}} | {{amount}} |
+{{/each}}
+
+## Appendix
+
+### Assumptions
+
+| Assumption |
+|---|
+{{#each assumptions}}
+| {{text}} |
+{{/each}}
+
+### Review
 
 {{review_cadence}}
 
-## Sources
+### Sources
 
+| Title | Publisher | URL | Accessed |
+|---|---|---|---|
 {{#each sources}}
-- {{title}}, {{publisher}}. {{url}} (accessed {{accessed}})
-{{/each}}
-
-## Missing info
-
-{{#each missing_info}}
-- {{text}}
+| {{title}} | {{publisher}} | {{url}} | {{accessed}} |
 {{/each}}
