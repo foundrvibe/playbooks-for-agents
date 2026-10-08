@@ -141,13 +141,8 @@ Do not say an image was produced when you only wrote the code.
 
 ## 7. Validate and return
 
-Check the field object against `schema.json` before you return it. Required context is present. Research fields are filled. Sources is a non-empty list when `research_mode` is `web`. Every number in the Markdown also appears in the JSON. Chart series match the spec.
+Keep a field object while you check the draft. Do not show that object to the user. Required context is present. Research fields are filled. Sources is a non-empty list when `research_mode` is `web`. Every number in the Markdown also appears in the field object. Chart series match the spec. Do not add facts in the prose that are not in that object.
 
-A person or CI job can confirm the result with `node scripts/check-fill.mjs <template-id> <fill.json> [filled.md]`.
+Return only the filled Markdown, with no unknown markers. Do not append the field object, a "JSON" heading, or a second copy of the sources.
 
-Then return:
-
-1. The filled Markdown, with no unknown markers.
-2. A JSON code block of the field object, so the fill can be re-rendered or diffed.
-
-Do not add facts in the prose that are not in that JSON.
+A person or CI job can confirm a saved fill with `node scripts/check-fill.mjs <template-id> <fill.json> [filled.md]`. That command is not part of the document.

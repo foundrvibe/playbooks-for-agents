@@ -77,7 +77,7 @@ It fails when the JSON does not match the schema, the Markdown still has an unkn
 <details>
 <summary>What comes back</summary>
 
-The agent returns the filled Markdown and a JSON object of the field values. Sources are listed in the document.
+The agent returns the filled Markdown. Sources are listed in the document. The field values stay in the agent's check and are not pasted after the plan.
 
 </details>
 
