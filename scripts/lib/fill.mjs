@@ -44,6 +44,10 @@ export function loadChart(chartId) {
   return readJson(join(root, "charts", `${chartId}.json`));
 }
 
+export function loadDiagram(diagramId) {
+  return readJson(join(root, "diagrams", `${diagramId}.json`));
+}
+
 export function loadTheme(name = "default") {
   return readJson(join(root, "themes", `${name}.json`));
 }
@@ -154,6 +158,12 @@ function fillTokens(text, schema, values, theme, formats) {
       const slot = key.slice("chart:".length).trim();
       return renderChart(props[slot], values[slot], theme, formats);
     }
+    if (key.startsWith("diagram:")) {
+      const slot = key.slice("diagram:".length).trim();
+      const source = values[slot];
+      if (typeof source !== "string" || source.trim() === "") return unknownText(props[slot]);
+      return ["```mermaid", source.trim(), "```"].join("\n");
+    }
     if (!(key in props)) return match;
     return formatValue(values[key], props[key], formats);
   });
@@ -222,6 +232,17 @@ export function checkFill({ schema, fill, markdown, expect, theme = loadTheme() 
     if (markdown.includes(marker)) errors.push(`markdown still contains "${marker}"`);
   }
   if (/\{\{[^}]*\}\}/.test(markdown)) errors.push("markdown has an unfilled {{placeholder}}");
+
+  for (const [name, prop] of Object.entries(schema.properties ?? {})) {
+    if (!prop["x-diagram"] || typeof fill[name] !== "string") continue;
+    const spec = loadDiagram(prop["x-diagram"]);
+    const source = fill[name].trim();
+    const header = source.split("\n")[0].trim();
+    if (header.split(/\s+/)[0] !== spec.mermaid.split(/\s+/)[0]) {
+      errors.push(`${name} must start with "${spec.mermaid}", got "${header}"`);
+    }
+    if (source.includes("```")) errors.push(`${name} must be Mermaid source without code fences`);
+  }
 
   const { numbers, found } = collectNumbers(fill);
   const prose = withoutFormattedNumbers(markdown.replace(mermaidConfig, "$1"), numbers, numberFormats(fill, theme));

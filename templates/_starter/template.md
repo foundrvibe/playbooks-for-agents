@@ -13,6 +13,10 @@
 
 {{background}}
 
+## Process
+
+{{diagram:process}}
+
 ## Sources
 
 {{#each sources}}

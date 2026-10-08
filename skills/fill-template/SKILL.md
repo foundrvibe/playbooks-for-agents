@@ -111,7 +111,7 @@ Use Mermaid. Return a fenced `mermaid` code block. Never replace that block with
 
 Read the template and schema before you write. Keep the section order and headings. Put the diagram in the slot, or in the existing section that describes the process. Do not add or rename a section to hold it.
 
-A `{{diagram:slot_id}}` placeholder is the schema field `slot_id`. Its `x-diagram` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/diagrams/<id>.json` and follow that spec.
+A `{{diagram:slot_id}}` placeholder is the schema field `slot_id`. Its `x-diagram` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/templates-for-agents/dev/diagrams/<id>.json` and follow that spec. In the JSON, store the field as Mermaid source without code fences, starting with the spec's `mermaid` header, such as `flowchart TD`. In the Markdown, put that source in a fenced `mermaid` block where the slot was.
 
 The diagram may only show steps, entities, decisions, and relationships from the user's context or cited research. If the process is incomplete, label the missing parts `Assumption:`. Do not invent integrations, decisions, or outcomes.
 
@@ -127,7 +127,13 @@ Use names a reader can understand. Label decision branches. Include a start and 
 
 Check the Mermaid before you return it: the header is valid, every arrow names a node you defined, and the diagram matches the prose.
 
-If the user asked for the diagram source, the code block is the result. If they asked for a rendered diagram, still return the code block and say it is Mermaid source, which their viewer can render. Do not say an image was produced when you only wrote the code.
+Writing the source and delivering a picture are different. Choose by where the document will be read:
+
+- **Markdown viewers that render Mermaid** (GitHub, Cursor, Notion, most docs sites): the code block is enough.
+- **PDF, Word, slides, or email**, which do not render Mermaid: render the source to a PNG or SVG if your tools can. Use Mermaid's own renderer, such as `npx @mermaid-js/mermaid-cli -i diagram.mmd -o diagram.png` in a terminal. Open the output to confirm the diagram is there before you embed it, and keep the source in the response.
+- **When you cannot render it**, return the code block and tell the user in one line that it is Mermaid source and that they can paste it into a Mermaid renderer, such as mermaid.live.
+
+Do not say an image was produced when you only wrote the code.
 
 ## 7. Validate and return
 

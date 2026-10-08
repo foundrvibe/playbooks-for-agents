@@ -4,6 +4,7 @@
   "document_language": "English",
   "research_mode": "offline",
   "background": "Assumption: the agent could not browse, so this background is written from the context only and has no citation.",
+  "process": "flowchart TD\n  start([Request received]) --> review[Review the request]\n  review --> complete{Is the context complete?}\n  complete -->|Yes| draft[Draft the document]\n  complete -->|No| ask[Ask for the missing context]\n  ask --> review\n  draft --> finish([Document returned])",
   "sources": [],
   "missing_info": []
 }

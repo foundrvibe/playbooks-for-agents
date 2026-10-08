@@ -7,7 +7,7 @@
   "description": "Copy this folder to start a template. Rename x-id to the new folder name and add it to catalog.json.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["title", "summary", "document_language", "research_mode", "sources"],
+  "required": ["title", "summary", "document_language", "research_mode", "process", "sources"],
   "properties": {
     "title": {
       "type": "string",
@@ -48,6 +48,15 @@
       "x-ask": "Leave this to the agent.",
       "x-source": "research",
       "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "process": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Mermaid source for the process the context describes, without code fences. Remove this field and its slot when a template has no diagram.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "x-diagram": "business-process"
     },
     "sources": {
       "type": "array",
