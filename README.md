@@ -1,15 +1,14 @@
 # Playbooks
 
-A playbook is a job you already know how to do, written down once so an agent can do it again. You describe the situation. The agent asks only for the facts it cannot look up, follows the steps in that playbook, and hands back the same kind of result every time.
+A playbook is a job you already know how to do, written down once. Give that playbook to your agent. The agent does the job the way you would, and respects that pattern on every run.
 
 One skill runs every playbook, in ChatGPT, Claude, or Cursor.
 
 ```mermaid
 flowchart LR
-  you[You give the context] --> skill[One skill]
-  skill --> ask[Asks only what it cannot find]
-  ask --> steps[Playbook steps]
-  steps --> result[Same result every time]
+  job[A job you already know how to do] --> playbook[Written down once as a playbook]
+  playbook --> give[Give the playbook to your agent]
+  give --> result[The agent does the job the way you would]
 ```
 
 Three files make that work:
