@@ -28,20 +28,20 @@
       ],
       "files": {
         "template": {
-          "path": "templates/planning/business-plan/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/templates/planning/business-plan/template.md"
+          "path": "playbooks/planning/business-plan/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/template.md"
         },
         "schema": {
-          "path": "templates/planning/business-plan/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/templates/planning/business-plan/schema.json"
+          "path": "playbooks/planning/business-plan/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/schema.json"
         },
         "example": {
-          "path": "templates/planning/business-plan/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/templates/planning/business-plan/example.json"
+          "path": "playbooks/planning/business-plan/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/example.json"
         },
         "research": {
-          "path": "templates/planning/business-plan/research.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/templates/planning/business-plan/research.md"
+          "path": "playbooks/planning/business-plan/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/research.md"
         }
       }
     }

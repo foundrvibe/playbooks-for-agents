@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/templates/_starter/0.1.0",
+  "$id": "https://foundrvibe.com/playbooks/_starter/0.1.0",
   "x-id": "_starter",
   "x-version": "0.1.0",
   "x-title": "Starter",

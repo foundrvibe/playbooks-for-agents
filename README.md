@@ -32,7 +32,7 @@ A raw URL to `template.md`, `schema.json`, or the playbook folder selects it the
 <details>
 <summary>Add a playbook</summary>
 
-1. Copy `templates/_starter/` to `templates/<category>/<id>/`. Set `x-id` in `schema.json` to the new id. The folder name stays `templates/` so existing links keep working.
+1. Copy `playbooks/_starter/` to `playbooks/<category>/<id>/`. Set `x-id` in `schema.json` to the new id.
 2. Edit `template.md`, `schema.json`, and `example.json`. `template.md` is the result. Mark each field `x-source` as `user`, `user_data`, `derived`, or `research`.
 3. In `research.md`, write `## Steps` in the order a person would do the job. Name every `research` field and link the shared guide as `../../../research/<name>.md`. Add a new shared guide only when none fits.
 4. Add a catalog entry with `id`, `name`, `version`, `status`, `category`, `description`, `intents`, and the four file paths. `category` must be an id in `categories`, and that category's `templates` list must include the new id. Create a category when none fits. Set `status` to `ready` and fill `intents` when a request should select it. Leave `intents` empty while it is a stub.
@@ -47,7 +47,7 @@ No new skill is required. CI fails if two ready playbooks share an intent, if `r
 
 Each playbook version is tagged as `<id>-v<version>`, for example `business-plan-v4.0.0`. Replace `dev` in any raw URL with the tag to keep a fixed shape:
 
-`https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/business-plan-v4.0.0/templates/planning/business-plan/template.md`
+`https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/business-plan-v4.0.0/playbooks/planning/business-plan/template.md`
 
 A tag pins the rules and skill at that commit too. A breaking schema change gets a new major version.
 

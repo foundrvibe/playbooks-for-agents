@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/templates/business-plan/4.0.0",
+  "$id": "https://foundrvibe.com/playbooks/business-plan/4.0.0",
   "x-id": "business-plan",
   "x-version": "4.0.0",
   "x-title": "Business Plan",

@@ -130,8 +130,8 @@ function checkResearchGuide(folder, researchFields, label) {
 
 function checkFolder(id, charts, folder) {
   const names = readdirSync(folder);
-  for (const name of templateFiles) if (!names.includes(name)) fail(`templates/${id}: missing ${name}`);
-  for (const name of names) if (!templateFiles.includes(name)) fail(`templates/${id}: unexpected file ${name}`);
+  for (const name of templateFiles) if (!names.includes(name)) fail(`playbooks/${id}: missing ${name}`);
+  for (const name of names) if (!templateFiles.includes(name)) fail(`playbooks/${id}: unexpected file ${name}`);
 
   let schema;
   let example;
@@ -169,7 +169,7 @@ for (const key of ["colors", "fonts", "page", "chart", "numbers"]) {
   if (!theme[key]) fail(`themes/default.json: missing ${key}`);
 }
 const catalog = readJson(join(root, "catalog.json"));
-const templateRoot = join(root, "templates");
+const templateRoot = join(root, "playbooks");
 const discovered = [];
 for (const name of readdirSync(templateRoot).filter((entry) => statSync(join(templateRoot, entry)).isDirectory())) {
   const folder = join(templateRoot, name);
@@ -178,7 +178,7 @@ for (const name of readdirSync(templateRoot).filter((entry) => statSync(join(tem
     continue;
   }
   const children = readdirSync(folder).filter((entry) => statSync(join(folder, entry)).isDirectory());
-  if (children.length === 0) fail(`templates/${name} has no templates`);
+  if (children.length === 0) fail(`playbooks/${name} has no playbooks`);
   for (const child of children) discovered.push({ id: child, category: name, folder: join(folder, child) });
 }
 const listedIds = new Set();
@@ -211,7 +211,7 @@ for (const entry of catalog.templates ?? []) {
 
   for (const [key, file] of Object.entries(catalogFileKeys)) {
     const listed = entry.files?.[key];
-    const path = `templates/${entry.category}/${id}/${file}`;
+    const path = `playbooks/${entry.category}/${id}/${file}`;
     if (listed?.path !== path) fail(`catalog.json: ${id} files.${key}.path must be ${path}`);
     if (listed?.url !== rawBase + path) fail(`catalog.json: ${id} files.${key}.url must be ${rawBase}${path}`);
   }
@@ -228,7 +228,7 @@ for (const entry of catalog.templates ?? []) {
 
   const found = discovered.find((item) => item.id === id && item.category === entry.category);
   if (!found) {
-    fail(`catalog.json: ${id} has no templates/${entry.category}/${id} folder`);
+    fail(`catalog.json: ${id} has no playbooks/${entry.category}/${id} folder`);
     continue;
   }
 
@@ -248,8 +248,8 @@ for (const item of discovered) {
     checkFolder(item.id, charts, item.folder);
     continue;
   }
-  if (!categoryIds.has(item.category)) fail(`templates/${item.category} is not a catalog category`);
-  if (!listedIds.has(item.id)) fail(`templates/${item.category}/${item.id} is missing from catalog.json`);
+  if (!categoryIds.has(item.category)) fail(`playbooks/${item.category} is not a catalog category`);
+  if (!listedIds.has(item.id)) fail(`playbooks/${item.category}/${item.id} is missing from catalog.json`);
 }
 
 if (errors.length > 0) {
@@ -258,4 +258,4 @@ if (errors.length > 0) {
 }
 
 const starters = discovered.filter((item) => item.category === null).length;
-console.log(`Validated ${listedIds.size} catalog templates and ${starters} starter folders.`);
+console.log(`Validated ${listedIds.size} catalog playbooks and ${starters} starter folders.`);

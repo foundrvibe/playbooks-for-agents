@@ -21,7 +21,7 @@ export function readJson(path) {
 }
 
 export function templateFolder(id) {
-  const templateRoot = join(root, "templates");
+  const templateRoot = join(root, "playbooks");
   if (id.startsWith("_") && existsSync(join(templateRoot, id, "schema.json"))) return join(templateRoot, id);
   for (const category of readdirSync(templateRoot)) {
     if (!statSync(join(templateRoot, category)).isDirectory() || category.startsWith("_")) continue;
