@@ -1,10 +1,22 @@
 # Playbooks
 
-A playbook is a manual process an agent repeats. You give the context. The agent asks only for what it cannot find, follows the playbook's steps, and returns the same result every time. One skill runs every playbook.
+A playbook is a job you already know how to do, written down once so an agent can do it again. You describe the situation. The agent asks only for the facts it cannot look up, follows the steps in that playbook, and hands back the same kind of result every time.
 
-The contract is [rules/fill.md](rules/fill.md). The skill is [skills/fill-template/SKILL.md](skills/fill-template/SKILL.md). The index is [catalog.json](catalog.json).
+One skill runs every playbook, in ChatGPT, Claude, or Cursor.
 
-The catalog groups playbooks into categories. The first category is **Planning**, and it contains the business plan. Intent matching uses ready playbooks and skips stubs.
+```mermaid
+flowchart LR
+  you[You give the context] --> skill[One skill]
+  skill --> ask[Asks only what it cannot find]
+  ask --> steps[Playbook steps]
+  steps --> result[Same result every time]
+```
+
+Three files make that work:
+
+- [rules/fill.md](rules/fill.md) is the contract for every run: cite sources, label estimates, and do not leave a section blank.
+- [skills/fill-template/SKILL.md](skills/fill-template/SKILL.md) is the loop: pick the playbook, ask, follow its steps, return the result.
+- [catalog.json](catalog.json) is the index. Playbooks sit in categories. **Planning** is the first category, and it contains the business plan. A request is matched to a ready playbook. A stub is skipped. If two ready playbooks both match, the agent asks which one and names the category.
 
 ## Use it
 
