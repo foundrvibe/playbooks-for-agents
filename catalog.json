@@ -1,0 +1,88 @@
+{
+  "name": "Playbooks",
+  "rules": "rules/fill.md",
+  "rulesUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/rules/fill.md",
+  "skill": "skills/run-playbook/SKILL.md",
+  "skillUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/run-playbook/SKILL.md",
+  "categories": [
+    {
+      "id": "planning",
+      "name": "Planning",
+      "description": "Playbooks that plan a company: what it sells, who it serves, and how it will operate and earn money.",
+      "templates": ["business-plan"]
+    },
+    {
+      "id": "validation",
+      "name": "Validation",
+      "description": "Playbooks that test an idea before a plan is written: the problem, the market, the competitors, and whether people are already talking about it.",
+      "templates": ["idea-validator"]
+    }
+  ],
+  "templates": [
+    {
+      "id": "business-plan",
+      "name": "Business Plan",
+      "version": "4.0.0",
+      "status": "ready",
+      "category": "planning",
+      "description": "A traditional business plan in seven sections, written mostly as tables, with a revenue chart. The agent asks for the private facts still missing, then researches the market, competitors, and projections.",
+      "intents": [
+        "business plan",
+        "company plan",
+        "write a business plan",
+        "draft a business plan"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/planning/business-plan/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/template.md"
+        },
+        "schema": {
+          "path": "playbooks/planning/business-plan/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/schema.json"
+        },
+        "example": {
+          "path": "playbooks/planning/business-plan/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/example.json"
+        },
+        "research": {
+          "path": "playbooks/planning/business-plan/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/research.md"
+        }
+      }
+    },
+    {
+      "id": "idea-validator",
+      "name": "Idea check",
+      "version": "2.1.0",
+      "status": "ready",
+      "category": "validation",
+      "description": "Checks whether an idea solves a painful problem, whether the market is a real count, who already serves that customer, and whether anyone has shown they would act. The agent opens several competitors and several kinds of public pages. The result is a scorecard and one next test.",
+      "intents": [
+        "validate this idea",
+        "validate my idea",
+        "idea validation",
+        "check this idea",
+        "product market fit"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/validation/idea-validator/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/template.md"
+        },
+        "schema": {
+          "path": "playbooks/validation/idea-validator/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/schema.json"
+        },
+        "example": {
+          "path": "playbooks/validation/idea-validator/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/example.json"
+        },
+        "research": {
+          "path": "playbooks/validation/idea-validator/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/research.md"
+        }
+      }
+    }
+  ]
+}

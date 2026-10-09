@@ -1,0 +1,215 @@
+{
+  "idea": "A shared job board so independent design studios can track briefs, files, and approvals in one place.",
+  "target_customer": "Independent design studios",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "customer_tests": [
+    {
+      "test": "None yet",
+      "result": "No interview, signup, or payment was reported."
+    }
+  ],
+  "problem": "Client briefs, files, and approvals get lost between email and spreadsheets.",
+  "who_affected": "Independent design studios that run client work by hand.",
+  "workaround": "Email and spreadsheets. That current habit is the competitor to beat.",
+  "pain_type": "unclear",
+  "solution_fit": "One board would hold the brief, the files, and the approval. A studio would switch only if building that path in a general tool is slower than email.",
+  "market": [
+    {
+      "layer": "TAM",
+      "figure": "Assumption: not calculated.",
+      "basis": "No census count of design studios was opened."
+    },
+    {
+      "layer": "SAM",
+      "figure": "Assumption: not calculated.",
+      "basis": "Independent studios are a slice of the design industry, not the whole industry."
+    },
+    {
+      "layer": "SOM",
+      "figure": "Assumption: not calculated.",
+      "basis": "No reachable-customer count was opened. This is not a percent of TAM."
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Asana",
+      "website": "https://asana.com",
+      "strength": "Work management used by many kinds of teams.",
+      "weakness": "Not limited to a studio brief and approval path.",
+      "difference": "The idea is only that studio path."
+    },
+    {
+      "name": "Monday.com",
+      "website": "https://monday.com",
+      "strength": "Teams can configure their own boards.",
+      "weakness": "The studio has to build the approval path.",
+      "difference": "The idea ships that path."
+    },
+    {
+      "name": "Notion",
+      "website": "https://www.notion.com",
+      "strength": "Flexible pages for a small team.",
+      "weakness": "A blank workspace, not a client-approval path.",
+      "difference": "The idea is the approval path."
+    },
+    {
+      "name": "ClickUp",
+      "website": "https://clickup.com",
+      "strength": "Tasks, docs, and goals in one workspace.",
+      "weakness": "Built for any team, so the studio path is something you configure.",
+      "difference": "The idea starts from the client brief and the approval."
+    },
+    {
+      "name": "Trello",
+      "website": "https://trello.com",
+      "strength": "A simple board that a small studio can adopt quickly.",
+      "weakness": "Cards do not carry a client approval by themselves.",
+      "difference": "The idea is that approval, not a blank board."
+    },
+    {
+      "name": "Basecamp",
+      "website": "https://basecamp.com",
+      "strength": "Client projects, messages, and files in one place.",
+      "weakness": "A general client project, not a design-approval path.",
+      "difference": "The idea is the brief, the file, and the approval together."
+    },
+    {
+      "name": "Frame.io",
+      "website": "https://frame.io",
+      "strength": "Review and approval on video frames.",
+      "weakness": "Made for video review, not a studio job board.",
+      "difference": "The idea tracks the whole brief, not one media review."
+    },
+    {
+      "name": "Slack",
+      "website": "https://slack.com",
+      "strength": "The channel where many studios already talk to clients.",
+      "weakness": "Files and approvals disappear into the thread.",
+      "difference": "The idea keeps the approval outside the chat."
+    }
+  ],
+  "community": [
+    {
+      "signal": "G2 work management",
+      "finding": "Buyers compare general work tools. No review was opened for a studio-only approval board."
+    },
+    {
+      "signal": "Capterra project management",
+      "finding": "The directory lists many general project tools and no product built only for studio approvals."
+    },
+    {
+      "signal": "Reddit graphic design",
+      "finding": "Public posts describe client files and feedback. None of the opened posts ask to pay for this board."
+    },
+    {
+      "signal": "Google Trends",
+      "finding": "The trends page was opened. No saved query showed demand for a studio approval board."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Pain",
+      "result": "gap",
+      "evidence": "A workaround is named, but no customer described the last time it failed."
+    },
+    {
+      "name": "Market",
+      "result": "gap",
+      "evidence": "SOM was not taken from an opened count."
+    },
+    {
+      "name": "Alternatives",
+      "result": "pass",
+      "evidence": "Direct tools, close substitutes, and directories were opened, and email is the status quo."
+    },
+    {
+      "name": "Customer pull",
+      "result": "fail",
+      "evidence": "No interview, signup, or payment was reported."
+    }
+  ],
+  "decision": "not yet",
+  "decision_reason": "Alternatives are real, and email is the habit to replace. Pain and customer pull were not shown, so this is not a go.",
+  "next_test": "Talk with studio owners about the last time a client approval got lost, and ask what they would pay to stop that. Do not build the board first.",
+  "assumptions": [
+    {
+      "text": "TAM, SAM, and SOM are not calculated. No studio count was opened, and SOM is not a percent of an industry total."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Asana",
+      "publisher": "Asana",
+      "url": "https://asana.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Monday.com",
+      "publisher": "monday.com",
+      "url": "https://monday.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Notion",
+      "publisher": "Notion",
+      "url": "https://www.notion.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "ClickUp",
+      "publisher": "ClickUp",
+      "url": "https://clickup.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Trello",
+      "publisher": "Atlassian",
+      "url": "https://trello.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Basecamp",
+      "publisher": "Basecamp",
+      "url": "https://basecamp.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Frame.io",
+      "publisher": "Frame.io",
+      "url": "https://frame.io",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Slack",
+      "publisher": "Slack",
+      "url": "https://slack.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "G2 work management",
+      "publisher": "G2",
+      "url": "https://www.g2.com/categories/work-management",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Capterra project management",
+      "publisher": "Capterra",
+      "url": "https://www.capterra.com/project-management-software/",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Reddit graphic design",
+      "publisher": "Reddit",
+      "url": "https://www.reddit.com/r/graphic_design/",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Google Trends",
+      "publisher": "Google",
+      "url": "https://trends.google.com",
+      "accessed": "2026-10-08"
+    }
+  ]
+}

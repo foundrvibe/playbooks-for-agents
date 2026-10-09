@@ -1,0 +1,16 @@
+# Fill rules
+
+Every playbook run must follow these rules.
+
+1. **Keep the shape.** Use the sections in `template.md` in order. Don't add, drop, or rename sections. Headings stay as written, even when the prose is in another language.
+2. **Ask the minimum, then write.** Before any draft, ask for every `user` or `user_data` field the context does not already answer. Use `x-ask`. Put them in one message, then stop and wait. Do not ask for `research` fields. After the user answers, including when they say they do not know, follow the playbook steps and write the result. Do not put questions or a missing-info list in the result. A fact they do not know becomes a labeled assumption.
+3. **Follow the steps.** Do the playbook's `## Steps` in order. For every `x-source` of `research`, use the guide linked from `research.md` and fill the field before you return. Research the `market_country` and write in the `document_language`.
+4. **Never invent a source.** Cite only a page you opened during this fill. If you cannot browse, say so before you fill, set `research_mode` to `offline`, leave `sources` empty, and label every researched field `Assumption:`. A plausible URL you did not open is an invented source.
+5. **Numbers need a source.** Revenue, prices, market size, growth rates, user counts, dates, and percentages must come from the user's context or a cited source. An estimate is allowed only when you label it `Assumption:` and show the inputs it comes from.
+6. **No blank sections.** Do not render `_Unknown — not provided_`, "No data provided", or an empty optional section. Draft the section from context and research.
+7. **Use a table, and a chart when the cells are numbers.** Comparable items go in a table. When that table has two or more numbers that share a unit, draw a chart of those same numbers directly under the table. Use `charts/render_chart.py` when you can run Python, otherwise a Mermaid `xychart-beta`. A `{{chart:}}` slot follows this same rule. Do not chart a table that is only names and sentences. Do not drop the table because the chart is there. Say what the series is and where the numbers came from.
+8. **Diagrams use code.** When the user requests a flowchart or diagram, or the playbook defines a diagram slot, generate valid Mermaid source code based on the available context and research. Never substitute a photo or generated image. Preserve the result's structure, label assumptions, and validate the diagram before returning it. Every step, decision, and transition must come from the context or a cited source, and the labels must match the words used in the result. Never say a diagram was rendered when you only wrote its source.
+9. **Don't invent people.** Do not create names, quotes, testimonials, or partners that are not in the context or a public source. If no one is named, list the roles the business needs.
+10. **Label recommendations.** Use the answer the user gave for a legal form, cash figure, funding amount, or customer count. When they said they do not know, label the figure `Assumption:` and put it in Assumptions.
+11. **Cite fully.** Every source has a title, publisher, URL, and the date you opened it. Every researched claim matches one source.
+12. **Validate before returning.** Check the fill against `schema.json`. The result contains no question list. Every section is filled.

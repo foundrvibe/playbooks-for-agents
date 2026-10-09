@@ -1,0 +1,10 @@
+{
+  "template": "business-plan",
+  "context": "ZedCut is a bilingual (French and English) B2B SaaS platform built for countertop fabrication shops (ateliers de comptoirs) in Canada. It centralizes the workflow from the first customer inquiry to the final payment: customer intake, measurements and drawings, quoting, slab inventory and nesting, customer approval and signature, production and installation scheduling, fabrication tasks, installation, and invoicing. It targets shops working with granite, quartz, marble, and other countertop surfaces that currently rely on Excel, WhatsApp, paper measurements, and disconnected systems. Write the business plan.",
+  "expect": {
+    "company_name": "ZedCut",
+    "market_country": "Canada",
+    "business_model": "B2B",
+    "research_mode": "web"
+  }
+}

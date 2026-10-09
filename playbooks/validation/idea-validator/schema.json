@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/idea-validator/2.1.0",
+  "x-id": "idea-validator",
+  "x-version": "2.1.0",
+  "x-title": "Idea check",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "idea",
+    "target_customer",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "customer_tests",
+    "sources"
+  ],
+  "properties": {
+    "idea": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The idea in the user's words.",
+      "x-ask": "What is the idea?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who has the problem, from the user's context.",
+      "x-ask": "Who is this for?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country whose market, sources, and currency the check should use.",
+      "x-ask": "Which country should this check cover?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Headings stay as written in template.md.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when the cited pages were opened during this run. offline when they were not.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "customer_tests": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Interviews, landing pages, signups, or payments the user already has. One row that says none yet when they have not tested.",
+      "x-ask": "What have customers already done? Name interviews, signups, or payments. Say none yet.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["test", "result"],
+        "properties": {
+          "test": { "type": "string", "minLength": 1 },
+          "result": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The problem in one or two sentences.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "who_affected": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who feels the problem, in one or two sentences.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "workaround": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What people do today instead, including email, spreadsheets, or nothing.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "pain_type": {
+      "type": "string",
+      "enum": ["painkiller", "vitamin", "unclear"],
+      "description": "painkiller when people already act to stop the pain. vitamin when the current way already works. unclear otherwise.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "solution_fit": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What would have to be true for the customer to switch. One or two sentences.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "market": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "TAM, SAM, and SOM, in that order. SOM is not a percent of TAM.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["layer", "figure", "basis"],
+        "properties": {
+          "layer": { "type": "string", "enum": ["TAM", "SAM", "SOM"] },
+          "figure": { "type": "string", "minLength": 1 },
+          "basis": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "competitors": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "description": "Direct products, close substitutes, and directory listings whose websites were opened. One strength and one weakness each. On the web, at least five.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "website", "strength", "weakness", "difference"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "website": { "type": "string", "minLength": 1 },
+          "strength": { "type": "string", "minLength": 1 },
+          "weakness": { "type": "string", "minLength": 1 },
+          "difference": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "community": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "description": "Review sites, forums, trend pages, and directories that were opened. On the web, at least four different kinds of pages.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signal", "finding"],
+        "properties": {
+          "signal": { "type": "string", "minLength": 1 },
+          "finding": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "description": "Pain, Market, Alternatives, Customer pull, in that order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "result", "evidence"],
+        "properties": {
+          "name": { "type": "string", "enum": ["Pain", "Market", "Alternatives", "Customer pull"] },
+          "result": { "type": "string", "enum": ["pass", "gap", "fail"] },
+          "evidence": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["go", "not yet", "no"],
+      "description": "go only when Pain, Alternatives, and Customer pull pass. no when the same offer is already sold or the idea is a vitamin with no pull. not yet otherwise.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "decision_reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Two sentences naming the checks that did not pass.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "next_test": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The single next customer test. Not a build plan while Customer pull is gap or fail.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every estimate, with the inputs it uses.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Pages opened for this check. Empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": {
+        "properties": {
+          "sources": { "minItems": 1 },
+          "competitors": { "minItems": 5 },
+          "community": { "minItems": 4 }
+        }
+      }
+    }
+  ]
+}

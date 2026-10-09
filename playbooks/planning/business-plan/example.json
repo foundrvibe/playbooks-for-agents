@@ -1,0 +1,155 @@
+{
+  "company_name": "Northwind Studio",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "owner": "Amina Rahman",
+  "status": "Draft",
+  "last_updated": "2026-10-08",
+  "plan_format": "traditional",
+  "audience": "A lender reviewing a funding request",
+  "location": "Austin, Texas",
+  "legal_structure": "Not incorporated. The founder has not filed a company.",
+  "executive_summary": "Northwind Studio sells a shared job board so independent design studios can track briefs, files, and approvals in one place. The target customer is studios with 2 to 10 people. The company is pre-revenue, is not raising, and holds 8000 in founder capital.",
+  "business_concept": "A shared job board for briefs, files, and approvals so small studios can stop tracking client work in email and spreadsheets.",
+  "business_model": "B2B",
+  "industry": "Software publishers (NAICS 513210).",
+  "mission": "Give small studios one place to run client work.",
+  "values": [
+    { "text": "Only ship features a studio asked for." }
+  ],
+  "objectives": [
+    { "horizon": "Next year", "text": "Assumption: sign the first ten studios from the founder's existing network." },
+    { "horizon": "Three years", "text": "Assumption: reach thirty paying studios at the same price." }
+  ],
+  "team": [
+    {
+      "name": "Amina Rahman",
+      "role": "Founder",
+      "background": "Named in the context as the founder. Builds, sells, and supports the product."
+    }
+  ],
+  "products_and_services": "A monthly subscription for the studio, billed per workspace. One job board covers briefs, files, and approvals.",
+  "offers": [
+    {
+      "name": "Studio workspace",
+      "kind": "Subscription",
+      "price": "Assumption: 40 per workspace per month, set against public plans of Asana and Monday.com.",
+      "difference": "Limited to the studio workflow of briefs, files, and client approvals."
+    }
+  ],
+  "target_customer": "Independent design studios with 2 to 10 people.",
+  "customer_problem": "Small studios track briefs, files, and approvals in email and spreadsheets.",
+  "competitive_advantage": "General work-management tools such as Asana, Monday.com, and Notion serve many kinds of teams. Northwind Studio is limited to the design-studio workflow.",
+  "market_facts": [
+    {
+      "label": "Target studios",
+      "figure": "Studios with 2 to 10 people",
+      "note": "Size this from Census specialized design services counts, then keep the 2 to 10 employee share."
+    }
+  ],
+  "market_analysis": "The addressable set is independent U.S. design studios with 2 to 10 people, not every design establishment. Apply that employee band to the Census count for specialized design services.",
+  "competitors": [
+    {
+      "name": "Asana",
+      "location": "United States",
+      "offer": "Work management for many kinds of teams",
+      "strengths": "Broad product and a large installed base",
+      "weaknesses": "Not limited to a studio brief and approval workflow",
+      "difference": "Northwind Studio ships one studio workflow instead of a general toolkit."
+    },
+    {
+      "name": "Monday.com",
+      "location": "United States",
+      "offer": "Configurable work platform",
+      "strengths": "Teams can build their own boards",
+      "weaknesses": "A studio must configure the workflow itself",
+      "difference": "Northwind Studio ships the brief, file, and approval path already set."
+    },
+    {
+      "name": "Notion",
+      "location": "United States",
+      "offer": "Docs and lightweight databases",
+      "strengths": "Flexible pages for a small team",
+      "weaknesses": "No fixed client-approval workflow",
+      "difference": "Northwind Studio is the approval path, not a blank workspace."
+    }
+  ],
+  "strengths": "The founder already works with the studios the first year depends on.",
+  "weaknesses": "One founder builds, sells, and supports the product.",
+  "opportunities": "Small studios still track client work in email and spreadsheets.",
+  "threats": "General work-management tools can add studio templates.",
+  "marketing_channels": [
+    {
+      "channel": "Founder outreach",
+      "monthly_spend": 0,
+      "activities": "Direct conversations with studios the founder already works with.",
+      "measure": "Studios signed per month"
+    }
+  ],
+  "sales_goals": [
+    { "period": "2026", "customers": 10, "price": 40, "revenue": 4800 },
+    { "period": "2027", "customers": 20, "price": 40, "revenue": 9600 },
+    { "period": "2028", "customers": 30, "price": 40, "revenue": 14400 }
+  ],
+  "operations_items": [
+    { "area": "Production", "plan": "The founder builds the software. There is no outside manufacturer." },
+    { "area": "Delivery", "plan": "Customers use a hosted workspace. There is no shipping." },
+    { "area": "Hosting", "plan": "The founder runs the application and keeps backups." },
+    { "area": "Staff", "plan": "The founder supports studios directly until the first ten customers." }
+  ],
+  "current_customers": 0,
+  "current_revenue": 0,
+  "snapshot": [
+    { "metric": "Gross margin", "value": "Assumption: not measured. The company is pre-revenue." },
+    { "metric": "Churn", "value": "Assumption: not measured. There are no paying customers yet." },
+    { "metric": "Acquisition cost", "value": "Assumption: founder time only, with 0 paid spend." },
+    { "metric": "Lifetime value", "value": "Assumption: not measured until a studio has renewed." }
+  ],
+  "financials": {
+    "seriesName": "Projected annual revenue",
+    "x": ["2026", "2027", "2028"],
+    "series": [4800, 9600, 14400]
+  },
+  "expenses": [
+    { "category": "Hosting", "annual_cost": 1200 },
+    { "category": "Outreach", "annual_cost": 0 }
+  ],
+  "starting_capital": 8000,
+  "funding_request": 0,
+  "use_of_funds": [
+    { "item": "Not raising", "amount": 0 }
+  ],
+  "assumptions": [
+    {
+      "text": "Price is 40 per workspace per month. Annual revenue is customers times 40 times 12: 10 studios give 4800, 20 give 9600, and 30 give 14400. Hosting is 1200 for the first year. Paid outreach is 0."
+    }
+  ],
+  "review_cadence": "Quarterly while the studio is finding its first customers, and earlier if a competitor launches a studio workflow.",
+  "sources": [
+    {
+      "title": "Write your business plan",
+      "publisher": "U.S. Small Business Administration",
+      "url": "https://www.sba.gov/business-guide/plan-your-business/write-your-business-plan",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Asana",
+      "publisher": "Asana",
+      "url": "https://asana.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Monday.com",
+      "publisher": "monday.com",
+      "url": "https://monday.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Notion",
+      "publisher": "Notion",
+      "url": "https://www.notion.com",
+      "accessed": "2026-10-08"
+    }
+  ]
+}

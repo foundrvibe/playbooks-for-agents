@@ -1,0 +1,45 @@
+{
+  "id": "default",
+  "colors": {
+    "primary": "#0F766E",
+    "text": "#111827",
+    "muted": "#6B7280",
+    "border": "#E5E7EB",
+    "stripe": "#F9FAFB",
+    "background": "#FFFFFF",
+    "series": ["#0F766E", "#2563EB", "#D97706", "#7C3AED"]
+  },
+  "fonts": {
+    "body": "\"Inter\", \"Helvetica Neue\", Arial, sans-serif",
+    "heading": "\"Inter\", \"Helvetica Neue\", Arial, sans-serif"
+  },
+  "page": {
+    "size": "Letter",
+    "margin": "18mm"
+  },
+  "chart": {
+    "width": 900,
+    "height": 400
+  },
+  "numbers": {
+    "languages": {
+      "English": "en",
+      "French": "fr",
+      "Français": "fr",
+      "Spanish": "es",
+      "Español": "es",
+      "German": "de",
+      "Deutsch": "de"
+    },
+    "countries": {
+      "Canada": { "code": "CA", "currency": "CAD" },
+      "United States": { "code": "US", "currency": "USD" },
+      "United Kingdom": { "code": "GB", "currency": "GBP" },
+      "France": { "code": "FR", "currency": "EUR" },
+      "Germany": { "code": "DE", "currency": "EUR" },
+      "Spain": { "code": "ES", "currency": "EUR" },
+      "Australia": { "code": "AU", "currency": "AUD" },
+      "Mexico": { "code": "MX", "currency": "MXN" }
+    }
+  }
+}

@@ -1,0 +1,556 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/business-plan/4.0.0",
+  "x-id": "business-plan",
+  "x-version": "4.0.0",
+  "x-title": "Business Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "company_name",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "owner",
+    "location",
+    "legal_structure",
+    "business_concept",
+    "target_customer",
+    "products_and_services",
+    "starting_capital",
+    "funding_request",
+    "current_customers",
+    "current_revenue",
+    "sources"
+  ],
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Legal or trading name of the company.",
+      "x-ask": "What is the company name?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country whose market, sources, currency, and regulations the research should use.",
+      "x-ask": "Which country is the main market?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Use the language of the user's request unless they asked for another. Section headings stay as written in template.md.",
+      "x-ask": "Which language should the plan be written in?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when you opened the cited sources during this fill. offline when you could not browse, so every researched field is an Assumption and sources is empty.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Name from the context or a public source, or the role when no person is named.",
+      "x-ask": "Whose name should the plan use as owner? Say if you want the role only.",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "status": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Draft unless the user said the plan is final.",
+      "x-ask": "What status should this plan show?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "last_updated": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Date of this fill, in YYYY-MM-DD.",
+      "x-ask": "What date should we use for last updated?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "plan_format": {
+      "type": "string",
+      "minLength": 1,
+      "description": "traditional. The seven sections stay the same for a lender, an investor, or internal use.",
+      "x-ask": "Who is this plan for?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who will read the plan, inferred from the context.",
+      "x-ask": "Who is this plan for?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "location": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City or region where the company is based. The country alone is enough when the user has no city.",
+      "x-ask": "Where is the company based? A city is enough. Say if you only know the country.",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "legal_structure": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Legal form the user gave, or a public registry filing. If they have not incorporated or do not know, say that and do not invent a filing.",
+      "x-ask": "What is the legal structure? If it is not incorporated, say so.",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "executive_summary": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Short close of the plan: the problem, the offer, the customer, and the funding position. Write it from the other fields.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "business_concept": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How the company started and what it does, from the user's context.",
+      "x-ask": "What does the company do, and how did the idea start?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "business_model": {
+      "type": "string",
+      "minLength": 1,
+      "description": "B2C, DTC, B2B, C2C, or C2B, inferred from who pays.",
+      "x-ask": "Which business model is this: B2C, DTC, B2B, C2C, or C2B?",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "industry": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Industry or niche, with the official classification code when the market country publishes one.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "mission": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Mission written from the context. Do not invent a slogan the user did not imply.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "values": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Values implied by the context. Label any value the user did not state as Assumption.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Objectives for the next year and a later horizon, derived from the context and the forecast.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["horizon", "text"],
+        "properties": {
+          "horizon": { "type": "string", "minLength": 1 },
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "team": {
+      "type": "array",
+      "minItems": 1,
+      "description": "People named in the context or a public source. Otherwise the roles the business needs, with no invented names.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "role", "background"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "role": { "type": "string", "minLength": 1 },
+          "background": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "products_and_services": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the company sells, from the user's context.",
+      "x-ask": "What do you sell or plan to offer?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "offers": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One row per offer. Price comes from the user or a cited competitor comparison, labeled Assumption when it is a recommendation.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "kind", "price", "difference"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "minLength": 1, "description": "Product, service, or subscription." },
+          "price": { "type": "string", "minLength": 1 },
+          "difference": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who buys, from the user's context.",
+      "x-ask": "Who is the target customer?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "customer_problem": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The problem this customer has today, from the context.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "competitive_advantage": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How the offer fills a gap the competitors' own pages show.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "market_facts": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Cited market figures for the target customer and market country.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "figure", "note"],
+        "properties": {
+          "label": { "type": "string", "minLength": 1 },
+          "figure": { "type": "string", "minLength": 1 },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "market_analysis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Bottom-up market math from the cited figures. Say which inputs are assumptions.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "competitors": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Real competitors with a public page. Do not invent a company.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "location", "offer", "strengths", "weaknesses", "difference"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "location": { "type": "string", "minLength": 1 },
+          "offer": { "type": "string", "minLength": 1 },
+          "strengths": { "type": "string", "minLength": 1 },
+          "weaknesses": { "type": "string", "minLength": 1 },
+          "difference": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "strengths": {
+      "type": "string",
+      "minLength": 1,
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "description": "Internal strengths versus the named competitors."
+    },
+    "weaknesses": {
+      "type": "string",
+      "minLength": 1,
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "description": "Internal weaknesses versus the named competitors."
+    },
+    "opportunities": {
+      "type": "string",
+      "minLength": 1,
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "description": "External opportunities from the market sources."
+    },
+    "threats": {
+      "type": "string",
+      "minLength": 1,
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "description": "External threats from the market sources and competitors."
+    },
+    "marketing_channels": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Channels, monthly spend, activities, and a measure for each.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel", "monthly_spend", "activities", "measure"],
+        "properties": {
+          "channel": { "type": "string", "minLength": 1 },
+          "monthly_spend": { "type": "number", "x-format": "currency" },
+          "activities": { "type": "string", "minLength": 1 },
+          "measure": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sales_goals": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Forecast rows. Revenue equals customers times price over the period, and matches financials.series in the same order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["period", "customers", "price", "revenue"],
+        "properties": {
+          "period": { "type": "string", "minLength": 1 },
+          "customers": { "type": "number", "x-format": "number" },
+          "price": { "type": "number", "x-format": "currency" },
+          "revenue": { "type": "number", "x-format": "currency" }
+        }
+      }
+    },
+    "operations_items": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Suppliers or production, fulfilment or delivery, inventory or hosting, and staff.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["area", "plan"],
+        "properties": {
+          "area": { "type": "string", "minLength": 1 },
+          "plan": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "current_customers": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Paying customers now. Zero when the user says pre-revenue.",
+      "x-ask": "How many paying customers do you have now? Say zero if you are pre-revenue.",
+      "x-source": "user_data",
+      "x-format": "number",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "current_revenue": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Current recurring revenue per month. Zero when the user says pre-revenue.",
+      "x-ask": "What is current recurring revenue per month? Say zero if you are pre-revenue.",
+      "x-source": "user_data",
+      "x-format": "currency",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "snapshot": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Other current metrics such as gross margin, churn, acquisition cost, and lifetime value. Label any figure the user did not give as Assumption.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric", "value"],
+        "properties": {
+          "metric": { "type": "string", "minLength": 1 },
+          "value": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "financials": {
+      "type": "object",
+      "description": "Revenue by period. series matches sales_goals revenue in the same order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "x-chart": "mermaid-xy",
+      "x-format": "currency",
+      "additionalProperties": false,
+      "required": ["x", "series"],
+      "properties": {
+        "x": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "number" }
+        },
+        "seriesName": { "type": "string" }
+      }
+    },
+    "expenses": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Annual costs for the first forecast year.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "annual_cost"],
+        "properties": {
+          "category": { "type": "string", "minLength": 1 },
+          "annual_cost": { "type": "number", "x-format": "currency" }
+        }
+      }
+    },
+    "starting_capital": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Capital available now, from the user. Zero when they have none or do not want a cash figure.",
+      "x-ask": "How much capital is available to the company now? Say none, or that you do not want a real cash figure.",
+      "x-source": "user_data",
+      "x-format": "currency",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "funding_request": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Amount requested. Zero when the user is not raising.",
+      "x-ask": "How much funding are you requesting? Say if you are not raising.",
+      "x-source": "user_data",
+      "x-format": "currency",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "use_of_funds": {
+      "type": "array",
+      "minItems": 1,
+      "description": "How a funding request would be spent. One row that says the company is not raising when funding_request is zero.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "amount"],
+        "properties": {
+          "item": { "type": "string", "minLength": 1 },
+          "amount": { "type": "number", "x-format": "currency" }
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every estimate, with the cited inputs it uses.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "review_cadence": {
+      "type": "string",
+      "minLength": 1,
+      "description": "When the plan should be reviewed.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "sources": {
+      "type": "array",
+      "description": "Public sources used for researched fields. May be empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1, "description": "YYYY-MM-DD" }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": {
+        "properties": { "sources": { "minItems": 1 } }
+      }
+    }
+  ]
+}

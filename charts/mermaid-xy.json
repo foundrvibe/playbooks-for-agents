@@ -1,0 +1,22 @@
+{
+  "id": "mermaid-xy",
+  "render": "mermaid-xy",
+  "description": "One numeric series against category labels. Renders as a Mermaid xychart-beta, or a Markdown table when a label is unsafe for Mermaid.",
+  "data": {
+    "type": "object",
+    "required": ["x", "series"],
+    "properties": {
+      "x": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "string" }
+      },
+      "series": {
+        "type": "array",
+        "minItems": 1,
+        "items": { "type": "number" }
+      },
+      "seriesName": { "type": "string" }
+    }
+  }
+}

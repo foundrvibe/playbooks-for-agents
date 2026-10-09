@@ -1,0 +1,13 @@
+{
+  "id": "business-process",
+  "mermaid": "flowchart TD",
+  "description": "A workflow from a start to an end, with the steps the user or research established.",
+  "inputs": ["steps"],
+  "nodeTypes": ["start", "step", "decision", "end"],
+  "rules": [
+    "Include a start node and an end node.",
+    "Each step is something the context or a cited source supports.",
+    "Label every decision branch with the condition.",
+    "Do not add a step to make the flow look complete. Mark a gap Assumption."
+  ]
+}
