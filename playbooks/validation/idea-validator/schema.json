@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/playbooks/idea-validator/2.0.0",
+  "$id": "https://foundrvibe.com/playbooks/idea-validator/2.1.0",
   "x-id": "idea-validator",
-  "x-version": "2.0.0",
+  "x-version": "2.1.0",
   "x-title": "Idea check",
   "type": "object",
   "additionalProperties": false,
@@ -134,9 +134,9 @@
     },
     "competitors": {
       "type": "array",
-      "minItems": 3,
-      "maxItems": 8,
-      "description": "Real competitors whose websites were opened. One strength and one weakness each.",
+      "minItems": 1,
+      "maxItems": 12,
+      "description": "Direct products, close substitutes, and directory listings whose websites were opened. One strength and one weakness each. On the web, at least five.",
       "x-ask": "Leave this to the agent.",
       "x-source": "research",
       "x-unknown": "Research this field and cite a source. Do not leave it blank.",
@@ -156,7 +156,8 @@
     "community": {
       "type": "array",
       "minItems": 1,
-      "description": "Public pages that were opened. One row that says none were opened is allowed.",
+      "maxItems": 8,
+      "description": "Review sites, forums, trend pages, and directories that were opened. On the web, at least four different kinds of pages.",
       "x-ask": "Leave this to the agent.",
       "x-source": "research",
       "x-unknown": "Research this field and cite a source. Do not leave it blank.",
@@ -254,7 +255,13 @@
         "properties": { "research_mode": { "const": "web" } },
         "required": ["research_mode"]
       },
-      "then": { "properties": { "sources": { "minItems": 1 } } }
+      "then": {
+        "properties": {
+          "sources": { "minItems": 1 },
+          "competitors": { "minItems": 5 },
+          "community": { "minItems": 4 }
+        }
+      }
     }
   ]
 }

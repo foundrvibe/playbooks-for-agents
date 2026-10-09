@@ -54,10 +54,10 @@
     {
       "id": "idea-validator",
       "name": "Idea check",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "status": "ready",
       "category": "validation",
-      "description": "Checks whether an idea solves a painful problem, whether the market is a real count, who already serves that customer, and whether anyone has shown they would act. The result is a scorecard and one next test.",
+      "description": "Checks whether an idea solves a painful problem, whether the market is a real count, who already serves that customer, and whether anyone has shown they would act. The agent opens several competitors and several kinds of public pages. The result is a scorecard and one next test.",
       "intents": [
         "validate this idea",
         "validate my idea",
