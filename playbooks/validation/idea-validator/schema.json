@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/idea-validator/1.0.0",
+  "x-id": "idea-validator",
+  "x-version": "1.0.0",
+  "x-title": "Idea check",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "idea",
+    "target_customer",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "sources"
+  ],
+  "properties": {
+    "idea": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The idea in the user's words.",
+      "x-ask": "What is the idea?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who has the problem, from the user's context.",
+      "x-ask": "Who is this for?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country whose market, sources, and currency the check should use.",
+      "x-ask": "Which country should this check cover?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Headings stay as written in template.md.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when the cited pages were opened during this run. offline when they were not.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The problem and how urgent the opened sources show it to be.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "solution_fit": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How the idea addresses that problem, and what would have to be true for the customer to switch.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "market": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "TAM, SAM, and SOM, in that order. Each figure is cited or labeled Assumption.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["layer", "figure", "basis"],
+        "properties": {
+          "layer": { "type": "string", "enum": ["TAM", "SAM", "SOM"] },
+          "figure": { "type": "string", "minLength": 1 },
+          "basis": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "competitors": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "description": "Real competitors whose websites were opened. Do not add names to reach a count.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "website", "offer", "difference"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "website": { "type": "string", "minLength": 1 },
+          "offer": { "type": "string", "minLength": 1 },
+          "difference": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "community": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Public interest found on pages that were opened. One row that says none were opened is allowed.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signal", "finding"],
+        "properties": {
+          "signal": { "type": "string", "minLength": 1 },
+          "finding": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["go", "not yet", "no"],
+      "description": "go, not yet, or no, from the decision rule in the steps.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "decision_reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Why the decision follows from the problem, the market, the competitors, and the community rows.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every estimate, with the inputs it uses.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Pages opened for this check. Empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": { "properties": { "sources": { "minItems": 1 } } }
+    }
+  ]
+}

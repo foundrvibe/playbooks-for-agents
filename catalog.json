@@ -10,6 +10,12 @@
       "name": "Planning",
       "description": "Playbooks that plan a company: what it sells, who it serves, and how it will operate and earn money.",
       "templates": ["business-plan"]
+    },
+    {
+      "id": "validation",
+      "name": "Validation",
+      "description": "Playbooks that test an idea before a plan is written: the problem, the market, the competitors, and whether people are already talking about it.",
+      "templates": ["idea-validator"]
     }
   ],
   "templates": [
@@ -42,6 +48,39 @@
         "research": {
           "path": "playbooks/planning/business-plan/research.md",
           "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/research.md"
+        }
+      }
+    },
+    {
+      "id": "idea-validator",
+      "name": "Idea check",
+      "version": "1.0.0",
+      "status": "ready",
+      "category": "validation",
+      "description": "Checks an idea in four passes: problem and solution, market size, competitors, and public interest. The agent asks for the idea, the customer, and the country, then returns one decision: go, not yet, or no.",
+      "intents": [
+        "validate this idea",
+        "validate my idea",
+        "idea validation",
+        "check this idea",
+        "product market fit"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/validation/idea-validator/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/template.md"
+        },
+        "schema": {
+          "path": "playbooks/validation/idea-validator/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/schema.json"
+        },
+        "example": {
+          "path": "playbooks/validation/idea-validator/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/example.json"
+        },
+        "research": {
+          "path": "playbooks/validation/idea-validator/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/research.md"
         }
       }
     }

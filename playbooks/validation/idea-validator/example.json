@@ -1,0 +1,79 @@
+{
+  "idea": "A shared job board so independent design studios can track briefs, files, and approvals in one place.",
+  "target_customer": "Independent design studios",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "problem": "Studios keep client briefs, files, and approvals in email and spreadsheets. That workaround is the evidence of the problem. No separate urgency statistic was opened.",
+  "solution_fit": "One board would hold the brief, the files, and the approval. Asana, Monday.com, and Notion already cover general team work, and a studio would have to shape that path itself. Switching depends on that setup being slower than email.",
+  "market": [
+    {
+      "layer": "TAM",
+      "figure": "Assumption: not calculated.",
+      "basis": "No census count of design studios was opened for this example."
+    },
+    {
+      "layer": "SAM",
+      "figure": "Assumption: not calculated.",
+      "basis": "The customer is independent studios, which is a slice of the design industry, not the whole industry."
+    },
+    {
+      "layer": "SOM",
+      "figure": "Assumption: not calculated.",
+      "basis": "No sales capacity or win rate was given."
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Asana",
+      "website": "https://asana.com",
+      "offer": "Work management for many kinds of teams.",
+      "difference": "The idea is only the studio path of briefs, files, and approvals."
+    },
+    {
+      "name": "Monday.com",
+      "website": "https://monday.com",
+      "offer": "A configurable work platform.",
+      "difference": "A studio has to build the approval path. The idea ships that path."
+    },
+    {
+      "name": "Notion",
+      "website": "https://www.notion.com",
+      "offer": "Docs and lightweight databases.",
+      "difference": "Notion is a blank workspace. The idea is the client-approval path."
+    }
+  ],
+  "community": [
+    {
+      "signal": "Public discussions",
+      "finding": "No forum, review, or trend page about this idea was opened."
+    }
+  ],
+  "decision": "not yet",
+  "decision_reason": "The problem is a known workaround, and the three opened products are general tools rather than a studio approval path. Market size and public demand were not found on a page, so this is not a go.",
+  "assumptions": [
+    {
+      "text": "TAM, SAM, and SOM are not calculated. No studio count or willingness to pay was opened."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Asana",
+      "publisher": "Asana",
+      "url": "https://asana.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Monday.com",
+      "publisher": "monday.com",
+      "url": "https://monday.com",
+      "accessed": "2026-10-08"
+    },
+    {
+      "title": "Notion",
+      "publisher": "Notion",
+      "url": "https://www.notion.com",
+      "accessed": "2026-10-08"
+    }
+  ]
+}
