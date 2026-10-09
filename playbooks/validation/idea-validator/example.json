@@ -4,56 +4,91 @@
   "market_country": "United States",
   "document_language": "English",
   "research_mode": "web",
-  "problem": "Studios keep client briefs, files, and approvals in email and spreadsheets. That workaround is the evidence of the problem. No separate urgency statistic was opened.",
-  "solution_fit": "One board would hold the brief, the files, and the approval. Asana, Monday.com, and Notion already cover general team work, and a studio would have to shape that path itself. Switching depends on that setup being slower than email.",
+  "customer_tests": [
+    {
+      "test": "None yet",
+      "result": "No interview, signup, or payment was reported."
+    }
+  ],
+  "problem": "Client briefs, files, and approvals get lost between email and spreadsheets.",
+  "who_affected": "Independent design studios that run client work by hand.",
+  "workaround": "Email and spreadsheets. That current habit is the competitor to beat.",
+  "pain_type": "unclear",
+  "solution_fit": "One board would hold the brief, the files, and the approval. A studio would switch only if building that path in a general tool is slower than email.",
   "market": [
     {
       "layer": "TAM",
       "figure": "Assumption: not calculated.",
-      "basis": "No census count of design studios was opened for this example."
+      "basis": "No census count of design studios was opened."
     },
     {
       "layer": "SAM",
       "figure": "Assumption: not calculated.",
-      "basis": "The customer is independent studios, which is a slice of the design industry, not the whole industry."
+      "basis": "Independent studios are a slice of the design industry, not the whole industry."
     },
     {
       "layer": "SOM",
       "figure": "Assumption: not calculated.",
-      "basis": "No sales capacity or win rate was given."
+      "basis": "No reachable-customer count was opened. This is not a percent of TAM."
     }
   ],
   "competitors": [
     {
       "name": "Asana",
       "website": "https://asana.com",
-      "offer": "Work management for many kinds of teams.",
-      "difference": "The idea is only the studio path of briefs, files, and approvals."
+      "strength": "Work management used by many kinds of teams.",
+      "weakness": "Not limited to a studio brief and approval path.",
+      "difference": "The idea is only that studio path."
     },
     {
       "name": "Monday.com",
       "website": "https://monday.com",
-      "offer": "A configurable work platform.",
-      "difference": "A studio has to build the approval path. The idea ships that path."
+      "strength": "Teams can configure their own boards.",
+      "weakness": "The studio has to build the approval path.",
+      "difference": "The idea ships that path."
     },
     {
       "name": "Notion",
       "website": "https://www.notion.com",
-      "offer": "Docs and lightweight databases.",
-      "difference": "Notion is a blank workspace. The idea is the client-approval path."
+      "strength": "Flexible pages for a small team.",
+      "weakness": "A blank workspace, not a client-approval path.",
+      "difference": "The idea is the approval path."
     }
   ],
   "community": [
     {
       "signal": "Public discussions",
-      "finding": "No forum, review, or trend page about this idea was opened."
+      "finding": "No forum or review page about this idea was opened."
+    }
+  ],
+  "checks": [
+    {
+      "name": "Pain",
+      "result": "gap",
+      "evidence": "A workaround is named, but no customer described the last time it failed."
+    },
+    {
+      "name": "Market",
+      "result": "gap",
+      "evidence": "SOM was not taken from an opened count."
+    },
+    {
+      "name": "Alternatives",
+      "result": "pass",
+      "evidence": "Three product sites were opened, and email is the status quo."
+    },
+    {
+      "name": "Customer pull",
+      "result": "fail",
+      "evidence": "No interview, signup, or payment was reported."
     }
   ],
   "decision": "not yet",
-  "decision_reason": "The problem is a known workaround, and the three opened products are general tools rather than a studio approval path. Market size and public demand were not found on a page, so this is not a go.",
+  "decision_reason": "Alternatives are real, and email is the habit to replace. Pain and customer pull were not shown, so this is not a go.",
+  "next_test": "Talk with studio owners about the last time a client approval got lost, and ask what they would pay to stop that. Do not build the board first.",
   "assumptions": [
     {
-      "text": "TAM, SAM, and SOM are not calculated. No studio count or willingness to pay was opened."
+      "text": "TAM, SAM, and SOM are not calculated. No studio count was opened, and SOM is not a percent of an industry total."
     }
   ],
   "sources": [

@@ -8,15 +8,24 @@
 | **Research** | {{research_mode}} |
 | **Decision** | {{decision}} |
 
-## Decision
+## Scorecard
+
+| Check | Result | Evidence |
+|---|---|---|
+{{#each checks}}
+| {{name}} | {{result}} | {{evidence}} |
+{{/each}}
 
 {{decision_reason}}
 
-## Problem and solution
+## The problem
 
 | | |
 |---|---|
 | **Problem** | {{problem}} |
+| **Who feels it** | {{who_affected}} |
+| **Current workaround** | {{workaround}} |
+| **Painkiller or vitamin** | {{pain_type}} |
 | **How this idea addresses it** | {{solution_fit}} |
 
 ## Market
@@ -27,21 +36,35 @@
 | {{layer}} | {{figure}} | {{basis}} |
 {{/each}}
 
+SOM is the customers this idea can reach, from a count you opened or a labeled assumption. It is not a slice of TAM.
+
 ## Competitors
 
-| Name | Website | What they offer | How this idea differs |
-|---|---|---|---|
+| Name | Website | Strength | Weakness | How this idea differs |
+|---|---|---|---|---|
 {{#each competitors}}
-| {{name}} | {{website}} | {{offer}} | {{difference}} |
+| {{name}} | {{website}} | {{strength}} | {{weakness}} | {{difference}} |
 {{/each}}
 
-## Community
+## Already tested
+
+| Test | What happened |
+|---|---|
+{{#each customer_tests}}
+| {{test}} | {{result}} |
+{{/each}}
+
+## Public signals
 
 | Signal | What turned up |
 |---|---|
 {{#each community}}
 | {{signal}} | {{finding}} |
 {{/each}}
+
+## Next test
+
+{{next_test}}
 
 ## Assumptions
 
