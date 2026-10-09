@@ -95,10 +95,10 @@ The agent returns only the finished result. Sources are inside that result. The 
 <details>
 <summary>Charts</summary>
 
-Charts come from cited figures or from a labeled assumption built from them.
+Comparable items go in a table. When that table has two or more numbers that share a unit, a chart of those same numbers sits under the table.
 
-- **Agents that can run Python** (ChatGPT data analysis, Claude code execution, Cursor) draw each chart with [charts/render_chart.py](charts/render_chart.py) and show the PNG, with the same values in a table below it. The colors and size come from [themes/default.json](themes/default.json), so every plan looks the same.
-- **Agents that can't run Python** write a Mermaid chart and a table instead.
+- **Agents that can run Python** (ChatGPT data analysis, Claude code execution, Cursor) draw each chart with [charts/render_chart.py](charts/render_chart.py). The colors and size come from [themes/default.json](themes/default.json).
+- **Agents that can't run Python** write a Mermaid chart under the same table.
 
 To draw one yourself:
 

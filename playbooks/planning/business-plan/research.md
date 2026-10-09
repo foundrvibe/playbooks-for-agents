@@ -10,8 +10,8 @@ The seven sections follow a traditional plan: executive summary, company overvie
 2. Classify `industry` for the market country.
 3. Build `market_facts` and `market_analysis` from cited business counts. Then write `opportunities` and `threats`.
 4. Find at least three real `competitors`. Write `strengths` and `weaknesses` from those pages and the context.
-5. Fill offer prices, `marketing_channels`, and `sales_goals`. The revenue column of `sales_goals` is the `financials` series, in the same order.
-6. Fill `operations_items` and `expenses` for the first forecast year.
+5. Fill offer prices, `marketing_channels`, and `sales_goals`. The revenue column of `sales_goals` is the `financials` series, in the same order. Chart that series under the sales table. Chart channel spend under the channel table when the spend cells are numbers.
+6. Fill `operations_items` and `expenses` for the first forecast year. Chart the expense amounts under that table.
 7. Write the executive summary, mission, values, objectives, and team from the context and the rows above. Do not invent a person's name.
 8. List every estimate in `assumptions` and every page you opened in `sources`.
 

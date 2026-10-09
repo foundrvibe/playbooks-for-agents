@@ -75,13 +75,16 @@ Use `template.md` as the only layout. Section headings come from that file. Do n
 
 - Replace `{{field}}` with the researched or derived value.
 - Repeat a `{{#each collection}}` block once per item. A collection that research can fill is not left empty.
+- Put comparable items in a table. When that table has two or more numbers that share a unit, put a chart of those same numbers directly under the table.
 - List each assumption in the Assumptions section.
 - List each source in the Sources section.
 - Do not add a missing-info section, a confirmation list, or questions inside the document. Those were asked before the draft.
 
 ## 5. Charts
 
-A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/<id>.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values.
+Draw a chart whenever a table has two or more numbers that share a unit: periods, market layers, costs, channels, or goals. Place it directly under that table. The chart and the table use the same numbers. Do not chart a table that is only names and sentences. Do not add a new section for the chart.
+
+A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/<id>.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values. If the playbook has no slot but the table is numeric, use the `mermaid-xy` shape: `x` for the row labels, `series` for the numbers, `seriesName` for what the numbers are.
 
 **If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/render_chart.py`, run it in your Python tool with the slot's JSON value, and show the PNG:
 
