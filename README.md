@@ -14,7 +14,7 @@ flowchart LR
 Three files make that work:
 
 - [rules/fill.md](rules/fill.md) is the contract for every run: cite sources, label estimates, and do not leave a section blank.
-- [skills/fill-template/SKILL.md](skills/fill-template/SKILL.md) is the loop: pick the playbook, ask, follow its steps, return the result.
+- [skills/run-playbook/SKILL.md](skills/run-playbook/SKILL.md) is the loop: pick the playbook, ask, follow its steps, return the result.
 - [catalog.json](catalog.json) is the index. Playbooks sit in categories. **Planning** is the first category, and it contains the business plan. A request is matched to a ready playbook. A stub is skipped. If two ready playbooks both match, the agent asks which one and names the category.
 
 ## Use it
@@ -22,7 +22,7 @@ Three files make that work:
 Paste this into ChatGPT, Claude, or a Cursor agent chat. One link is enough. The skill fetches the rules, the catalog, and the playbook files.
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/fill-template/SKILL.md
+Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/run-playbook/SKILL.md
 
 Create a business plan for ZedCut, a bilingual B2B SaaS for countertop fabrication shops in Canada.
 ```
@@ -32,7 +32,7 @@ Replace the second line with your own request. If several playbooks match, the a
 To choose the playbook yourself, name its id. The agent uses that playbook and does not match intents.
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/fill-template/SKILL.md
+Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/run-playbook/SKILL.md
 
 Playbook: business-plan
 ZedCut is a bilingual B2B SaaS for countertop fabrication shops in Canada.

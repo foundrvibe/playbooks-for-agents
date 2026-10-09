@@ -2,8 +2,8 @@
   "name": "Playbooks",
   "rules": "rules/fill.md",
   "rulesUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/rules/fill.md",
-  "skill": "skills/fill-template/SKILL.md",
-  "skillUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/fill-template/SKILL.md",
+  "skill": "skills/run-playbook/SKILL.md",
+  "skillUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/run-playbook/SKILL.md",
   "categories": [
     {
       "id": "planning",

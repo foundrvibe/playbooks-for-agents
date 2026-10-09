@@ -1,5 +1,5 @@
 ---
-name: fill-template
+name: run-playbook
 description: >-
   Runs a playbook from the user's context plus public research. Use when the
   user asks to run a playbook, gives a playbook URL or id, or describes work
