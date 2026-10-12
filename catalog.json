@@ -48,6 +48,10 @@
         "research": {
           "path": "playbooks/planning/business-plan/research.md",
           "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/research.md"
+        },
+        "description": {
+          "path": "playbooks/planning/business-plan/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/description.json"
         }
       }
     },
@@ -81,6 +85,10 @@
         "research": {
           "path": "playbooks/validation/idea-validator/research.md",
           "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/research.md"
+        },
+        "description": {
+          "path": "playbooks/validation/idea-validator/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/description.json"
         }
       }
     }

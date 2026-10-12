@@ -1,0 +1,14 @@
+{
+  "name": "playbooks",
+  "displayName": "Playbooks",
+  "version": "1.0.0",
+  "description": "Runs a written playbook. Ask for the private facts, research the rest, and return the finished document.",
+  "author": {
+    "name": "Koceila Abbas",
+    "url": "https://github.com/foundrvibe/playbooks-for-agents"
+  },
+  "homepage": "https://github.com/foundrvibe/playbooks-for-agents",
+  "repository": "https://github.com/foundrvibe/playbooks-for-agents",
+  "license": "MIT",
+  "keywords": ["playbooks", "business-plan", "idea-validation"]
+}

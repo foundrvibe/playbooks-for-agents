@@ -1,10 +1,16 @@
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, lstatSync, readdirSync, readFileSync, readlinkSync, statSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { checkFill, formatTypes, loadTheme, readJson, renderFill, root, sourceTypes } from "./lib/fill.mjs";
 
 const rawBase = "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/";
-const templateFiles = ["example.json", "research.md", "schema.json", "template.md"];
-const catalogFileKeys = { template: "template.md", schema: "schema.json", example: "example.json", research: "research.md" };
+const templateFiles = ["description.json", "example.json", "research.md", "schema.json", "template.md"];
+const catalogFileKeys = {
+  template: "template.md",
+  schema: "schema.json",
+  example: "example.json",
+  research: "research.md",
+  description: "description.json",
+};
 const errors = [];
 
 const kebabCase = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -148,6 +154,8 @@ function checkFolder(id, charts, folder) {
   if (schema["x-id"] !== id) fail(`${id}: schema x-id does not match the folder name`);
   if (!semver.test(schema["x-version"] ?? "")) fail(`${id}: schema x-version must be semver`);
 
+  const description = checkDescription(folder, schema, id);
+
   checkPlaceholders(template, schema, charts, diagrams, id);
   const researchFields = checkSources(schema, id);
   checkResearchGuide(folder, researchFields, id);
@@ -159,7 +167,29 @@ function checkFolder(id, charts, folder) {
     fail(`${id} example: ${error.message}`);
   }
 
-  return schema;
+  return { schema, description };
+}
+
+function checkDescription(folder, schema, id) {
+  let description;
+  try {
+    description = readJson(join(folder, "description.json"));
+  } catch (error) {
+    fail(`${id}: ${error.message}`);
+    return null;
+  }
+  const keys = Object.keys(description);
+  if (keys.length !== 2 || !keys.includes("title") || !keys.includes("description")) {
+    fail(`${id}: description.json must contain only title and description`);
+  }
+  if (typeof description.title !== "string" || description.title.trim() === "") {
+    fail(`${id}: description.json title must be a non-empty string`);
+  }
+  if (typeof description.description !== "string" || description.description.trim() === "") {
+    fail(`${id}: description.json description must be a non-empty string`);
+  }
+  if (schema["x-title"] !== description.title) fail(`${id}: schema x-title must match description.json title`);
+  return description;
 }
 
 const charts = loadCharts();
@@ -232,8 +262,13 @@ for (const entry of catalog.templates ?? []) {
     continue;
   }
 
-  const schema = checkFolder(id, charts, found.folder);
-  if (schema && schema["x-version"] !== entry.version) fail(`${id}: schema x-version does not match catalog version`);
+  const checked = checkFolder(id, charts, found.folder);
+  if (!checked?.schema) continue;
+  if (checked.schema["x-version"] !== entry.version) fail(`${id}: schema x-version does not match catalog version`);
+  if (checked.description?.title !== entry.name) fail(`${id}: catalog name must match description.json title`);
+  if (checked.description?.description !== entry.description) {
+    fail(`${id}: catalog description must match description.json description`);
+  }
 }
 
 for (const [categoryId, members] of categoryIds) {
@@ -251,6 +286,41 @@ for (const item of discovered) {
   if (!categoryIds.has(item.category)) fail(`playbooks/${item.category} is not a catalog category`);
   if (!listedIds.has(item.id)) fail(`playbooks/${item.category}/${item.id} is missing from catalog.json`);
 }
+
+function checkPluginPackage() {
+  const pluginRoot = join(root, "plugins/playbooks");
+  const portable = readJson(join(pluginRoot, "plugin.json"));
+  const claude = readJson(join(pluginRoot, ".claude-plugin/plugin.json"));
+  const codex = readJson(join(pluginRoot, ".codex-plugin/plugin.json"));
+  const manifests = [
+    ["plugins/playbooks/plugin.json", portable],
+    ["plugins/playbooks/.claude-plugin/plugin.json", claude],
+    ["plugins/playbooks/.codex-plugin/plugin.json", codex],
+  ];
+  for (const [label, manifest] of manifests) {
+    if (manifest.name !== "playbooks") fail(`${label}: name must be playbooks`);
+    if (manifest.version !== portable.version) fail(`${label}: version must match plugin.json`);
+    if (!manifest.description) fail(`${label}: missing description`);
+  }
+  if (portable.$schema !== "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json") {
+    fail("plugins/playbooks/plugin.json: missing Agent Plugins schema");
+  }
+  if (codex.skills !== "./skills/") fail("plugins/playbooks/.codex-plugin/plugin.json: skills must be ./skills/");
+  if (!existsSync(join(pluginRoot, "skills/run-playbook/SKILL.md"))) {
+    fail("plugins/playbooks: missing skills/run-playbook/SKILL.md");
+  }
+  const skillLink = join(root, "skills/run-playbook");
+  if (!lstatSync(skillLink).isSymbolicLink() || readlinkSync(skillLink) !== "../plugins/playbooks/skills/run-playbook") {
+    fail("skills/run-playbook must be a symlink to ../plugins/playbooks/skills/run-playbook");
+  }
+  const yaml = readFileSync(join(pluginRoot, "skills/run-playbook/agents/openai.yaml"), "utf8");
+  const blurb = yaml.match(/^ {2}short_description: "(.+)"$/m)?.[1] ?? "";
+  if (blurb.length < 25 || blurb.length > 64) {
+    fail("plugins/playbooks/skills/run-playbook/agents/openai.yaml: short_description must be 25-64 characters");
+  }
+}
+
+checkPluginPackage();
 
 if (errors.length > 0) {
   for (const error of errors) console.error(error);

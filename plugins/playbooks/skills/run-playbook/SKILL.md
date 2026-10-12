@@ -26,15 +26,15 @@ Base URL: `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev
 
 Read the fill rules before you write. They are the contract. This skill runs the playbook. The playbook's own `## Steps` are the job.
 
-Read the catalog at fill time. It lists `categories`, and each category lists playbook ids. Do not assume a fixed set. A new playbook is a catalog entry plus `template.md`, `schema.json`, `example.json`, and `research.md`. The catalog entries already contain the raw URL of each file. `template.md` is the result shape.
+Read the catalog at fill time. It lists `categories`, and each category lists playbook ids. Do not assume a fixed set. A new playbook is a catalog entry plus `description.json`, `template.md`, `schema.json`, `example.json`, and `research.md`. `description.json` has the playbook's `title` and `description`. The catalog `name` matches `title`, and the catalog `description` matches `description`. The catalog entries already contain the raw URL of each file. `template.md` is the result shape.
 
 ## 1. Resolve the playbook
 
 Use the first case that fits.
 
-- **URL.** The user pasted a raw URL to `template.md`, `schema.json`, or a playbook folder. Fetch `template.md`, `schema.json`, `example.json`, and `research.md` from that folder.
-- **Id.** The user named a playbook with `Playbook: <id>` or `Template: <id>`, or the message contains a catalog `id`. Find that `id` in `catalog.json` and skip intent matching. Fetch the four files at `files.template`, `files.schema`, `files.example`, and `files.research`. If the id is not in the catalog, list the categories and their ready playbooks, and ask which one.
-- **Intent.** Compare the user's request to `intents` on playbooks whose `status` is `ready`. Ignore `status: "stub"`. If one ready playbook matches, use it. If more than one matches, ask which one and name its category. If none match, list the categories and their ready playbooks, and ask which one.
+- **URL.** The user pasted a raw URL to `template.md`, `schema.json`, or a playbook folder. Fetch `description.json`, `template.md`, `schema.json`, `example.json`, and `research.md` from that folder.
+- **Id.** The user named a playbook with `Playbook: <id>` or `Template: <id>`, or the message contains a catalog `id`. Find that `id` in `catalog.json` and skip intent matching. Fetch the files at `files.description`, `files.template`, `files.schema`, `files.example`, and `files.research`. If the id is not in the catalog, list the categories and their ready playbooks by title and description, and ask which one.
+- **Intent.** Compare the user's request to `intents` on playbooks whose `status` is `ready`. Ignore `status: "stub"`. If one ready playbook matches, use it. If more than one matches, ask which one, and name its category, title, and description. If none match, list the categories and their ready playbooks by title and description, and ask which one.
 
 `example.json` shows a valid shape. Do not copy its facts into the user's result.
 
