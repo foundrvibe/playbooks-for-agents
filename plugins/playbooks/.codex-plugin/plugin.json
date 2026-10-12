@@ -1,0 +1,27 @@
+{
+  "name": "playbooks",
+  "version": "1.0.0",
+  "description": "Runs a written playbook. Ask for the private facts, research the rest, and return the finished document.",
+  "author": {
+    "name": "Koceila Abbas",
+    "url": "https://github.com/foundrvibe/playbooks-for-agents"
+  },
+  "homepage": "https://github.com/foundrvibe/playbooks-for-agents",
+  "repository": "https://github.com/foundrvibe/playbooks-for-agents",
+  "license": "MIT",
+  "keywords": ["playbooks", "business-plan", "idea-validation"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Playbooks",
+    "shortDescription": "Run a playbook and return the finished document.",
+    "longDescription": "One skill runs every playbook. It asks only for the private facts still missing, follows that playbook's steps, and returns the finished document. Each playbook's title and description live in its description.json.",
+    "developerName": "Koceila Abbas",
+    "category": "Productivity",
+    "capabilities": ["Read", "Write"],
+    "websiteURL": "https://github.com/foundrvibe/playbooks-for-agents",
+    "defaultPrompt": [
+      "Create a business plan for my company.",
+      "Validate this idea before I write a plan."
+    ]
+  }
+}
