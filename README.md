@@ -22,7 +22,7 @@ Three files make that work:
 Paste this into ChatGPT, Claude, or a Cursor agent chat. One link is enough. The skill fetches the rules, the catalog, and the playbook files.
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/run-playbook/SKILL.md
+Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/skills/run-playbook/SKILL.md
 
 Create a business plan for ZedCut, a bilingual B2B SaaS for countertop fabrication shops in Canada.
 ```
@@ -32,13 +32,13 @@ Replace the second line with your own request. If several playbooks match, the a
 To choose the playbook yourself, name its id. The agent uses that playbook and does not match intents.
 
 ```text
-Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/run-playbook/SKILL.md
+Follow https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/skills/run-playbook/SKILL.md
 
 Playbook: business-plan
-ZedCut is a bilingual B2B SaaS for countertop fabrication shops in Canada.
+Describe the company or idea here.
 ```
 
-A raw URL to `template.md`, `schema.json`, or the playbook folder selects it the same way. Replace `dev` with a version tag to pin that playbook.
+A raw URL to `template.md`, `schema.json`, or the playbook folder selects it the same way. Replace `main` with a version tag to pin that playbook.
 
 <details>
 <summary>Add a playbook</summary>
@@ -56,7 +56,7 @@ No new skill is required. CI fails if two ready playbooks share an intent, if `r
 <details>
 <summary>Pin a version</summary>
 
-Each playbook version is tagged as `<id>-v<version>`, for example `business-plan-v4.0.0`. Replace `dev` in any raw URL with the tag to keep a fixed shape:
+Each playbook version is tagged as `<id>-v<version>`, for example `business-plan-v4.0.0`. Replace `main` in any raw URL with the tag to keep a fixed shape:
 
 `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/business-plan-v4.0.0/playbooks/planning/business-plan/template.md`
 

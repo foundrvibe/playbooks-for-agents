@@ -1,9 +1,9 @@
 {
   "name": "Playbooks",
   "rules": "rules/fill.md",
-  "rulesUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/rules/fill.md",
+  "rulesUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/rules/fill.md",
   "skill": "skills/run-playbook/SKILL.md",
-  "skillUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/skills/run-playbook/SKILL.md",
+  "skillUrl": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/skills/run-playbook/SKILL.md",
   "categories": [
     {
       "id": "planning",
@@ -25,7 +25,7 @@
       "version": "4.0.0",
       "status": "ready",
       "category": "planning",
-      "description": "A traditional business plan in seven sections, written mostly as tables, with a revenue chart. The agent asks for the private facts still missing, then researches the market, competitors, and projections.",
+      "description": "A business plan in eight sections, written mostly as tables, with a revenue chart. It covers the company, its offers, the market and competitors, marketing, operations, and finances. The agent asks for the private facts still missing, then researches the market, competitors, and projections.",
       "intents": [
         "business plan",
         "company plan",
@@ -35,23 +35,23 @@
       "files": {
         "template": {
           "path": "playbooks/planning/business-plan/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/template.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/business-plan/template.md"
         },
         "schema": {
           "path": "playbooks/planning/business-plan/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/schema.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/business-plan/schema.json"
         },
         "example": {
           "path": "playbooks/planning/business-plan/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/example.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/business-plan/example.json"
         },
         "research": {
           "path": "playbooks/planning/business-plan/research.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/research.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/business-plan/research.md"
         },
         "description": {
           "path": "playbooks/planning/business-plan/description.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/planning/business-plan/description.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/business-plan/description.json"
         }
       }
     },
@@ -72,23 +72,23 @@
       "files": {
         "template": {
           "path": "playbooks/validation/idea-validator/template.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/template.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/idea-validator/template.md"
         },
         "schema": {
           "path": "playbooks/validation/idea-validator/schema.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/schema.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/idea-validator/schema.json"
         },
         "example": {
           "path": "playbooks/validation/idea-validator/example.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/example.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/idea-validator/example.json"
         },
         "research": {
           "path": "playbooks/validation/idea-validator/research.md",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/research.md"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/idea-validator/research.md"
         },
         "description": {
           "path": "playbooks/validation/idea-validator/description.json",
-          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/playbooks/validation/idea-validator/description.json"
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/idea-validator/description.json"
         }
       }
     }

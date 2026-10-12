@@ -13,16 +13,16 @@ A playbook is a manual process. The user supplies context. You ask only for what
 
 This file is the only link a user needs to send. Fetch the other files yourself. Do not ask the user for more links.
 
-Base URL: `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/`
+Base URL: `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/`
 
 | File | URL |
 |---|---|
-| Fill rules | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/rules/fill.md` |
-| Catalog | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/catalog.json` |
-| Chart script | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/render_chart.py` |
-| Chart specs | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/<id>.json` |
-| Diagram specs | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/diagrams/<id>.json` |
-| Shared research guides | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/research/<name>.md` |
+| Fill rules | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/rules/fill.md` |
+| Catalog | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/catalog.json` |
+| Chart script | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/charts/render_chart.py` |
+| Chart specs | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/charts/<id>.json` |
+| Diagram specs | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/diagrams/<id>.json` |
+| Shared research guides | `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/research/<name>.md` |
 
 Read the fill rules before you write. They are the contract. This skill runs the playbook. The playbook's own `## Steps` are the job.
 
@@ -58,7 +58,7 @@ When the user replies, treat "I don't know", "skip", "none", or "not raising" as
 
 Before researching, check whether you can open web pages in this session. If you cannot, tell the user in one line, set `research_mode` to `offline`, leave `sources` empty, and write every research field as an `Assumption:` built from the context. Do not write a citation for a page you did not open. If you can browse, set `research_mode` to `web`.
 
-After you have the context, fetch the playbook's `research.md` from its catalog URL. Follow `## Steps` in order. Where a step names a field, open the shared guide linked beside that field. Fetch that guide from `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/research/<name>.md` (the file name in the link, such as `market-size.md`). Fill every field whose `x-source` is `research` or `derived` before you write the result.
+After you have the context, fetch the playbook's `research.md` from its catalog URL. Follow `## Steps` in order. Where a step names a field, open the shared guide linked beside that field. Fetch that guide from `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/research/<name>.md` (the file name in the link, such as `market-size.md`). Fill every field whose `x-source` is `research` or `derived` before you write the result.
 
 - Research for `market_country`: its statistics agency, registries, currency, and competitors that sell there.
 - Put each page you opened in `sources` with its title, publisher, URL, and the date you opened it. A researched claim in the document must match one of those sources.
@@ -84,9 +84,9 @@ Use `template.md` as the only layout. Section headings come from that file. Do n
 
 Draw a chart whenever a table has two or more numbers that share a unit: periods, market layers, costs, channels, or goals. Place it directly under that table. The chart and the table use the same numbers. Do not chart a table that is only names and sentences. Do not add a new section for the chart.
 
-A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/<id>.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values. If the playbook has no slot but the table is numeric, use the `mermaid-xy` shape: `x` for the row labels, `series` for the numbers, `seriesName` for what the numbers are.
+A `{{chart:slot_id}}` placeholder is the schema field `slot_id`. Its `x-chart` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/charts/<id>.json`. The series must match the spec and must be cited figures or a labeled assumption built from cited figures. Say that the range is derived from those values. If the playbook has no slot but the table is numeric, use the `mermaid-xy` shape: `x` for the row labels, `series` for the numbers, `seriesName` for what the numbers are.
 
-**If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/charts/render_chart.py`, run it in your Python tool with the slot's JSON value, and show the PNG:
+**If you can run Python** (ChatGPT data analysis, Claude code execution, a Cursor terminal), draw the chart yourself. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/charts/render_chart.py`, run it in your Python tool with the slot's JSON value, and show the PNG:
 
 ```text
 python render_chart.py --kind <x-chart> --data '<slot JSON>' --currency <currency> --language <two-letter code> --out <slot_id>.png
@@ -118,7 +118,7 @@ Use Mermaid. Return a fenced `mermaid` code block. Never replace that block with
 
 Read `template.md` and the schema before you write. Keep the section order and headings. Put the diagram in the slot, or in the existing section that describes the process. Do not add or rename a section to hold it.
 
-A `{{diagram:slot_id}}` placeholder is the schema field `slot_id`. Its `x-diagram` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/dev/diagrams/<id>.json` and follow that spec. In the JSON, store the field as Mermaid source without code fences, starting with the spec's `mermaid` header, such as `flowchart TD`. In the Markdown, put that source in a fenced `mermaid` block where the slot was.
+A `{{diagram:slot_id}}` placeholder is the schema field `slot_id`. Its `x-diagram` value is a spec id. Fetch `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/diagrams/<id>.json` and follow that spec. In the JSON, store the field as Mermaid source without code fences, starting with the spec's `mermaid` header, such as `flowchart TD`. In the Markdown, put that source in a fenced `mermaid` block where the slot was.
 
 The diagram may only show steps, entities, decisions, and relationships from the user's context or cited research. If the process is incomplete, label the missing parts `Assumption:`. Do not invent integrations, decisions, or outcomes.
 
