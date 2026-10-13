@@ -4,6 +4,7 @@
 |---|---|
 | **Business model** | {{business_model}} |
 | **Market** | {{market_country}} |
+| **Region** | {{target_region}} |
 | **Customers now** | {{current_customers}} |
 | **Recurring revenue now** | {{current_mrr}} per month |
 | **Starting cash** | {{starting_cash}} |

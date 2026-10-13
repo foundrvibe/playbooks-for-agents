@@ -1,6 +1,6 @@
 # Channels and positioning
 
-Use this to position an offer, choose acquisition channels, and set launch metrics. It follows April Dunford's [positioning components](https://www.aprildunford.com/post/a-quickstart-guide-to-positioning), the [Bullseye framework](https://medium.com/@yegg/the-bullseye-framework-for-getting-traction-ef49d05bfd7e) from Traction, Paul Graham's [Do Things That Don't Scale](https://paulgraham.com/ds.html), and Y Combinator's [Setting KPIs and goals](https://www.ycombinator.com/library/Iu-setting-kpis-and-goals).
+Use this to position an offer, choose acquisition channels, and set launch metrics. Scope channels and events to the playbook's `target_region` when it is narrower than `market_country`. It follows April Dunford's [positioning components](https://www.aprildunford.com/post/a-quickstart-guide-to-positioning), the [Bullseye framework](https://medium.com/@yegg/the-bullseye-framework-for-getting-traction-ef49d05bfd7e) from Traction, Paul Graham's [Do Things That Don't Scale](https://paulgraham.com/ds.html), and Y Combinator's [Setting KPIs and goals](https://www.ycombinator.com/library/Iu-setting-kpis-and-goals).
 
 ## Positioning
 

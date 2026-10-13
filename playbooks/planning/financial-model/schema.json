@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/playbooks/financial-model/1.0.0",
+  "$id": "https://foundrvibe.com/playbooks/financial-model/1.1.0",
   "x-id": "financial-model",
-  "x-version": "1.0.0",
+  "x-version": "1.1.0",
   "x-title": "Financial model",
   "type": "object",
   "additionalProperties": false,
@@ -10,6 +10,7 @@
     "company_name",
     "business_model",
     "market_country",
+    "target_region",
     "document_language",
     "research_mode",
     "pricing",
@@ -44,6 +45,14 @@
       "minLength": 1,
       "description": "Country whose currency the model uses.",
       "x-ask": "Which country and currency should the model use?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_region": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City, province or state, metro, or whole country the revenue plan applies to. Must fit inside market_country.",
+      "x-ask": "Which city, province, or region is this model for? Say the whole country when customers are national.",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },

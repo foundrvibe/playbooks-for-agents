@@ -1,6 +1,6 @@
 # Idea check
 
-Read this after `schema.json`. Research the `market_country`, and write in the `document_language`. `template.md` is the result. These steps are the work.
+Read this after `schema.json`. Research the `market_country` and scope competitors and signals to `target_region`, and write in the `document_language`. `template.md` is the result. These steps are the work.
 
 Desk research is not validation. A page can show a problem and a competitor. Only a customer action, or a public page where buyers describe the pain, counts as pull.
 
@@ -10,7 +10,7 @@ Keep each table cell to one or two sentences. Do not put a paragraph in a cell. 
 
 ## Steps
 
-1. Ask for `idea`, `target_customer`, and `market_country` when the context does not already answer them. Ask what `customer_tests` already exist: interviews, a landing page, signups, or payments. "None yet" is an answer. Wait.
+1. Ask for `idea`, `target_customer`, `market_country`, and `target_region` when the context does not already answer them. Ask what `customer_tests` already exist: interviews, a landing page, signups, or payments. "None yet" is an answer. Wait.
 2. Write `problem`, `who_affected`, and `workaround`. The workaround people use today is a competitor, even when it is email, a spreadsheet, or doing nothing. Set `pain_type` to `painkiller` only when a cited source or the user's own customer test shows people already act to stop the pain. Set it to `vitamin` when the idea is a nicer version of something that already works. Otherwise `unclear`.
 3. Write `solution_fit` in one or two sentences: what would have to be true for the customer to switch.
 4. Fill `market` with TAM, SAM, and SOM, using [market-size.md](../../../research/market-size.md). Show the count and the page. Never write "1% of the market" as SOM. If you did not open a count, label the figure `Assumption:` and name the missing count. When the three figures are numbers, chart them under the table.

@@ -9,6 +9,7 @@
 | **Audience** | {{audience}} |
 | **Location** | {{location}} |
 | **Market** | {{market_country}} |
+| **Region** | {{target_region}} |
 | **Language** | {{document_language}} |
 | **Legal structure** | {{legal_structure}} |
 | **Research** | {{research_mode}} |

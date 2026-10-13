@@ -50,7 +50,7 @@ Ask for every field whose `x-source` is `user` or `user_data` when the context d
 
 Do not ask for fields whose `x-source` is `research` or `derived`. Market size, competitors, industry, channels, and operations are research.
 
-Set `market_country` from the context when the playbook has it. Ask only if the context names no country. Set `document_language` to the language of the user's request unless they asked for another.
+Set `market_country` from the context when the playbook has it. Ask only if the context names no country. When the playbook has `target_region`, ask for the city, province or state, metro, or whole country to focus research and outreach in. If the user names only a country, set `target_region` to that country or to a phrase like "Whole country". Set `document_language` to the language of the user's request unless they asked for another.
 
 When the user replies, treat "I don't know", "skip", "none", or "not raising" as an answer. Continue. Do not ask those questions again. A number they did not know is a labeled assumption, not a blank and not a question in the document.
 

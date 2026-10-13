@@ -1,6 +1,6 @@
 # Business plan research
 
-Read this after `schema.json`. Research the `market_country`, and write in the `document_language`.
+Read this after `schema.json`. Research the `market_country` and scope market and competitors to `target_region`, and write in the `document_language`.
 
 The seven sections follow a traditional plan: executive summary, company overview, products and services, market research, marketing and sales, operations, and finances. Put the support in the appendix. `template.md` is the result. These steps are the work.
 

@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/playbooks/market-research/1.0.0",
+  "$id": "https://foundrvibe.com/playbooks/market-research/1.1.0",
   "x-id": "market-research",
-  "x-version": "1.0.0",
+  "x-version": "1.1.0",
   "x-title": "Market research",
   "type": "object",
   "additionalProperties": false,
@@ -10,6 +10,7 @@
     "product",
     "target_customer",
     "market_country",
+    "target_region",
     "document_language",
     "research_mode",
     "known_research",
@@ -38,6 +39,14 @@
       "minLength": 1,
       "description": "Country whose market, sources, and currency the research should use.",
       "x-ask": "Which country should this research cover?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_region": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City, province or state, metro, or whole country that SAM and trends should focus on. Must fit inside market_country.",
+      "x-ask": "Which city, province, or region should market size and trends focus on? Say the whole country if it is national.",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },

@@ -5,6 +5,7 @@
 | **Stage** | {{stage}} |
 | **Customer** | {{target_customer}} |
 | **Market** | {{market_country}} |
+| **Region** | {{target_region}} |
 | **Monthly budget** | {{monthly_budget}} |
 | **Team** | {{team_capacity}} |
 | **Language** | {{document_language}} |

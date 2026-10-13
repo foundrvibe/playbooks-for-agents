@@ -1,14 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/playbooks/business-plan/4.0.0",
+  "$id": "https://foundrvibe.com/playbooks/business-plan/4.1.0",
   "x-id": "business-plan",
-  "x-version": "4.0.0",
+  "x-version": "4.1.0",
   "x-title": "Business Plan",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "company_name",
     "market_country",
+    "target_region",
     "document_language",
     "research_mode",
     "owner",
@@ -37,6 +38,14 @@
       "minLength": 1,
       "description": "Country whose market, sources, currency, and regulations the research should use.",
       "x-ask": "Which country is the main market?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_region": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City, province or state, metro, or whole country where market, competitor, and channel research should focus. Company headquarters stays in location. Must fit inside market_country.",
+      "x-ask": "Which city, province, or region should market and competitor research focus on? Say the whole country when the market is national.",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },

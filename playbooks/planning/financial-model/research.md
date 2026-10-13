@@ -10,7 +10,7 @@ Keep each table cell to one or two sentences. Do not put a `|` inside a cell. Le
 
 ## Steps
 
-1. Ask for `company_name`, `business_model`, and `market_country` when the context does not already answer them. Ask for `pricing`, `current_customers`, `current_mrr`, `starting_cash`, `forecast_months`, `costs`, and `hires`. Zero and "none planned" are answers. When the user has a business plan, reuse its price, cash, and costs, and ask only for what is missing. Wait.
+1. Ask for `company_name`, `business_model`, `market_country`, and `target_region` when the context does not already answer them. Ask for `pricing`, `current_customers`, `current_mrr`, `starting_cash`, `forecast_months`, `costs`, and `hires`. Zero and "none planned" are answers. When the user has a business plan, reuse its price, cash, and costs, and ask only for what is missing. Wait.
 2. Fill `benchmarks` from pages you opened: lifetime value to acquisition cost, acquisition cost payback, and churn or conversion benchmarks for this business model. On the web, open at least two. Say whose figure each is.
 3. Fill `drivers` with every input: price, customers at the start, new customers per month, churn, each cost, and each hire. Label each `given` (from the user), `sourced` (from a page you opened), `derived` (calculated from other drivers), or `assumption`. The `basis` shows the source or formula.
 4. Fill `monthly` with one row per month for `forecast_months`. Revenue is customers times price. Costs are the sum of `costs` and `hires` that have started. Net is revenue minus costs. Cash is last month's cash plus net, starting from `starting_cash`. Copy month labels and cash into `cash_chart` in the same order.

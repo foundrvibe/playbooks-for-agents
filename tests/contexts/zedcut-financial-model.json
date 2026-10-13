@@ -3,6 +3,7 @@
   "context": "ZedCut is a bilingual (French and English) B2B SaaS for countertop fabrication shops in Canada, priced at 199 CAD per shop per month. It has 3 paying shops, 60000 CAD in the bank, hosting at 300 CAD a month, and two founders paid 4000 CAD a month each. Build an 18-month financial model.",
   "expect": {
     "market_country": "Canada",
+    "target_region": "Quebec"
     "starting_cash": 60000,
     "forecast_months": 18,
     "current_customers": 3

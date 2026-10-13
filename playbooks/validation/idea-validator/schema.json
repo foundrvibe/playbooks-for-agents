@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/playbooks/idea-validator/2.1.0",
+  "$id": "https://foundrvibe.com/playbooks/idea-validator/2.2.0",
   "x-id": "idea-validator",
-  "x-version": "2.1.0",
+  "x-version": "2.2.0",
   "x-title": "Idea check",
   "type": "object",
   "additionalProperties": false,
@@ -10,6 +10,7 @@
     "idea",
     "target_customer",
     "market_country",
+    "target_region",
     "document_language",
     "research_mode",
     "customer_tests",
@@ -37,6 +38,14 @@
       "minLength": 1,
       "description": "Country whose market, sources, and currency the check should use.",
       "x-ask": "Which country should this check cover?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_region": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City, province or state, metro, or whole country where competitors and public signals should focus. Must fit inside market_country.",
+      "x-ask": "Which city, province, or region should this check focus on? Say the whole country if it is national.",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },

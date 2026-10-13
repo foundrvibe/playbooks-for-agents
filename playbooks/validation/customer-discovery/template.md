@@ -4,6 +4,7 @@
 |---|---|
 | **Customer** | {{target_customer}} |
 | **Market** | {{market_country}} |
+| **Region** | {{target_region}} |
 | **Language** | {{document_language}} |
 | **Research** | {{research_mode}} |
 | **Decision** | {{decision}} |

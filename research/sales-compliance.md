@@ -1,6 +1,6 @@
 # Sales compliance
 
-Use this before writing any outreach message or lead list. Research the rules for the playbook's `market_country`, and cite the regulator's own page. This is a summary for planning, not legal advice. Tell the user to confirm with a lawyer before a large campaign.
+Use this before writing any outreach message or lead list. Research the rules for the playbook's `market_country`, and cite the regulator's own page. Prospect and list only businesses that match `target_region` when the playbook provides one. This is a summary for planning, not legal advice. Tell the user to confirm with a lawyer before a large campaign.
 
 ## Where to look
 

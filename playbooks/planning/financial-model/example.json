@@ -2,6 +2,7 @@
   "company_name": "Northwind Studio",
   "business_model": "A monthly subscription per studio workspace for a shared job board.",
   "market_country": "United States",
+  "target_region": "Texas",
   "document_language": "English",
   "research_mode": "web",
   "pricing": [

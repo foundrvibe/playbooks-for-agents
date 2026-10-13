@@ -28,7 +28,7 @@
     {
       "id": "business-plan",
       "name": "Business Plan",
-      "version": "4.0.0",
+      "version": "4.1.0",
       "status": "ready",
       "category": "planning",
       "description": "A business plan in eight sections, written mostly as tables, with a revenue chart. It covers the company, its offers, the market and competitors, marketing, operations, and finances. The agent asks for the private facts still missing, then researches the market, competitors, and projections.",
@@ -64,7 +64,7 @@
     {
       "id": "idea-validator",
       "name": "Idea check",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "status": "ready",
       "category": "validation",
       "description": "Checks whether an idea solves a painful problem, whether the market is a real count, who already serves that customer, and whether anyone has shown they would act. The agent opens several competitors and several kinds of public pages. The result is a scorecard and one next test.",
@@ -101,7 +101,7 @@
     {
       "id": "customer-discovery",
       "name": "Customer discovery",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ready",
       "category": "validation",
       "description": "Plans customer interviews and reads what they found. It writes the best-fit customer, where to recruit them, screening questions, and an interview guide that asks about past behavior instead of pitching. It turns the user's own notes into an evidence table of pain, workarounds, and commitments, then names the next experiment. It never invents interviews or quotes.",
@@ -138,7 +138,7 @@
     {
       "id": "market-research",
       "name": "Market research",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ready",
       "category": "validation",
       "description": "A source-backed market assessment. It defines the market and its buyer segments, sizes TAM, SAM, and SOM bottom-up with the formula behind each figure and a low-to-high range, and adds trends, demand signals, and the alternatives buyers use. It rates how attractive the market is and lists the evidence still missing. Every assumed input is labeled.",
@@ -175,7 +175,7 @@
     {
       "id": "mvp-planner",
       "name": "MVP plan",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ready",
       "category": "planning",
       "description": "Turns customer evidence into the smallest product a narrow first group of users can get value from. It names the first users and their most urgent problem, maps the main user journey, and sorts features into now, later, and never. It writes user stories with acceptance criteria, the steps to do by hand first, risks, a time-boxed build plan, launch metrics, and the result that would mean stop or change course.",
@@ -212,7 +212,7 @@
     {
       "id": "financial-model",
       "name": "Financial model",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ready",
       "category": "planning",
       "description": "A monthly, assumption-driven startup financial model. It lists the revenue drivers, costs, and hires, then builds monthly customers, revenue, costs, net, and cash with a cash chart. It adds the annual summary, break-even, runway, unit economics, a default alive check, three scenarios, sensitivity, the funding need, and reconciliation checks. Every driver is labeled given, sourced, derived, or assumption.",
@@ -250,7 +250,7 @@
     {
       "id": "go-to-market",
       "name": "Go-to-market plan",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ready",
       "category": "growth",
       "description": "A launch plan for the first customers. It positions the offer against what buyers use today, names the best-fit customer and the people in the buying decision, and sets offer and pricing hypotheses. It lists candidate channels, picks a few cheap tests with a budget chart, and lays out a dated launch plan with one primary metric, a weekly target, and the risks to watch.",
@@ -288,7 +288,7 @@
     {
       "id": "lead-generation",
       "name": "Lead generation",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "status": "ready",
       "category": "growth",
       "description": "An outbound prospecting system for founder-led sales. It writes the sales hypothesis, qualification criteria and a scorecard, the lawful lead sources to search, and the fields to record for each prospect. It adds a short outreach sequence with personalization rules, pipeline stages, a funnel worked backwards from the customer goal, and the outreach rules for the country. It does not send messages or invent contacts.",

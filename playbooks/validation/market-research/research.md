@@ -1,6 +1,6 @@
 # Market research
 
-Read this after `schema.json`. Research the `market_country`, and write in the `document_language`. `template.md` is the result. These steps are the work.
+Read this after `schema.json`. Research the `market_country` and size SAM for `target_region`, and write in the `document_language`. `template.md` is the result. These steps are the work.
 
 Size the market bottom-up from buyer counts and prices. A big top-down figure is not a market for this product. Follow [market-size.md](../../../research/market-size.md) and judge every page with [source-evaluation.md](../../../research/source-evaluation.md).
 
@@ -10,7 +10,7 @@ Keep each table cell to one or two sentences. Do not put a `|` inside a cell. Le
 
 ## Steps
 
-1. Ask for `product`, `target_customer`, and `market_country` when the context does not already answer them. Ask for `known_research`: prices, customer counts, interviews, or reports the user already has. "None yet" is an answer. Wait.
+1. Ask for `product`, `target_customer`, `market_country`, and `target_region` when the context does not already answer them. Ask for `known_research`: prices, customer counts, interviews, or reports the user already has. "None yet" is an answer. Wait.
 2. Write `market_definition`: the buying unit (a business, a household, a person), what is in the market, and what is out. Web-search the industry, open an official code page, and give the code in `industry`.
 3. Fill `segments` with the buyer groups inside the market, by observable traits such as size, sub-industry, or region. Web-search for establishment or firm counts, open the table or report page, and give the buyer count. If no page was opened, label it `Assumption:` and name the search and page type that would replace it. Never use a statistics API or an API key.
 4. Fill `sizing_inputs` with every input the figures use: buyer counts, the share that fits, the annual price per buyer, and how many buyers the company can reach. Label each `given` (from the user), `sourced` (from a page you opened), or `assumption`. Use the user's price before a researched one.

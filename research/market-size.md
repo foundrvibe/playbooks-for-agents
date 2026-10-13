@@ -1,6 +1,6 @@
 # Market size
 
-Use this for market size, growth, trends, and industry classification. Research the playbook's `market_country`. Do not mix countries in one figure.
+Use this for market size, growth, trends, and industry classification. Research the playbook's `market_country` and scope figures to its `target_region` when the playbook provides one. National tables use the country; SAM and segments apply the city, province, state, or metro filter. Do not mix countries in one figure.
 
 ## How to find counts
 
