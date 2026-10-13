@@ -1,0 +1,109 @@
+{
+  "company_name": "Northwind Studio",
+  "business_model": "A monthly subscription per studio workspace for a shared job board.",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "pricing": [
+    { "plan": "Studio workspace", "price": 40, "unit": "per workspace per month" }
+  ],
+  "current_customers": 0,
+  "current_mrr": 0,
+  "starting_cash": 8000,
+  "forecast_months": 12,
+  "costs": [
+    { "item": "Hosting", "monthly": 100, "kind": "cost of revenue", "label": "given" },
+    { "item": "Software tools", "monthly": 50, "kind": "fixed", "label": "assumption" }
+  ],
+  "hires": [
+    { "role": "Founder", "monthly_cost": 0, "start": "Not paid in the model period" }
+  ],
+  "benchmarks": [
+    { "metric": "Lifetime value to acquisition cost", "benchmark": "Above 3 to 1", "source": "David Skok, SaaS Metrics 2.0" },
+    { "metric": "Months to recover acquisition cost", "benchmark": "Under 12 months", "source": "David Skok, SaaS Metrics 2.0" },
+    { "metric": "Default alive", "benchmark": "Reaches profit on current costs and growth before cash runs out", "source": "Paul Graham, Default Alive or Default Dead?" }
+  ],
+  "drivers": [
+    { "driver": "Price", "value": "40 per workspace per month", "label": "given", "basis": "Business plan price." },
+    { "driver": "Studios at start", "value": "0", "label": "given", "basis": "Pre-revenue." },
+    { "driver": "New studios", "value": "1 a month from Month 2, reaching 10 in Month 11", "label": "assumption", "basis": "Business plan objective of ten studios in the first year." },
+    { "driver": "Churn", "value": "0 in the base model", "label": "assumption", "basis": "No studio has paid yet, so no churn is measured." },
+    { "driver": "Monthly costs", "value": "150", "label": "derived", "basis": "Hosting 100 + software tools 50. No paid staff." }
+  ],
+  "monthly": [
+    { "month": "Month 1", "customers": 0, "revenue": 0, "costs": 150, "net": -150, "cash": 7850 },
+    { "month": "Month 2", "customers": 1, "revenue": 40, "costs": 150, "net": -110, "cash": 7740 },
+    { "month": "Month 3", "customers": 2, "revenue": 80, "costs": 150, "net": -70, "cash": 7670 },
+    { "month": "Month 4", "customers": 3, "revenue": 120, "costs": 150, "net": -30, "cash": 7640 },
+    { "month": "Month 5", "customers": 4, "revenue": 160, "costs": 150, "net": 10, "cash": 7650 },
+    { "month": "Month 6", "customers": 5, "revenue": 200, "costs": 150, "net": 50, "cash": 7700 },
+    { "month": "Month 7", "customers": 6, "revenue": 240, "costs": 150, "net": 90, "cash": 7790 },
+    { "month": "Month 8", "customers": 7, "revenue": 280, "costs": 150, "net": 130, "cash": 7920 },
+    { "month": "Month 9", "customers": 8, "revenue": 320, "costs": 150, "net": 170, "cash": 8090 },
+    { "month": "Month 10", "customers": 9, "revenue": 360, "costs": 150, "net": 210, "cash": 8300 },
+    { "month": "Month 11", "customers": 10, "revenue": 400, "costs": 150, "net": 250, "cash": 8550 },
+    { "month": "Month 12", "customers": 10, "revenue": 400, "costs": 150, "net": 250, "cash": 8800 }
+  ],
+  "cash_chart": {
+    "seriesName": "Cash at month end",
+    "x": ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5", "Month 6", "Month 7", "Month 8", "Month 9", "Month 10", "Month 11", "Month 12"],
+    "series": [7850, 7740, 7670, 7640, 7650, 7700, 7790, 7920, 8090, 8300, 8550, 8800]
+  },
+  "annual_summary": [
+    { "line": "Revenue", "amount": 2600 },
+    { "line": "Cost of revenue (hosting)", "amount": 1200 },
+    { "line": "Gross profit", "amount": 1400 },
+    { "line": "Operating expenses (software tools)", "amount": 600 },
+    { "line": "Net income", "amount": 800 }
+  ],
+  "break_even": "Month 5, at 4 studios: 4 × 40 = 160 covers 150 of monthly costs.",
+  "runway": "Not limited on the base plan. Cash is lowest at 7,640 in Month 4, and the company is profitable from Month 5. At the Month 1 burn of 150, starting cash alone would last about 53 months.",
+  "unit_economics": [
+    { "metric": "Revenue per studio", "value": "40 a month", "formula": "Price per workspace." },
+    { "metric": "Gross margin", "value": "54% in the model period", "formula": "Gross profit 1,400 ÷ revenue 2,600. Rises as studios share the fixed hosting cost." },
+    { "metric": "Churn", "value": "Assumption: 3% a month", "formula": "Not measured. The base model assumes no cancellations." },
+    { "metric": "Lifetime value", "value": "Assumption: 720", "formula": "40 × 54% ÷ 3%." },
+    { "metric": "Acquisition cost", "value": "Not measurable", "formula": "Paid spend is 0. Founder time is the only cost." },
+    { "metric": "Payback", "value": "Not measurable", "formula": "Needs a paid acquisition cost." }
+  ],
+  "default_alive": "not enough data",
+  "default_alive_reason": "There is no revenue history yet, so no real growth rate can be read. If the ramp of one studio a month holds, the company breaks even in Month 5 and cash never falls below 7,640, which would make it default alive.",
+  "scenarios": [
+    { "scenario": "Pessimistic", "change": "Half the base pace: 5 studios by Month 11.", "revenue": 1200, "ending_cash": 7400, "lowest_cash": 7280 },
+    { "scenario": "Base", "change": "The monthly table above.", "revenue": 2600, "ending_cash": 8800, "lowest_cash": 7640 },
+    { "scenario": "Optimistic", "change": "Two new studios a month: 20 by Month 11.", "revenue": 5200, "ending_cash": 11400, "lowest_cash": 7780 }
+  ],
+  "sensitivity": [
+    { "driver": "Price", "change": "30 instead of 40", "ending_cash": 8150 },
+    { "driver": "Price", "change": "50 instead of 40", "ending_cash": 9450 },
+    { "driver": "Hosting", "change": "200 a month instead of 100", "ending_cash": 7600 }
+  ],
+  "funding_need": 0,
+  "funding_reason": "The pessimistic case never drops below 7,280, well above a buffer of six months of costs (900). No raise is needed for this plan.",
+  "reconciliation": [
+    { "check": "Revenue equals studios × 40", "result": "Holds in every month. 65 studio-months × 40 = 2,600." },
+    { "check": "Ending cash equals starting cash plus net income", "result": "8,000 + 800 = 8,800, which matches Month 12." },
+    { "check": "Annual summary equals the sum of the months", "result": "Revenue 2,600 and costs 1,800 match the monthly table." },
+    { "check": "Business plan forecast", "result": "The business plan shows 4,800 for the first year, which assumes ten studios for all twelve months. This model adds one studio a month, so the first year gives 2,600." }
+  ],
+  "assumptions": [
+    { "text": "One new studio a month from Month 2, reaching 10 in Month 11, from the business plan's ten-studio objective." },
+    { "text": "Software tools cost 50 a month." },
+    { "text": "No studio cancels in the model period. Unit economics use 3% monthly churn instead." },
+    { "text": "Scenarios: half pace gives 30 studio-months and 1,200 revenue; double pace gives 130 studio-months and 5,200 revenue. Costs stay at 1,800." }
+  ],
+  "sources": [
+    {
+      "title": "SaaS Metrics 2.0",
+      "publisher": "For Entrepreneurs",
+      "url": "https://www.forentrepreneurs.com/saas-metrics-2/",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Default Alive or Default Dead?",
+      "publisher": "Paul Graham",
+      "url": "https://www.paulgraham.com/aord.html",
+      "accessed": "2026-10-12"
+    }
+  ]
+}

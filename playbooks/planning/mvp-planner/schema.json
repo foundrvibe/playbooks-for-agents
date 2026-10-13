@@ -1,0 +1,320 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/mvp-planner/1.0.0",
+  "x-id": "mvp-planner",
+  "x-version": "1.0.0",
+  "x-title": "MVP plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product",
+    "target_users",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "evidence",
+    "constraints",
+    "sources"
+  ],
+  "properties": {
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The product idea in the user's words.",
+      "x-ask": "What product do you want to build first?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_users": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who the user expects to use it first.",
+      "x-ask": "Who should use the first version?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country of the first users. Sets the currency and the competitors to open.",
+      "x-ask": "Which country are the first users in?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Headings stay as written in template.md.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when the cited pages were opened during this run. offline when they were not.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Interviews, signups, payments, or discovery results the user already has. One row that says none yet when there is none.",
+      "x-ask": "What customer evidence do you have? Name interviews, signups, payments, or a customer discovery result. Say none yet.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "finding"],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "finding": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Team, time, budget, skills, and technology limits. One row that says none given when the user names none.",
+      "x-ask": "Who will build it, how many weeks can you spend, and what budget, skills, or technology limits apply? Say none given.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["constraint", "detail"],
+        "properties": {
+          "constraint": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "first_users": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The narrow first group, small enough to recruit by hand, who feel the problem most.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "core_problem": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The single most urgent problem the first version solves, from the evidence.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "value_hypothesis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "If these users get this, they will do this, measured by this.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "competitor_gaps": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "Products the first users could use instead, each opened, and the gap the first version fills.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "website", "gap"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "website": { "type": "string", "minLength": 1 },
+          "gap": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "user_journey": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Mermaid flowchart of the one journey the first version supports, from the trigger to the value.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "x-diagram": "business-process"
+    },
+    "features": {
+      "type": "array",
+      "minItems": 3,
+      "description": "Every feature considered, sorted into now, later, or never, with the reason.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["feature", "scope", "reason"],
+        "properties": {
+          "feature": { "type": "string", "minLength": 1 },
+          "scope": { "type": "string", "enum": ["now", "later", "never"] },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "user_stories": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "One story per now feature, with Given-When-Then acceptance criteria.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["story", "acceptance"],
+        "properties": {
+          "story": { "type": "string", "minLength": 1 },
+          "acceptance": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "manual_steps": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Steps the team does by hand for the first users instead of building them.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["step", "how"],
+        "properties": {
+          "step": { "type": "string", "minLength": 1 },
+          "how": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 2,
+      "description": "Value, usability, feasibility, and viability risks, each with how the plan reduces it.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["risk", "kind", "mitigation"],
+        "properties": {
+          "risk": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "enum": ["value", "usability", "feasibility", "viability"] },
+          "mitigation": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "build_plan": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "description": "Time-boxed periods from spec to launch, each with the work and the check that says it is done.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["period", "work", "done_when"],
+        "properties": {
+          "period": { "type": "string", "minLength": 1 },
+          "work": { "type": "string", "minLength": 1 },
+          "done_when": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "primary_metric": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The one number that says the first version works. Revenue when anyone pays.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "launch_metrics": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "description": "Metrics to watch after launch, each with a target and why it matters.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric", "target", "why"],
+        "properties": {
+          "metric": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 },
+          "why": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "decision_rule": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The result after launch that means continue, change course, or stop.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every belief the plan rests on that the evidence did not confirm.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Pages opened for this plan. Empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": {
+        "properties": {
+          "sources": { "minItems": 2 },
+          "competitor_gaps": { "minItems": 2 }
+        }
+      }
+    }
+  ]
+}

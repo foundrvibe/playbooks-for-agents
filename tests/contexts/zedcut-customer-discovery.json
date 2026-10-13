@@ -1,0 +1,9 @@
+{
+  "template": "customer-discovery",
+  "context": "ZedCut is a bilingual (French and English) B2B SaaS for countertop fabrication shops in Canada. It would centralize customer intake, measurements, quoting, slab inventory, approvals, scheduling, and invoicing for shops that now use Excel, WhatsApp, and paper. No customer interviews yet. Plan the customer discovery interviews.",
+  "expect": {
+    "market_country": "Canada",
+    "research_mode": "web",
+    "decision": "keep interviewing"
+  }
+}

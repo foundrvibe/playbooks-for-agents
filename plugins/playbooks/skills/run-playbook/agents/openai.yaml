@@ -1,4 +1,0 @@
-interface:
-  display_name: "Run a playbook"
-  short_description: "Ask, research, and return the finished document."
-  default_prompt: "Use $run-playbook to create a business plan for my company."

@@ -1,0 +1,145 @@
+{
+  "product": "A shared job board so independent design studios can track briefs, files, and approvals in one place.",
+  "stage": "Building. A first version is planned for five studios.",
+  "target_customer": "Independent design studios with 2 to 10 people",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "monthly_budget": 300,
+  "team_capacity": "One founder, about 10 hours a week on sales and marketing.",
+  "existing_audience": [
+    { "asset": "Founder network", "detail": "Studios the founder already works with, including the two interviewed." },
+    { "asset": "Email list", "detail": "None yet." }
+  ],
+  "competitive_alternatives": [
+    { "alternative": "Email and spreadsheets", "kind": "status quo", "website": "None", "why_used": "Free, familiar, and clients already use email." },
+    { "alternative": "Asana", "kind": "substitute", "website": "https://asana.com", "why_used": "A general work tool many teams already pay for." },
+    { "alternative": "Basecamp", "kind": "substitute", "website": "https://basecamp.com", "why_used": "Client projects, messages, and files in one place." },
+    { "alternative": "Frame.io", "kind": "direct", "website": "https://frame.io", "why_used": "Review and approval for video teams." }
+  ],
+  "positioning": [
+    { "component": "Competitive alternatives", "statement": "Email threads and spreadsheets, or a general work tool the studio configures itself." },
+    { "component": "Unique attributes", "statement": "A client approval link tied to one file version, with no client account needed." },
+    { "component": "Value", "statement": "The studio never builds on the wrong version, and clients approve in one click." },
+    { "component": "Best-fit customers", "statement": "Branding studios with 2 to 10 people that send identity work to clients by email." },
+    { "component": "Market category", "statement": "Client approval software for design studios." }
+  ],
+  "value_proposition": "Send clients one link, get approval on the right version, and stop redoing work.",
+  "buyer_roles": [
+    { "role": "Studio owner", "part": "decides", "cares_about": "Not losing paid hours to rework, and keeping clients happy." },
+    { "role": "Studio owner", "part": "pays", "cares_about": "A low monthly price with no per-client fee." },
+    { "role": "Lead designer", "part": "uses", "cares_about": "Uploading a version and getting a clear yes or notes." },
+    { "role": "Client contact", "part": "influences", "cares_about": "Approving without creating an account." }
+  ],
+  "offer": [
+    { "offer": "Studio workspace", "price": "40 per workspace per month", "basis": "Business plan price, set against public plans of Asana and Basecamp." },
+    { "offer": "Founding studio pilot", "price": "Assumption: first month free, then 40 per month", "basis": "Lowers the risk for the first five studios while still asking for payment." }
+  ],
+  "messaging": [
+    { "audience": "Studio owner", "message": "Stop redoing work after a client approves the wrong version.", "proof": "One interviewed studio lost two days to a wrong-version approval." },
+    { "audience": "Client contact", "message": "Approve the latest design in one click, no account needed.", "proof": "Collect from the first pilot: time from link sent to approval." }
+  ],
+  "channels": [
+    { "channel": "Founder network intros", "website": "None. The founder's own contacts.", "fit": "Warm, fast, and free. Already holds the first studios.", "status": "test now" },
+    { "channel": "AIGA local chapter events", "website": "https://www.aiga.org", "fit": "Studio owners gather at chapter events in person.", "status": "test now" },
+    { "channel": "Google search ads", "website": "https://ads.google.com/home/", "fit": "Catches studios searching for a client approval tool.", "status": "test now" },
+    { "channel": "Clutch graphic design listings", "website": "https://clutch.co/agencies/graphic-designers", "fit": "A public list of small studios for direct outreach.", "status": "later" },
+    { "channel": "Reddit graphic design community", "website": "https://www.reddit.com/r/graphic_design/", "fit": "Designers discuss feedback rounds, but self-promotion rules apply.", "status": "later" },
+    { "channel": "Capterra listing", "website": "https://www.capterra.com/project-management-software/", "fit": "Buyers compare tools there, but reviews are needed first.", "status": "skip" }
+  ],
+  "channel_tests": [
+    { "channel": "Founder network intros", "test": "Ask every studio contact for an intro to one other studio owner.", "cost": 0, "time_box": "Three weeks", "success_threshold": "At least 5 new studio conversations." },
+    { "channel": "AIGA local chapter events", "test": "Attend two chapter events and book calls with studio owners.", "cost": 100, "time_box": "Four weeks", "success_threshold": "At least 3 calls booked." },
+    { "channel": "Google search ads", "test": "Run ads on client approval searches to a pilot signup page.", "cost": 200, "time_box": "Four weeks", "success_threshold": "At least 5 pilot signups." }
+  ],
+  "test_budget": {
+    "seriesName": "Test cost",
+    "x": ["Founder network intros", "AIGA local chapter events", "Google search ads"],
+    "series": [0, 100, 200]
+  },
+  "primary_metric": "Paying studios",
+  "weekly_target": "Assumption: one new paying studio a week after launch. Once revenue is steady, track weekly percent growth; Paul Graham calls 5-7% a week good during YC.",
+  "launch_plan": [
+    { "period": "Weeks 1 to 3", "actions": "Build the first version. Ask network contacts for intros. Set up the signup page.", "milestone": "Five studios agree to the pilot." },
+    { "period": "Weeks 4 to 7", "actions": "Onboard the five studios personally. Run the event and ads tests.", "milestone": "Each pilot studio sends a real approval." },
+    { "period": "Weeks 8 to 11", "actions": "Convert pilots to paid. Ask each paying studio for one intro.", "milestone": "At least 2 paying studios." },
+    { "period": "Week 12", "actions": "Review each channel test against its threshold. Keep the best channel and drop the rest.", "milestone": "One channel chosen for the next quarter." }
+  ],
+  "kpis": [
+    { "kpi": "Studio conversations booked", "target": "At least 3 a week", "measured_how": "Calendar and a simple pipeline sheet." },
+    { "kpi": "Pilot to paid conversion", "target": "Assumption: 40%", "measured_how": "Paying studios divided by studios that finished the pilot." },
+    { "kpi": "Approvals sent per studio per week", "target": "At least 2", "measured_how": "Board usage data." }
+  ],
+  "risks": [
+    { "risk": "The founder's 10 hours a week go to building, not selling.", "response": "Block two fixed sales mornings a week." },
+    { "risk": "Ads bring designers, not studio owners.", "response": "Screen signups by studio size before the pilot." },
+    { "risk": "Studios use the pilot but will not pay.", "response": "Ask for payment at the end of the free month and record the reason for every no." }
+  ],
+  "assumptions": [
+    { "text": "AIGA event costs of 100 for two events, for tickets and travel." },
+    { "text": "A 40% pilot to paid conversion rate. Not measured yet." },
+    { "text": "One new paying studio a week after launch." }
+  ],
+  "sources": [
+    {
+      "title": "A Quickstart Guide to Positioning",
+      "publisher": "April Dunford",
+      "url": "https://www.aprildunford.com/post/a-quickstart-guide-to-positioning",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "The Bullseye Framework for Getting Traction",
+      "publisher": "Gabriel Weinberg",
+      "url": "https://medium.com/@yegg/the-bullseye-framework-for-getting-traction-ef49d05bfd7e",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Do Things That Don't Scale",
+      "publisher": "Paul Graham",
+      "url": "https://paulgraham.com/ds.html",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Startup = Growth",
+      "publisher": "Paul Graham",
+      "url": "https://paulgraham.com/growth.html",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Google Ads",
+      "publisher": "Google",
+      "url": "https://ads.google.com/home/",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "AIGA",
+      "publisher": "AIGA",
+      "url": "https://www.aiga.org",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Top Graphic Design Companies",
+      "publisher": "Clutch",
+      "url": "https://clutch.co/agencies/graphic-designers",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Asana",
+      "publisher": "Asana",
+      "url": "https://asana.com",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Basecamp",
+      "publisher": "37signals",
+      "url": "https://basecamp.com",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Frame.io",
+      "publisher": "Adobe",
+      "url": "https://frame.io",
+      "accessed": "2026-10-12"
+    }
+  ]
+}

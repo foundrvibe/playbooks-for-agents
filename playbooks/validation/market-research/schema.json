@@ -1,0 +1,357 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/market-research/1.0.0",
+  "x-id": "market-research",
+  "x-version": "1.0.0",
+  "x-title": "Market research",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product",
+    "target_customer",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "known_research",
+    "market",
+    "sources"
+  ],
+  "properties": {
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What is sold, in the user's words.",
+      "x-ask": "What product or service is this market research for?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who buys it, from the user's context.",
+      "x-ask": "Who buys it?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country whose market, sources, and currency the research should use.",
+      "x-ask": "Which country should this research cover?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Headings stay as written in template.md.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when the cited pages were opened during this run. offline when they were not.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "known_research": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Research, prices, customer counts, or interview results the user already has. One row that says none yet when there is none.",
+      "x-ask": "Do you already have any research, prices, customer counts, or interview results? Say none yet.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item", "detail"],
+        "properties": {
+          "item": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "market_definition": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The buying unit, what is in the market, and what is out, in two or three sentences.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "industry": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The customer's industry classification and code, from an official code search.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank."
+    },
+    "segments": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "Buyer segments inside the market, each with what sets it apart and how many buyers it holds.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["segment", "traits", "buyers"],
+        "properties": {
+          "segment": { "type": "string", "minLength": 1 },
+          "traits": { "type": "string", "minLength": 1 },
+          "buyers": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sizing_inputs": {
+      "type": "array",
+      "minItems": 2,
+      "description": "Every input the market figures use: buyer counts, shares, prices, and reach. Each labeled given, sourced, or assumption.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["input", "value", "label", "basis"],
+        "properties": {
+          "input": { "type": "string", "minLength": 1 },
+          "value": { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "enum": ["given", "sourced", "assumption"] },
+          "basis": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "market": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "TAM, SAM, and SOM, in that order, as annual revenue. Each with its formula. SOM is not a percent of TAM.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["layer", "formula", "figure", "basis"],
+        "properties": {
+          "layer": { "type": "string", "enum": ["TAM", "SAM", "SOM"] },
+          "formula": { "type": "string", "minLength": 1 },
+          "figure": { "type": "number", "x-format": "currency" },
+          "basis": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "market_chart": {
+      "type": "object",
+      "description": "TAM, SAM, and SOM figures. series matches market figure in the same order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "x-chart": "mermaid-xy",
+      "x-format": "currency",
+      "additionalProperties": false,
+      "required": ["x", "series"],
+      "properties": {
+        "x": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "series": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "type": "number" }
+        },
+        "seriesName": { "type": "string" }
+      }
+    },
+    "sensitivity": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "description": "Low, base, and high figures for TAM, SAM, and SOM, in that order, and the input that moves each most.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["layer", "low", "base", "high", "driver"],
+        "properties": {
+          "layer": { "type": "string", "enum": ["TAM", "SAM", "SOM"] },
+          "low": { "type": "number", "x-format": "currency" },
+          "base": { "type": "number", "x-format": "currency" },
+          "high": { "type": "number", "x-format": "currency" },
+          "driver": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "trends": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "Changes in the market with the figure or page behind each, and whether it helps or hurts.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["trend", "evidence", "effect"],
+        "properties": {
+          "trend": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "effect": { "type": "string", "enum": ["tailwind", "headwind", "neutral"] }
+        }
+      }
+    },
+    "demand_signals": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "description": "Pages where buyers search, review, ask for, or pay for a solution. One row per page opened.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signal", "finding"],
+        "properties": {
+          "signal": { "type": "string", "minLength": 1 },
+          "finding": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "alternatives": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "What buyers use today: direct products, substitutes, and the status quo, each with what it means for this market.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "kind", "website", "note"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "enum": ["direct", "substitute", "status quo"] },
+          "website": { "type": "string", "minLength": 1 },
+          "note": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "attractiveness": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "description": "Size, Growth, Reachability, Competition, in that order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["factor", "rating", "evidence"],
+        "properties": {
+          "factor": { "type": "string", "enum": ["Size", "Growth", "Reachability", "Competition"] },
+          "rating": { "type": "string", "enum": ["high", "medium", "low"] },
+          "evidence": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["attractive", "promising with gaps", "unattractive"],
+      "description": "attractive only when every factor is medium or high and no key input is an assumption. unattractive when Size or Reachability is low. promising with gaps otherwise.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "verdict_reason": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Two sentences naming the factors and inputs behind the verdict.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "evidence_gaps": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Missing counts or facts, each with how to close the gap.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["gap", "how_to_close"],
+        "properties": {
+          "gap": { "type": "string", "minLength": 1 },
+          "how_to_close": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every estimate, with the inputs it uses.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Pages opened for this research. Empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": {
+        "properties": {
+          "sources": { "minItems": 4 },
+          "demand_signals": { "minItems": 3 },
+          "alternatives": { "minItems": 3 }
+        }
+      }
+    }
+  ]
+}

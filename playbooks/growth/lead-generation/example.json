@@ -1,0 +1,147 @@
+{
+  "product": "A shared job board so independent design studios can track briefs, files, and approvals in one place.",
+  "target_customer": "Independent design studios with 2 to 10 people",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "customer_goal": 5,
+  "goal_period": "in the next three months",
+  "sales_channels": [
+    { "channel": "Email", "detail": "From the founder's own business address." },
+    { "channel": "In person", "detail": "Local AIGA chapter events in Austin." },
+    { "channel": "CRM", "detail": "None. A shared spreadsheet for now." }
+  ],
+  "existing_leads": [
+    { "source": "Founder network", "detail": "Two interviewed studios and a handful of studio contacts." }
+  ],
+  "sales_hypothesis": "Small branding studios lose paid hours when clients approve the wrong file version by email, and the board fixes that with one approval link per version.",
+  "qualification": [
+    { "criterion": "Studio size", "signal": "2 to 10 people on the team page or directory listing.", "priority": "must have" },
+    { "criterion": "Client approval work", "signal": "Branding, identity, or packaging services listed on the website.", "priority": "must have" },
+    { "criterion": "Country", "signal": "A U.S. studio address on the website or listing.", "priority": "must have" },
+    { "criterion": "Email-based workflow", "signal": "Contact page or process page mentions email feedback rounds.", "priority": "strong" },
+    { "criterion": "Growing", "signal": "A recent hire, new clients, or a job post.", "priority": "nice to have" }
+  ],
+  "scorecard": [
+    { "band": "A", "rule": "All must-haves and at least one strong signal.", "action": "Send step one this week." },
+    { "band": "B", "rule": "All must-haves, no strong signal.", "action": "Add to next week's batch." },
+    { "band": "C", "rule": "Missing a must-have.", "action": "Do not contact. Keep the reason in the sheet." }
+  ],
+  "lead_sources": [
+    {
+      "source": "Clutch graphic design listings",
+      "website": "https://clutch.co/agencies/graphic-designers",
+      "gives": "Studio names, locations, team size bands, and services.",
+      "terms": "Read listings by hand. Do not scrape. Contact studios through their own websites."
+    },
+    {
+      "source": "AIGA local chapter events",
+      "website": "https://www.aiga.org",
+      "gives": "Studio owners met in person, with permission to follow up.",
+      "terms": "Ask before adding anyone to the sheet. Follow event rules."
+    },
+    {
+      "source": "Founder referrals",
+      "website": "None. Intros from current contacts.",
+      "gives": "Warm intros to studio owners.",
+      "terms": "Record who made the intro."
+    }
+  ],
+  "prospect_fields": [
+    { "field": "Studio name and website", "why": "Identifies the prospect.", "where_from": "Listing or referral." },
+    { "field": "Team size", "why": "Must-have criterion.", "where_from": "Team page or listing." },
+    { "field": "Services", "why": "Shows client approval work.", "where_from": "Studio website." },
+    { "field": "Contact role and business email", "why": "Who to write to.", "where_from": "The studio's own contact page only." },
+    { "field": "Personal fact", "why": "Opens the first message.", "where_from": "A recent project or post the studio published." },
+    { "field": "Score band and stage", "why": "Sets the next action.", "where_from": "Scorecard and pipeline." },
+    { "field": "Source and date", "why": "Proof of where the contact came from.", "where_from": "Filled when the row is added." }
+  ],
+  "sequence": [
+    {
+      "timing": "Day 1",
+      "channel": "Email",
+      "message": "Hi [name], I saw [recent project]. Small studios tell me clients sometimes approve the wrong version by email. Has that happened to you? I'd value 15 minutes to learn how you handle approvals. Reply stop and I won't write again.",
+      "goal": "Book a short call."
+    },
+    {
+      "timing": "Day 4",
+      "channel": "Email",
+      "message": "Following up on my note about client approvals. One studio I spoke with lost two days to a wrong-version approval. Worth a quick call? Reply stop to opt out.",
+      "goal": "Book a short call."
+    },
+    {
+      "timing": "Day 10",
+      "channel": "Email",
+      "message": "Last note from me. If approvals aren't a problem for [studio], no worries. If they are, here is a link to book a time. Reply stop to opt out.",
+      "goal": "Close the loop."
+    }
+  ],
+  "personalization": [
+    { "rule": "Open with one project or post the studio published in the last six months." },
+    { "rule": "Never mention personal details beyond the studio's own public work." },
+    { "rule": "Use the contact's role, not a guessed first name, when the name is not on the website." }
+  ],
+  "pipeline": [
+    { "stage": "Identified", "enters_when": "Added to the sheet with a score band.", "leaves_when": "Step one is sent, or marked C." },
+    { "stage": "Contacted", "enters_when": "Step one is sent.", "leaves_when": "Replies, opts out, or finishes the sequence." },
+    { "stage": "Call booked", "enters_when": "A call is on the calendar.", "leaves_when": "The call happens or is cancelled." },
+    { "stage": "Pilot", "enters_when": "The studio starts the free month.", "leaves_when": "Pays or declines." },
+    { "stage": "Paying", "enters_when": "First payment received.", "leaves_when": "Cancels." },
+    { "stage": "Lost", "enters_when": "Declines, opts out, or no reply after the last step.", "leaves_when": "Never contacted again after an opt-out." }
+  ],
+  "funnel": [
+    { "stage": "Contacted", "rate": "Start", "count": 260 },
+    { "stage": "Replied", "rate": "Assumption: 20% of contacted", "count": 52 },
+    { "stage": "Call held", "rate": "Assumption: 50% of replies", "count": 26 },
+    { "stage": "Pilot", "rate": "Assumption: 50% of calls", "count": 13 },
+    { "stage": "Paying", "rate": "Assumption: 40% of pilots", "count": 5 }
+  ],
+  "funnel_chart": {
+    "seriesName": "Studios",
+    "x": ["Contacted", "Replied", "Call held", "Pilot", "Paying"],
+    "series": [260, 52, 26, 13, 5]
+  },
+  "compliance": [
+    { "rule": "Accurate headers", "requirement": "From, To, and Reply-To must identify the sender.", "law": "CAN-SPAM Act" },
+    { "rule": "Honest subject line", "requirement": "The subject must reflect the content of the message.", "law": "CAN-SPAM Act" },
+    { "rule": "Postal address", "requirement": "Include a valid physical postal address.", "law": "CAN-SPAM Act" },
+    { "rule": "Opt-out", "requirement": "Tell recipients how to opt out, keep it working for 30 days after sending, and honor it within 10 business days.", "law": "CAN-SPAM Act" },
+    { "rule": "Business email too", "requirement": "The rules apply to business-to-business commercial email.", "law": "CAN-SPAM Act" }
+  ],
+  "metrics": [
+    { "metric": "Studios contacted", "formula": "Step-one emails sent this week", "target": "At least 22 a week" },
+    { "metric": "Reply rate", "formula": "Replies divided by studios contacted", "target": "Assumption: 20%" },
+    { "metric": "Calls held", "formula": "Calls held this week", "target": "At least 2 a week" },
+    { "metric": "Pilot to paid", "formula": "Paying studios divided by finished pilots", "target": "Assumption: 40%" }
+  ],
+  "assumptions": [
+    { "text": "Rates of 20% reply, 50% reply to call, 50% call to pilot, and 40% pilot to paid. 260 contacts × 20% = 52, × 50% = 26, × 50% = 13, × 40% = 5.2, rounded to 5." },
+    { "text": "260 contacts over twelve weeks is about 22 a week, within the founder's 10 hours a week." }
+  ],
+  "sources": [
+    {
+      "title": "Enterprise Sales for Founders",
+      "publisher": "Y Combinator",
+      "url": "https://www.ycombinator.com/library/LF-enterprise-sales-for-founders",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "CAN-SPAM Act: A Compliance Guide for Business",
+      "publisher": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Top Graphic Design Companies",
+      "publisher": "Clutch",
+      "url": "https://clutch.co/agencies/graphic-designers",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "AIGA",
+      "publisher": "AIGA",
+      "url": "https://www.aiga.org",
+      "accessed": "2026-10-12"
+    }
+  ]
+}

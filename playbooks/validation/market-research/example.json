@@ -1,0 +1,186 @@
+{
+  "product": "A shared job board so independent design studios can track briefs, files, and approvals in one place.",
+  "target_customer": "Independent design studios with 2 to 10 people",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "known_research": [
+    { "item": "Price", "detail": "40 per workspace per month, from the business plan." },
+    { "item": "Interviews", "detail": "Two studio interviews. One described a costly approval failure; one did not." }
+  ],
+  "market_definition": "The buying unit is a U.S. design studio that runs client work for outside clients. In: graphic, branding, and packaging studios. Out: in-house design teams, freelancers working alone, and large agencies with their own project tooling.",
+  "industry": "Graphic design services (NAICS 541430), within specialized design services (NAICS 5414).",
+  "segments": [
+    {
+      "segment": "Small studios",
+      "traits": "2 to 10 people. The owner still sends work for approval.",
+      "buyers": "Assumption: 60% of graphic design establishments. A live run should web-search County Business Patterns size bands for NAICS 541430 and open the table page."
+    },
+    {
+      "segment": "Solo designers",
+      "traits": "One person. BLS reports 20% of graphic designers are self-employed.",
+      "buyers": "Out of scope for the first product. Not counted."
+    },
+    {
+      "segment": "Larger agencies",
+      "traits": "More than 10 people, often with project managers and existing tools.",
+      "buyers": "Out of scope for the first product. Not counted."
+    }
+  ],
+  "sizing_inputs": [
+    {
+      "input": "Graphic design establishments",
+      "value": "Assumption: 11,000",
+      "label": "assumption",
+      "basis": "Example only: no establishment table was opened. Web-search graphic design establishments NAICS 541430 United States and cite the official table page."
+    },
+    {
+      "input": "Share with 2 to 10 people",
+      "value": "Assumption: 60%",
+      "label": "assumption",
+      "basis": "Web-search CBP employee size bands for NAICS 541430 and open the HTML table, not the Data API."
+    },
+    {
+      "input": "Annual price per studio",
+      "value": "480, from 40 per month times 12",
+      "label": "given",
+      "basis": "Price from the business plan."
+    },
+    {
+      "input": "Studios reachable in three years",
+      "value": "30",
+      "label": "given",
+      "basis": "Three-year objective in the business plan, through founder outreach."
+    }
+  ],
+  "market": [
+    {
+      "layer": "TAM",
+      "formula": "11,000 establishments × 480 a year",
+      "figure": 5280000,
+      "basis": "Assumption: establishment count not opened. Every U.S. graphic design studio at the planned price."
+    },
+    {
+      "layer": "SAM",
+      "formula": "11,000 × 60% = 6,600 small studios × 480 a year",
+      "figure": 3168000,
+      "basis": "Assumption: size-band share not opened. Studios with 2 to 10 people only."
+    },
+    {
+      "layer": "SOM",
+      "formula": "30 studios × 480 a year",
+      "figure": 14400,
+      "basis": "Founder outreach capacity in three years, from the business plan. Not a percent of TAM."
+    }
+  ],
+  "market_chart": {
+    "seriesName": "Annual market",
+    "x": ["TAM", "SAM", "SOM"],
+    "series": [5280000, 3168000, 14400]
+  },
+  "sensitivity": [
+    { "layer": "TAM", "low": 3840000, "base": 5280000, "high": 6720000, "driver": "Establishment count, from 8,000 to 14,000." },
+    { "layer": "SAM", "low": 2112000, "base": 3168000, "high": 3960000, "driver": "Share with 2 to 10 people, from 40% to 75%." },
+    { "layer": "SOM", "low": 4800, "base": 14400, "high": 24000, "driver": "Studios won in three years, from 10 to 50." }
+  ],
+  "trends": [
+    {
+      "trend": "Graphic designer employment is projected to shrink slightly.",
+      "evidence": "BLS projects a 2% decline from 2025 to 2035, from 253,100 jobs in 2025.",
+      "effect": "headwind"
+    },
+    {
+      "trend": "Design work stays spread across many small employers.",
+      "evidence": "BLS reports 20% of graphic designers are self-employed and 9% work in specialized design services.",
+      "effect": "neutral"
+    }
+  ],
+  "demand_signals": [
+    {
+      "signal": "Capterra project management",
+      "finding": "Many general project tools are listed. No listing opened was built only for studio approvals."
+    },
+    {
+      "signal": "G2 work management",
+      "finding": "Buyers compare general work tools. No review opened asked for a studio-only approval board."
+    },
+    {
+      "signal": "Reddit graphic design",
+      "finding": "Designers discuss client feedback and file versions. No opened thread asked to pay for a tool."
+    }
+  ],
+  "alternatives": [
+    { "name": "Email and spreadsheets", "kind": "status quo", "website": "None", "note": "Free and already in use. The habit to replace." },
+    { "name": "Asana", "kind": "substitute", "website": "https://asana.com", "note": "General work management. Studios must build the approval path." },
+    { "name": "Basecamp", "kind": "substitute", "website": "https://basecamp.com", "note": "Client projects and files in one place, not a design-approval path." },
+    { "name": "Frame.io", "kind": "direct", "website": "https://frame.io", "note": "Review and approval, built for video rather than a studio job board." }
+  ],
+  "attractiveness": [
+    { "factor": "Size", "rating": "medium", "evidence": "SAM is about 3,168,000 a year at the planned price, on assumed counts." },
+    { "factor": "Growth", "rating": "low", "evidence": "BLS projects a 2% decline in graphic designer jobs from 2025 to 2035." },
+    { "factor": "Reachability", "rating": "medium", "evidence": "Studios gather in AIGA chapters and agency directories. The founder reaches studios directly." },
+    { "factor": "Competition", "rating": "medium", "evidence": "General tools are strong, but none opened ships the studio approval path." }
+  ],
+  "verdict": "promising with gaps",
+  "verdict_reason": "Size, Reachability, and Competition are medium, but Growth is low and the establishment count and size share are assumptions. The market is large enough for a founder-led business, but a web search must open official table pages before it is called attractive.",
+  "evidence_gaps": [
+    { "gap": "Establishment count for NAICS 541430", "how_to_close": "Web-search County Business Patterns graphic design services establishments, open the Census Bureau table page, and record the count." },
+    { "gap": "Share of studios with 2 to 10 people", "how_to_close": "Web-search CBP employment size bands for NAICS 541430 and open the same release as an HTML table." },
+    { "gap": "Willingness to pay 40 a month", "how_to_close": "Ask interviewed studios for a pre-order or a paid pilot." }
+  ],
+  "assumptions": [
+    { "text": "11,000 graphic design establishments, to be replaced by a count from an official table page found by web search." },
+    { "text": "60% of establishments have 2 to 10 people, to be replaced by a size-band table from the same search." },
+    { "text": "Ranges: 8,000 to 14,000 establishments, a 40% to 75% size share, and 10 to 50 studios won in three years." }
+  ],
+  "sources": [
+    {
+      "title": "North American Industry Classification System",
+      "publisher": "U.S. Census Bureau",
+      "url": "https://www.census.gov/naics/?input=541430&year=2022&details=541430",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Graphic Designers: Occupational Outlook Handbook",
+      "publisher": "U.S. Bureau of Labor Statistics",
+      "url": "https://www.bls.gov/ooh/arts-and-design/graphic-designers.htm",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Project management software",
+      "publisher": "Capterra",
+      "url": "https://www.capterra.com/project-management-software/",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Work management software",
+      "publisher": "G2",
+      "url": "https://www.g2.com/categories/work-management",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "r/graphic_design",
+      "publisher": "Reddit",
+      "url": "https://www.reddit.com/r/graphic_design/",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Asana",
+      "publisher": "Asana",
+      "url": "https://asana.com",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Basecamp",
+      "publisher": "37signals",
+      "url": "https://basecamp.com",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Frame.io",
+      "publisher": "Adobe",
+      "url": "https://frame.io",
+      "accessed": "2026-10-12"
+    }
+  ]
+}

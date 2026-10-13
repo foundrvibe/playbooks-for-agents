@@ -1,0 +1,4 @@
+{
+  "title": "Financial model",
+  "description": "A monthly, assumption-driven startup financial model. It lists the revenue drivers, costs, and hires, then builds monthly customers, revenue, costs, net, and cash with a cash chart. It adds the annual summary, break-even, runway, unit economics, a default alive check, three scenarios, sensitivity, the funding need, and reconciliation checks. Every driver is labeled given, sourced, derived, or assumption."
+}

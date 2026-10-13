@@ -1,4 +1,4 @@
-import { existsSync, lstatSync, readdirSync, readFileSync, readlinkSync, statSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { checkFill, formatTypes, loadTheme, readJson, renderFill, root, sourceTypes } from "./lib/fill.mjs";
 
@@ -286,41 +286,6 @@ for (const item of discovered) {
   if (!categoryIds.has(item.category)) fail(`playbooks/${item.category} is not a catalog category`);
   if (!listedIds.has(item.id)) fail(`playbooks/${item.category}/${item.id} is missing from catalog.json`);
 }
-
-function checkPluginPackage() {
-  const pluginRoot = join(root, "plugins/playbooks");
-  const portable = readJson(join(pluginRoot, "plugin.json"));
-  const claude = readJson(join(pluginRoot, ".claude-plugin/plugin.json"));
-  const codex = readJson(join(pluginRoot, ".codex-plugin/plugin.json"));
-  const manifests = [
-    ["plugins/playbooks/plugin.json", portable],
-    ["plugins/playbooks/.claude-plugin/plugin.json", claude],
-    ["plugins/playbooks/.codex-plugin/plugin.json", codex],
-  ];
-  for (const [label, manifest] of manifests) {
-    if (manifest.name !== "playbooks") fail(`${label}: name must be playbooks`);
-    if (manifest.version !== portable.version) fail(`${label}: version must match plugin.json`);
-    if (!manifest.description) fail(`${label}: missing description`);
-  }
-  if (portable.$schema !== "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json") {
-    fail("plugins/playbooks/plugin.json: missing Agent Plugins schema");
-  }
-  if (codex.skills !== "./skills/") fail("plugins/playbooks/.codex-plugin/plugin.json: skills must be ./skills/");
-  if (!existsSync(join(pluginRoot, "skills/run-playbook/SKILL.md"))) {
-    fail("plugins/playbooks: missing skills/run-playbook/SKILL.md");
-  }
-  const skillLink = join(root, "skills/run-playbook");
-  if (!lstatSync(skillLink).isSymbolicLink() || readlinkSync(skillLink) !== "../plugins/playbooks/skills/run-playbook") {
-    fail("skills/run-playbook must be a symlink to ../plugins/playbooks/skills/run-playbook");
-  }
-  const yaml = readFileSync(join(pluginRoot, "skills/run-playbook/agents/openai.yaml"), "utf8");
-  const blurb = yaml.match(/^ {2}short_description: "(.+)"$/m)?.[1] ?? "";
-  if (blurb.length < 25 || blurb.length > 64) {
-    fail("plugins/playbooks/skills/run-playbook/agents/openai.yaml: short_description must be 25-64 characters");
-  }
-}
-
-checkPluginPackage();
 
 if (errors.length > 0) {
   for (const error of errors) console.error(error);

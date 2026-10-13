@@ -1,0 +1,384 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/lead-generation/1.0.0",
+  "x-id": "lead-generation",
+  "x-version": "1.0.0",
+  "x-title": "Lead generation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product",
+    "target_customer",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "customer_goal",
+    "goal_period",
+    "sales_channels",
+    "existing_leads",
+    "compliance",
+    "sources"
+  ],
+  "properties": {
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What is sold, in the user's words.",
+      "x-ask": "What are you selling?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who the user wants to sell to.",
+      "x-ask": "Who do you want to sell to?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country of the prospects. Sets the outreach rules.",
+      "x-ask": "Which country are the prospects in?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Headings stay as written in template.md.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when the cited pages were opened during this run. offline when they were not.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "customer_goal": {
+      "type": "number",
+      "description": "New paying customers the user wants from outbound in goal_period.",
+      "x-ask": "How many new paying customers do you want from outreach, and by when?",
+      "x-source": "user_data",
+      "x-format": "number",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "goal_period": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The time the customer goal covers.",
+      "x-ask": "Over what period is that goal?",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "sales_channels": {
+      "type": "array",
+      "minItems": 1,
+      "description": "How the user can reach prospects and the tools they already use, such as email, phone, events, or a CRM.",
+      "x-ask": "How can you reach prospects: email, phone, social, events? Which tools or CRM do you use already? Say none given.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel", "detail"],
+        "properties": {
+          "channel": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "existing_leads": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Leads, customers, or referrals the user already has, and where they came from. One row that says none yet when there are none.",
+      "x-ask": "Do you already have leads, customers, or referrals? Where did they come from? Say none yet.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "detail"],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sales_hypothesis": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Customer X has problem Y, and the product solves it by Z.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "qualification": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "description": "Criteria a prospect must or should meet, each with the observable signal and its priority.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["criterion", "signal", "priority"],
+        "properties": {
+          "criterion": { "type": "string", "minLength": 1 },
+          "signal": { "type": "string", "minLength": 1 },
+          "priority": { "type": "string", "enum": ["must have", "strong", "nice to have"] }
+        }
+      }
+    },
+    "scorecard": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 4,
+      "description": "Score bands from best to worst, each with the rule and the next action.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["band", "rule", "action"],
+        "properties": {
+          "band": { "type": "string", "minLength": 1 },
+          "rule": { "type": "string", "minLength": 1 },
+          "action": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "lead_sources": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "description": "Lawful public places to find prospects, each opened, with what it gives and the terms to respect.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source", "website", "gives", "terms"],
+        "properties": {
+          "source": { "type": "string", "minLength": 1 },
+          "website": { "type": "string", "minLength": 1 },
+          "gives": { "type": "string", "minLength": 1 },
+          "terms": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "prospect_fields": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 12,
+      "description": "What to record for each prospect, why, and where it comes from.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "why", "where_from"],
+        "properties": {
+          "field": { "type": "string", "minLength": 1 },
+          "why": { "type": "string", "minLength": 1 },
+          "where_from": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sequence": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "description": "Outreach steps in order, with timing, channel, the message, and its goal. The user reviews and sends.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["timing", "channel", "message", "goal"],
+        "properties": {
+          "timing": { "type": "string", "minLength": 1 },
+          "channel": { "type": "string", "minLength": 1 },
+          "message": { "type": "string", "minLength": 1 },
+          "goal": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "personalization": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "Rules for tailoring each message from facts the prospect published.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule"],
+        "properties": {
+          "rule": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "pipeline": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 8,
+      "description": "Pipeline stages in order, each with when a prospect enters and leaves.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["stage", "enters_when", "leaves_when"],
+        "properties": {
+          "stage": { "type": "string", "minLength": 1 },
+          "enters_when": { "type": "string", "minLength": 1 },
+          "leaves_when": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "funnel": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 7,
+      "description": "Funnel stages from first contact to paying customer, worked backwards from customer_goal. The last count equals customer_goal.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["stage", "rate", "count"],
+        "properties": {
+          "stage": { "type": "string", "minLength": 1 },
+          "rate": { "type": "string", "minLength": 1 },
+          "count": { "type": "number", "x-format": "number" }
+        }
+      }
+    },
+    "funnel_chart": {
+      "type": "object",
+      "description": "Funnel counts. x matches funnel stage and series matches funnel count, in the same order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "x-chart": "mermaid-xy",
+      "x-format": "number",
+      "additionalProperties": false,
+      "required": ["x", "series"],
+      "properties": {
+        "x": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "number" }
+        },
+        "seriesName": { "type": "string" }
+      }
+    },
+    "compliance": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "description": "Outreach rules for the market_country from the regulator's own page, each with what it requires.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rule", "requirement", "law"],
+        "properties": {
+          "rule": { "type": "string", "minLength": 1 },
+          "requirement": { "type": "string", "minLength": 1 },
+          "law": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "description": "Metrics to track weekly, each with its formula and target.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric", "formula", "target"],
+        "properties": {
+          "metric": { "type": "string", "minLength": 1 },
+          "formula": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every rate or estimate chosen without measurement, with its inputs.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Pages opened for this plan. Empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": {
+        "properties": {
+          "sources": { "minItems": 3 },
+          "lead_sources": { "minItems": 2 }
+        }
+      }
+    }
+  ]
+}

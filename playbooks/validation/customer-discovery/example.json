@@ -1,0 +1,171 @@
+{
+  "idea": "A shared job board so independent design studios can track briefs, files, and approvals in one place.",
+  "target_customer": "Independent design studios with 2 to 10 people",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "interview_notes": [
+    {
+      "who": "Owner of a three-person branding studio",
+      "date": "2026-09-28",
+      "notes": "Last month a client approved an old logo version in an email thread, and the studio redid two days of work. Tracks approvals in a shared spreadsheet and Dropbox. Has not looked for a tool. Agreed to show the approval spreadsheet in a second call."
+    },
+    {
+      "who": "Art director at a five-person packaging studio",
+      "date": "2026-10-02",
+      "notes": "Approvals happen in Slack and work fine for this team. The real pain is chasing unpaid invoices. Did not offer a follow-up."
+    }
+  ],
+  "riskiest_assumption": "Small studios lose time or money to missed client approvals often enough to replace the email and spreadsheet habit.",
+  "customer_profile": [
+    { "trait": "Segment", "value": "Independent branding, packaging, and graphic design studios." },
+    { "trait": "Size", "value": "2 to 10 people, with the owner still running client work." },
+    { "trait": "Person who feels the pain", "value": "The owner or the lead designer who sends work for approval." },
+    { "trait": "Trigger", "value": "A client approves the wrong version, or an approval goes missing before a deadline." },
+    { "trait": "Current workaround", "value": "Email threads, a shared spreadsheet, a file-sharing folder, or a chat channel." },
+    { "trait": "Where they gather", "value": "AIGA chapters and events, design forums, and agency directories." }
+  ],
+  "public_context": [
+    {
+      "page": "Reddit graphic design community",
+      "finding": "Designers post about client feedback rounds and file versions. None of the opened threads asked for a paid approval tool."
+    },
+    {
+      "page": "Capterra project management directory",
+      "finding": "Listed tools are general project software. No listing opened was built only for studio approvals."
+    }
+  ],
+  "recruiting_channels": [
+    {
+      "channel": "Founder network",
+      "website": "None. Studios the founder already works with.",
+      "ask": "Ask for twenty minutes about the last client approval that went wrong."
+    },
+    {
+      "channel": "AIGA local chapters and events",
+      "website": "https://www.aiga.org",
+      "ask": "Attend a chapter event and ask studio owners for a short call about how they run approvals."
+    },
+    {
+      "channel": "Clutch graphic design listings",
+      "website": "https://clutch.co/agencies/graphic-designers",
+      "ask": "Pick small studios from the listing and email the owner a request to learn about their approval process."
+    },
+    {
+      "channel": "Reddit graphic design community",
+      "website": "https://www.reddit.com/r/graphic_design/",
+      "ask": "Read the rules first, then ask studio owners who have lost work to a missed approval to talk."
+    }
+  ],
+  "screening": [
+    { "question": "How many people work at your studio?", "qualifies": "2 to 10 people." },
+    { "question": "Who sends work to clients for approval?", "qualifies": "The person on the call, or someone they manage." },
+    { "question": "When did a client last approve or reject a piece of work?", "qualifies": "Within the last month." }
+  ],
+  "interview_guide": [
+    { "stage": "Context", "question": "Walk me through how a project moves from brief to final files at your studio.", "listen_for": "Where approvals happen and who is involved." },
+    { "stage": "Last time", "question": "Tell me about the last time an approval did not go smoothly.", "listen_for": "A specific recent case, not a general complaint." },
+    { "stage": "Last time", "question": "Why was that hard?", "listen_for": "The root cause: versions, missing feedback, or too many channels." },
+    { "stage": "Cost", "question": "What did that cost you in time, money, or the client relationship?", "listen_for": "Hours redone, fees lost, or deadlines missed." },
+    { "stage": "Workaround", "question": "What have you done to stop it happening again?", "listen_for": "Spreadsheets, rules, or tools they set up or paid for." },
+    { "stage": "Workaround", "question": "What don't you love about the way you handle it now?", "listen_for": "Gaps in the current workaround." },
+    { "stage": "Decision", "question": "Who else would have a say if you changed how approvals work?", "listen_for": "Partners, clients, or staff who block or approve a change." },
+    { "stage": "Commitment", "question": "Could you show me your current tracker on a second call?", "listen_for": "A yes with a date counts as a time commitment." }
+  ],
+  "evidence": [
+    {
+      "who": "Owner of a three-person branding studio",
+      "behavior": "Redid two days of work after a client approved an old version last month.",
+      "pain": "Lost time from a wrong-version approval.",
+      "workaround": "Shared spreadsheet and Dropbox.",
+      "commitment": "Time: agreed to show the spreadsheet in a second call."
+    },
+    {
+      "who": "Art director at a five-person packaging studio",
+      "behavior": "Runs approvals in Slack without reported problems.",
+      "pain": "None given for approvals. Chasing unpaid invoices is the stated pain.",
+      "workaround": "Slack.",
+      "commitment": "None."
+    }
+  ],
+  "signals": [
+    { "signal": "Frequency", "strength": "weak", "finding": "One studio described one recent case. How often it happens was not asked." },
+    { "signal": "Severity", "strength": "strong", "finding": "Two days of redone work at a three-person studio." },
+    { "signal": "Current spend", "strength": "weak", "finding": "Free or existing tools only. No paid approval tool was named." },
+    { "signal": "Active search", "strength": "none", "finding": "Neither person has looked for a tool." },
+    { "signal": "Commitment", "strength": "weak", "finding": "One second call agreed. No introduction or payment." }
+  ],
+  "forces": [
+    { "force": "Push", "finding": "Wrong-version approvals cost the branding studio two days of work." },
+    { "force": "Pull", "finding": "Not yet tested. No one has seen the board." },
+    { "force": "Anxiety", "finding": "Assumption: clients may refuse to log in to a new tool." },
+    { "force": "Habit", "finding": "Both studios already run on email, spreadsheets, Dropbox, or Slack." }
+  ],
+  "findings": "One of two studios showed a costly approval failure, and the other said approvals work and invoices are the pain. Two interviews cannot settle the riskiest assumption, and the conflict suggests the pain may depend on studio type or tooling.",
+  "limitations": [
+    { "text": "Two interviews, both from the founder's network." },
+    { "text": "No studio that already pays for a project tool was interviewed." },
+    { "text": "Frequency was not asked in either interview." }
+  ],
+  "decision": "keep interviewing",
+  "next_experiments": [
+    {
+      "experiment": "Run six more interviews with studios recruited outside the founder's network, using this guide.",
+      "success_signal": "At least four describe a missed or wrong approval in the last three months.",
+      "time_box": "Two weeks"
+    },
+    {
+      "experiment": "Hold the second call with the branding studio and map their approval spreadsheet step by step.",
+      "success_signal": "The owner names the step that failed and agrees to try a manual fix on one live project.",
+      "time_box": "One week"
+    }
+  ],
+  "assumptions": [
+    { "text": "Clients may resist logging in to a new tool. No interview tested this." },
+    { "text": "Branding and packaging studios share the same approval process. The two interviews suggest they may not." }
+  ],
+  "sources": [
+    {
+      "title": "How to Start a Startup: Talking to Users",
+      "publisher": "Y Combinator",
+      "url": "https://www.ycombinator.com/library/JQ-how-to-start-a-startup-talking-to-users",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "The Mom Test",
+      "publisher": "Rob Fitzpatrick",
+      "url": "https://www.momtestbook.com/",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "The Switch Interview",
+      "publisher": "Re-Wired Group",
+      "url": "https://jobstobedone.org/switch-interview/",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "AIGA",
+      "publisher": "AIGA",
+      "url": "https://www.aiga.org",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Top Graphic Design Companies",
+      "publisher": "Clutch",
+      "url": "https://clutch.co/agencies/graphic-designers",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "r/graphic_design",
+      "publisher": "Reddit",
+      "url": "https://www.reddit.com/r/graphic_design/",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Project management software",
+      "publisher": "Capterra",
+      "url": "https://www.capterra.com/project-management-software/",
+      "accessed": "2026-10-12"
+    }
+  ]
+}
