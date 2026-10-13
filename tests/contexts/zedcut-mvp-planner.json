@@ -3,6 +3,7 @@
   "context": "ZedCut is a bilingual (French and English) B2B SaaS for countertop fabrication shops in Canada. Three Quebec shop owners said quoting from paper measurements takes hours and errors cost them slabs. Two developers have eight weeks and no outside budget. Plan the MVP.",
   "expect": {
     "market_country": "Canada",
+    "target_region": "Quebec"
     "research_mode": "web"
   }
 }

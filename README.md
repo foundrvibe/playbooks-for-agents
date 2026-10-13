@@ -32,6 +32,8 @@ Three files make that work:
 
 They work alone or in order: validate the idea, talk to customers, size the market, plan the MVP, plan the launch, find leads, then model the money. When you already ran one, paste its result into the next request and the agent reuses those facts instead of asking again.
 
+Each playbook asks for a **country** (`market_country`) and a **focus region** (`target_region`): a city, province or state, metro, or the whole country. That scopes research, competitors, events, and outreach. The business plan also has **Location** for where the company is based; **Region** is where the market work focuses.
+
 The methods come from Y Combinator and the sources it points founders to: [How to talk to users](https://www.ycombinator.com/library/JQ-how-to-start-a-startup-talking-to-users) and [The Mom Test](https://www.momtestbook.com/) for interviews, [How to plan an MVP](https://www.ycombinator.com/library/6f-how-to-plan-an-mvp) and [Do Things That Don't Scale](https://paulgraham.com/ds.html) for the first version and first customers, [Enterprise sales for founders](https://www.ycombinator.com/library/LF-enterprise-sales-for-founders) for outreach, and [Default Alive or Default Dead?](https://www.paulgraham.com/aord.html) for the model. The shared guides in [research/](research/) hold the details.
 
 No playbook invents an interview, a contact, a quote, or a figure. Anything not given by you or found on an opened page is labeled `Assumption:`. Lead generation writes messages for you to review and send; it does not send them.

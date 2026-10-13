@@ -1,6 +1,6 @@
 # Customer discovery
 
-Read this after `schema.json`. Research the `market_country`, and write in the `document_language`. `template.md` is the result. These steps are the work.
+Read this after `schema.json`. Research the `market_country` and scope recruiting to `target_region`, and write in the `document_language`. `template.md` is the result. These steps are the work.
 
 This playbook plans interviews and reads the notes the user supplies. It does not run interviews, and it never invents a person, a quote, or a result. Follow [customer-evidence.md](../../../research/customer-evidence.md).
 
@@ -10,11 +10,11 @@ Keep each table cell to one or two sentences. Do not put a `|` inside a cell. Le
 
 ## Steps
 
-1. Ask for `idea`, `target_customer`, and `market_country` when the context does not already answer them. Ask for `interview_notes`: the role of each person, the date, and what they said or did. "None yet" is an answer, and gives one row that says so. Wait.
+1. Ask for `idea`, `target_customer`, `market_country`, and `target_region` when the context does not already answer them. Ask for `interview_notes`: the role of each person, the date, and what they said or did. "None yet" is an answer, and gives one row that says so. Wait.
 2. Write `riskiest_assumption`: the single belief that sinks the idea if it is wrong, usually that this customer has the problem often and badly enough to change what they do.
 3. Fill `customer_profile` with observable traits: segment, size, role of the person who feels the pain, the trigger that makes it urgent, the current workaround, and where they gather. Use the user's context and the pages you open.
 4. Fill `public_context` from pages where this customer describes the problem or the workaround: forums, community threads, reviews of the tools they use now, or association resources. One row per page you opened. A page shows language and context; it is not an interview.
-5. Fill `recruiting_channels` with real places to find people who match the profile: the user's own network, associations, communities, directories, and events. Open each one. The `ask` is a short request for a conversation about their work, not a pitch.
+5. Fill `recruiting_channels` with real places to find people in `target_region` who match the profile: the user's own network, local associations, communities, directories, and events. Open each one. The `ask` is a short request for a conversation about their work, not a pitch.
 6. Write `screening` questions that confirm fit before the interview: role, company type, and that the trigger happened recently.
 7. Write `interview_guide` in order: Context, Last time, Cost, Workaround, Decision, Commitment. Use the five core questions from [customer-evidence.md](../../../research/customer-evidence.md). Every question asks about the past or the present. Never ask "Would you use this?", "Would you pay?", or a leading question. End with a commitment ask that fits the stage.
 8. Fill `evidence` with one row per entry in `interview_notes`, using only what the notes say. Write "None given" in a cell the notes do not answer. When `interview_notes` says none yet, write one row that says no interviews yet.

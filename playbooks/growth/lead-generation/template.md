@@ -4,6 +4,7 @@
 |---|---|
 | **Customer** | {{target_customer}} |
 | **Market** | {{market_country}} |
+| **Region** | {{target_region}} |
 | **Goal** | {{customer_goal}} new customers, {{goal_period}} |
 | **Language** | {{document_language}} |
 | **Research** | {{research_mode}} |

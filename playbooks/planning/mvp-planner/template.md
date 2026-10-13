@@ -4,6 +4,7 @@
 |---|---|
 | **Users** | {{target_users}} |
 | **Market** | {{market_country}} |
+| **Region** | {{target_region}} |
 | **Language** | {{document_language}} |
 | **Research** | {{research_mode}} |
 | **Primary metric** | {{primary_metric}} |

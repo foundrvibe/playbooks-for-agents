@@ -4,6 +4,7 @@
   "expect": {
     "company_name": "ZedCut",
     "market_country": "Canada",
+    "target_region": "Quebec"
     "business_model": "B2B",
     "research_mode": "web"
   }

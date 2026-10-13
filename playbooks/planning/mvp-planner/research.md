@@ -1,6 +1,6 @@
 # MVP plan
 
-Read this after `schema.json`. Research the `market_country`, and write in the `document_language`. `template.md` is the result. These steps are the work.
+Read this after `schema.json`. Research the `market_country` and scope first users and competitors to `target_region`, and write in the `document_language`. `template.md` is the result. These steps are the work.
 
 An MVP is the smallest thing a narrow first group can get real value from, launched quickly so the team learns from real use. It follows Michael Seibel's [How to plan an MVP](https://www.ycombinator.com/library/6f-how-to-plan-an-mvp): time-box it, write the spec, cut the spec, and do not fall in love with it. Steps that do not scale are done by hand first, as in Paul Graham's [Do Things That Don't Scale](https://paulgraham.com/ds.html).
 
@@ -10,7 +10,7 @@ Keep each table cell to one or two sentences. Do not put a `|` inside a cell. Le
 
 ## Steps
 
-1. Ask for `product`, `target_users`, and `market_country` when the context does not already answer them. Ask for `evidence`: interviews, signups, payments, or a customer discovery result. Ask for `constraints`: who builds it, how many weeks, budget, skills, and technology. "None yet" and "none given" are answers. Wait.
+1. Ask for `product`, `target_users`, `market_country`, and `target_region` when the context does not already answer them. Ask for `evidence`: interviews, signups, payments, or a customer discovery result. Ask for `constraints`: who builds it, how many weeks, budget, skills, and technology. "None yet" and "none given" are answers. Wait.
 2. Write `first_users`: a group small enough to recruit by hand who feel the problem most, from the evidence. Narrower is better. Write `core_problem` as the one most urgent problem the evidence shows. When `evidence` says none yet, say the problem is unconfirmed and make the first build-plan period customer interviews, following [customer-evidence.md](../../../research/customer-evidence.md).
 3. Write `value_hypothesis` as: if these users get this, they will do this, measured by this.
 4. Fill `competitor_gaps` with products the first users could use instead, using [competitors.md](../../../research/competitors.md). Open each website. The gap comes only from that site and the evidence.

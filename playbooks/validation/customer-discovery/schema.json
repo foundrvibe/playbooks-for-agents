@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://foundrvibe.com/playbooks/customer-discovery/1.0.0",
+  "$id": "https://foundrvibe.com/playbooks/customer-discovery/1.1.0",
   "x-id": "customer-discovery",
-  "x-version": "1.0.0",
+  "x-version": "1.1.0",
   "x-title": "Customer discovery",
   "type": "object",
   "additionalProperties": false,
@@ -10,6 +10,7 @@
     "idea",
     "target_customer",
     "market_country",
+    "target_region",
     "document_language",
     "research_mode",
     "interview_notes",
@@ -37,6 +38,14 @@
       "minLength": 1,
       "description": "Country where the interviews and recruiting take place.",
       "x-ask": "Which country are these customers in?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_region": {
+      "type": "string",
+      "minLength": 1,
+      "description": "City, province or state, metro, or whole country where interviews and recruiting should focus. Must fit inside market_country.",
+      "x-ask": "Which city, province, or region should interviews and recruiting focus on? Say the whole country if it is national.",
       "x-source": "user",
       "x-unknown": "_Unknown — not provided_"
     },

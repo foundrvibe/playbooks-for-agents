@@ -1,6 +1,6 @@
 # Lead generation
 
-Read this after `schema.json`. Research the `market_country`, and write in the `document_language`. `template.md` is the result. These steps are the work.
+Read this after `schema.json`. Research the `market_country` and scope work to `target_region`, and write in the `document_language`. `template.md` is the result. These steps are the work.
 
 This is a system the founder runs, not a list the agent invents. Start from a sales hypothesis, filter prospects by observable signals, and track the funnel, as in Pete Koomen's [Enterprise sales for founders](https://www.ycombinator.com/library/LF-enterprise-sales-for-founders). Never invent a contact, a name, or an email address, and never send a message. Follow [sales-compliance.md](../../../research/sales-compliance.md) before writing any message.
 
@@ -10,11 +10,11 @@ Keep each table cell to one or two sentences. Do not put a `|` inside a cell. Le
 
 ## Steps
 
-1. Ask for `product`, `target_customer`, and `market_country` when the context does not already answer them. Ask for `customer_goal`, `goal_period`, `sales_channels`, and `existing_leads`. "None yet" and "none given" are answers. Wait.
+1. Ask for `product`, `target_customer`, `market_country`, and `target_region` when the context does not already answer them. Ask for `customer_goal`, `goal_period`, `sales_channels`, and `existing_leads`. "None yet" and "none given" are answers. Wait.
 2. Write `sales_hypothesis` as: customer X has problem Y, and the product solves it by Z. Use customer evidence when the user has it.
 3. Fill `qualification` with criteria a prospect must or should meet. Each `signal` is something visible before contact: size, location, services listed, tools mentioned, hiring, or a recent trigger. Mark the few that rule a prospect in or out `must have`.
 4. Fill `scorecard` with three or four bands from best to worst. Each `rule` uses the qualification priorities; each `action` says what to do next and how soon.
-5. Fill `lead_sources` with lawful public places to find prospects that match: directories, association listings, marketplaces, official registries, events, and referrals. Open each one, and record its terms. Do not use bought lists or scraped personal emails.
+5. Fill `lead_sources` with lawful public places to find prospects in `target_region`: local directories, chapter events, registries, and listings filtered to that city, province, or state. Open each one, and record its terms. Do not use bought lists or scraped personal emails.
 6. Fill `prospect_fields` with what to record for each prospect: company, website, the qualifying signals, the contact's role, the public source of each fact, consent or lawful basis where needed, the date, and the pipeline stage.
 7. Write `sequence` with two to six steps over two to three weeks. Lead with a fact the prospect published and the problem in the hypothesis, ask for a short call, and stop after the last step. Each message names the sender and says how to opt out. Use square brackets for the facts to fill in. Write `personalization` rules that use only facts the prospect published.
 8. Fill `pipeline` with stages from identified to paying or lost, each with entry and exit rules the user can check.
