@@ -1,0 +1,335 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/customer-discovery/1.0.0",
+  "x-id": "customer-discovery",
+  "x-version": "1.0.0",
+  "x-title": "Customer discovery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "idea",
+    "target_customer",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "interview_notes",
+    "sources"
+  ],
+  "properties": {
+    "idea": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The idea or problem area in the user's words.",
+      "x-ask": "What idea or problem do you want to learn about?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who the user believes has the problem.",
+      "x-ask": "Who do you think has this problem?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country where the interviews and recruiting take place.",
+      "x-ask": "Which country are these customers in?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Headings stay as written in template.md.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when the cited pages were opened during this run. offline when they were not.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "interview_notes": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Conversations the user already had, by role and date, with what the person said or did. One row that says none yet when there are none.",
+      "x-ask": "Paste notes from any customer conversations you already had: the person's role, the date, and what they said or did. Say none yet.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["who", "date", "notes"],
+        "properties": {
+          "who": { "type": "string", "minLength": 1 },
+          "date": { "type": "string", "minLength": 1 },
+          "notes": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "riskiest_assumption": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The one belief that, if wrong, sinks the idea. The interviews test this first.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "customer_profile": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 8,
+      "description": "Observable traits of the best-fit customer: segment, size, role, trigger, current workaround, and where they gather.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["trait", "value"],
+        "properties": {
+          "trait": { "type": "string", "minLength": 1 },
+          "value": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "public_context": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "Public pages where this customer describes the problem or the workaround, one row per page opened.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["page", "finding"],
+        "properties": {
+          "page": { "type": "string", "minLength": 1 },
+          "finding": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "recruiting_channels": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "Real places to find interviewees, each opened, with the ask to make there.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel", "website", "ask"],
+        "properties": {
+          "channel": { "type": "string", "minLength": 1 },
+          "website": { "type": "string", "minLength": 1 },
+          "ask": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "screening": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "description": "Questions that confirm a person fits the profile before the interview, and what answer qualifies.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["question", "qualifies"],
+        "properties": {
+          "question": { "type": "string", "minLength": 1 },
+          "qualifies": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "interview_guide": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 12,
+      "description": "Questions in interview order. Past behavior only. No pitch, no hypothetical, no price question.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["stage", "question", "listen_for"],
+        "properties": {
+          "stage": { "type": "string", "enum": ["Context", "Last time", "Cost", "Workaround", "Decision", "Commitment"] },
+          "question": { "type": "string", "minLength": 1 },
+          "listen_for": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "description": "One row per interview note: the behavior described, the pain, the workaround, and any commitment. Only from interview_notes.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["who", "behavior", "pain", "workaround", "commitment"],
+        "properties": {
+          "who": { "type": "string", "minLength": 1 },
+          "behavior": { "type": "string", "minLength": 1 },
+          "pain": { "type": "string", "minLength": 1 },
+          "workaround": { "type": "string", "minLength": 1 },
+          "commitment": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "signals": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "description": "Frequency, Severity, Current spend, Active search, Commitment, in that order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["signal", "strength", "finding"],
+        "properties": {
+          "signal": { "type": "string", "enum": ["Frequency", "Severity", "Current spend", "Active search", "Commitment"] },
+          "strength": { "type": "string", "enum": ["strong", "weak", "none"] },
+          "finding": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "forces": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "description": "Push, Pull, Anxiety, Habit, in that order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["force", "finding"],
+        "properties": {
+          "force": { "type": "string", "enum": ["Push", "Pull", "Anxiety", "Habit"] },
+          "finding": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "findings": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Two or three sentences on what the evidence shows about the riskiest assumption, including conflicts.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "description": "What weakens the evidence: sample size, how people were recruited, and missing segments.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["keep interviewing", "narrow the customer", "test a commitment", "rethink the problem"],
+      "description": "keep interviewing below five interviews in the segment. test a commitment when Frequency and Severity are strong. narrow the customer when one sub-group shows the pain and others do not. rethink the problem when no interview shows the pain.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "next_experiments": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "description": "The next one to three experiments, each with the signal that counts as success and a time box.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["experiment", "success_signal", "time_box"],
+        "properties": {
+          "experiment": { "type": "string", "minLength": 1 },
+          "success_signal": { "type": "string", "minLength": 1 },
+          "time_box": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every belief the plan rests on that no interview or page confirmed.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Pages opened for this plan. Empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": {
+        "properties": {
+          "sources": { "minItems": 3 },
+          "public_context": { "minItems": 2 },
+          "recruiting_channels": { "minItems": 3 }
+        }
+      }
+    }
+  ]
+}

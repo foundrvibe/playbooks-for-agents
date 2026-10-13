@@ -1,0 +1,393 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://foundrvibe.com/playbooks/go-to-market/1.0.0",
+  "x-id": "go-to-market",
+  "x-version": "1.0.0",
+  "x-title": "Go-to-market plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "product",
+    "stage",
+    "target_customer",
+    "market_country",
+    "document_language",
+    "research_mode",
+    "monthly_budget",
+    "team_capacity",
+    "existing_audience",
+    "sources"
+  ],
+  "properties": {
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What is being launched, in the user's words.",
+      "x-ask": "What are you launching?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "stage": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Where the product is now: idea, building, first users, or paying customers.",
+      "x-ask": "Where is the product now: idea, building, first users, or paying customers?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "target_customer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who the launch is for, from the user's context.",
+      "x-ask": "Who are the first customers?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "market_country": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Country of the launch. Sets the currency, channels, and rules.",
+      "x-ask": "Which country is the launch in?",
+      "x-source": "user",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "document_language": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Language for the prose. Headings stay as written in template.md.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": ["web", "offline"],
+      "description": "web when the cited pages were opened during this run. offline when they were not.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "monthly_budget": {
+      "type": "number",
+      "description": "Money available each month for marketing and sales. Zero when there is none.",
+      "x-ask": "How much can you spend on marketing and sales each month? Say zero if nothing.",
+      "x-source": "user_data",
+      "x-format": "currency",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "team_capacity": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Who works on the launch and how many hours a week.",
+      "x-ask": "Who will work on the launch, and how many hours a week?",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_"
+    },
+    "existing_audience": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Contacts, lists, followers, partners, or customers the user already has. One row that says none yet when there are none.",
+      "x-ask": "What audience do you already have: contacts, an email list, followers, partners, or customers? Say none yet.",
+      "x-source": "user_data",
+      "x-unknown": "_Unknown — not provided_",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asset", "detail"],
+        "properties": {
+          "asset": { "type": "string", "minLength": 1 },
+          "detail": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "competitive_alternatives": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "description": "What buyers would use if this product did not exist, including the status quo, each with why they use it.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["alternative", "kind", "website", "why_used"],
+        "properties": {
+          "alternative": { "type": "string", "minLength": 1 },
+          "kind": { "type": "string", "enum": ["status quo", "direct", "substitute"] },
+          "website": { "type": "string", "minLength": 1 },
+          "why_used": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "positioning": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "description": "Competitive alternatives, Unique attributes, Value, Best-fit customers, Market category, in that order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["component", "statement"],
+        "properties": {
+          "component": { "type": "string", "enum": ["Competitive alternatives", "Unique attributes", "Value", "Best-fit customers", "Market category"] },
+          "statement": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "value_proposition": {
+      "type": "string",
+      "minLength": 1,
+      "description": "One sentence a best-fit customer would repeat.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "buyer_roles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "The people in the buying decision, the part each plays, and what each cares about.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "part", "cares_about"],
+        "properties": {
+          "role": { "type": "string", "minLength": 1 },
+          "part": { "type": "string", "enum": ["decides", "pays", "uses", "influences"] },
+          "cares_about": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "offer": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "description": "The launch offer and price hypotheses, each with the basis.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["offer", "price", "basis"],
+        "properties": {
+          "offer": { "type": "string", "minLength": 1 },
+          "price": { "type": "string", "minLength": 1 },
+          "basis": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "messaging": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "The message for each buyer role, with the proof behind it.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["audience", "message", "proof"],
+        "properties": {
+          "audience": { "type": "string", "minLength": 1 },
+          "message": { "type": "string", "minLength": 1 },
+          "proof": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "channels": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 12,
+      "description": "Candidate channels, each with a page opened where one exists, why it fits, and whether to test it now, later, or skip it.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel", "website", "fit", "status"],
+        "properties": {
+          "channel": { "type": "string", "minLength": 1 },
+          "website": { "type": "string", "minLength": 1 },
+          "fit": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "enum": ["test now", "later", "skip"] }
+        }
+      }
+    },
+    "channel_tests": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "description": "One test per test now channel: the test, its cost, a time box, and the success threshold set before it starts.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["channel", "test", "cost", "time_box", "success_threshold"],
+        "properties": {
+          "channel": { "type": "string", "minLength": 1 },
+          "test": { "type": "string", "minLength": 1 },
+          "cost": { "type": "number", "x-format": "currency" },
+          "time_box": { "type": "string", "minLength": 1 },
+          "success_threshold": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "test_budget": {
+      "type": "object",
+      "description": "Cost of each channel test. x matches channel_tests channel and series matches cost, in the same order.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "x-chart": "mermaid-xy",
+      "x-format": "currency",
+      "additionalProperties": false,
+      "required": ["x", "series"],
+      "properties": {
+        "x": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "series": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "number" }
+        },
+        "seriesName": { "type": "string" }
+      }
+    },
+    "primary_metric": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The one number the launch is judged by. Revenue when anyone pays.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "weekly_target": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The weekly growth target for the primary metric, with its basis.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank."
+    },
+    "launch_plan": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "description": "Dated periods from preparation to the first review, each with the actions and the milestone that ends it.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["period", "actions", "milestone"],
+        "properties": {
+          "period": { "type": "string", "minLength": 1 },
+          "actions": { "type": "string", "minLength": 1 },
+          "milestone": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "kpis": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 6,
+      "description": "Metrics that feed the primary metric, each with a target and how it is measured.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kpi", "target", "measured_how"],
+        "properties": {
+          "kpi": { "type": "string", "minLength": 1 },
+          "target": { "type": "string", "minLength": 1 },
+          "measured_how": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "description": "What could stop the launch, and the response planned for each.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["risk", "response"],
+        "properties": {
+          "risk": { "type": "string", "minLength": 1 },
+          "response": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every estimate, rate, or price chosen without evidence, with its inputs.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "derived",
+      "x-unknown": "Derive this field from the context and sources. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["text"],
+        "properties": {
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Pages opened for this plan. Empty only when research_mode is offline.",
+      "x-ask": "Leave this to the agent.",
+      "x-source": "research",
+      "x-unknown": "Research this field and cite a source. Do not leave it blank.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "publisher", "url", "accessed"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "publisher": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "minLength": 1 },
+          "accessed": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "research_mode": { "const": "web" } },
+        "required": ["research_mode"]
+      },
+      "then": {
+        "properties": {
+          "sources": { "minItems": 4 },
+          "competitive_alternatives": { "minItems": 3 },
+          "channels": { "minItems": 5 }
+        }
+      }
+    }
+  ]
+}

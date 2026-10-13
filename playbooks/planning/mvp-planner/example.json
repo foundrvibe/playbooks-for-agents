@@ -1,0 +1,102 @@
+{
+  "product": "A shared job board so independent design studios can track briefs, files, and approvals in one place.",
+  "target_users": "Owners of independent design studios with 2 to 10 people",
+  "market_country": "United States",
+  "document_language": "English",
+  "research_mode": "web",
+  "evidence": [
+    { "source": "Interview, three-person branding studio", "finding": "A client approved an old logo version by email, and the studio redid two days of work." },
+    { "source": "Interview, five-person packaging studio", "finding": "Approvals in Slack work fine. Chasing invoices is the stated pain." }
+  ],
+  "constraints": [
+    { "constraint": "Team", "detail": "One founder who builds, sells, and supports the product." },
+    { "constraint": "Time", "detail": "Three weeks to a first version." },
+    { "constraint": "Budget", "detail": "Hosting at 100 a month. No paid tools beyond that." }
+  ],
+  "first_users": "Five branding studios in the founder's network that send logo and identity work to clients for approval by email.",
+  "core_problem": "Clients approve the wrong file version in email, and the studio redoes work. Unconfirmed beyond one interview.",
+  "value_hypothesis": "If a studio sends each approval as one link with the current version, then it will send its next three client approvals through the board, measured by approvals sent per studio each week.",
+  "competitor_gaps": [
+    { "name": "Basecamp", "website": "https://basecamp.com", "gap": "Holds client projects and files, but has no version-locked approval of one design file." },
+    { "name": "Frame.io", "website": "https://frame.io", "gap": "Approves video frames. Not built for logo and identity files sent by a small studio." },
+    { "name": "Asana", "website": "https://asana.com", "gap": "General tasks. The studio must build its own approval path, and clients need an account." }
+  ],
+  "user_journey": "flowchart TD\n  start([Studio finishes a design version]) --> upload[Upload the file to the job]\n  upload --> send[Send the client an approval link]\n  send --> review{Client approves?}\n  review -->|Yes| record[Approval recorded on that version]\n  review -->|No| notes[Client leaves change notes]\n  notes --> upload\n  record --> finish([Studio starts final files with the approved version])",
+  "features": [
+    { "feature": "Job with brief and file versions", "scope": "now", "reason": "The journey starts with a file on a job." },
+    { "feature": "Client approval link without an account", "scope": "now", "reason": "Wrong-version approval is the core problem, and clients will not sign up." },
+    { "feature": "Approval history per version", "scope": "now", "reason": "Shows which version was approved, which is the value." },
+    { "feature": "Invoicing", "scope": "later", "reason": "One interview named it, but it is a different problem." },
+    { "feature": "Time tracking", "scope": "never", "reason": "No evidence, and general tools already do it." },
+    { "feature": "Team chat", "scope": "never", "reason": "Studios already use Slack or email." }
+  ],
+  "user_stories": [
+    {
+      "story": "As a studio owner, I want to add a file version to a client job, so that the current version is in one place.",
+      "acceptance": "Given a job, when I upload a file, then it appears as the newest version with a timestamp."
+    },
+    {
+      "story": "As a studio owner, I want to send a client one approval link, so that they review the right version.",
+      "acceptance": "Given a file version, when I send the link, then the client sees only that version and can approve or leave notes without an account."
+    },
+    {
+      "story": "As a studio owner, I want to see which version was approved, so that I never build on the wrong one.",
+      "acceptance": "Given a client approved, when I open the job, then the approved version is marked with the client and time."
+    }
+  ],
+  "manual_steps": [
+    { "step": "Onboarding", "how": "The founder sets up each studio's first job on a call. Automate after ten studios." },
+    { "step": "Approval reminders", "how": "The founder emails clients who have not answered in two days. Automate when reminders take more than an hour a week." },
+    { "step": "Weekly report", "how": "The founder sends each studio a short summary of approvals. Build it only if studios read it." }
+  ],
+  "risks": [
+    { "risk": "Studios do not feel the pain often enough to change habits.", "kind": "value", "mitigation": "Recruit only studios that describe a recent wrong-version approval." },
+    { "risk": "Clients ignore a link from an unknown tool.", "kind": "usability", "mitigation": "Send the link from the studio's own email address, with the studio's name." },
+    { "risk": "Large design files slow uploads.", "kind": "feasibility", "mitigation": "Accept preview images first and link the source file." },
+    { "risk": "Studios will not pay 40 a month for approvals alone.", "kind": "viability", "mitigation": "Ask each first studio for a paid month after two weeks of use." }
+  ],
+  "build_plan": [
+    { "period": "Week 1", "work": "Write the spec, cut it to the three now features, and build jobs and file versions.", "done_when": "The founder can create a job and upload versions." },
+    { "period": "Week 2", "work": "Build the client approval link and approval history.", "done_when": "A test client approves a version without an account." },
+    { "period": "Week 3", "work": "Onboard the five first studios by hand and launch.", "done_when": "Each studio has sent at least one real approval." },
+    { "period": "Weeks 4 to 6", "work": "Watch use, talk to each studio weekly, and fix what blocks approvals.", "done_when": "The first review against the decision rule is held." }
+  ],
+  "primary_metric": "Client approvals sent through the board per week",
+  "launch_metrics": [
+    { "metric": "Approvals sent per studio per week", "target": "At least 2 by week 6", "why": "Shows the board replaced email for approvals." },
+    { "metric": "Studios still active in week 6", "target": "4 of 5", "why": "Retention shows value better than signups." },
+    { "metric": "Studios that pay for a month", "target": "At least 2", "why": "Payment is the strongest commitment." }
+  ],
+  "decision_rule": "At the week 6 review, continue if at least 4 of 5 studios still send approvals weekly and 2 pay. Change course to a different studio type if use is low but interviews still show the pain. Stop if no studio sends a second approval.",
+  "assumptions": [
+    { "text": "Five branding studios in the founder's network will agree to try it. Not yet asked." },
+    { "text": "Clients will approve through a link without an account. Not tested." },
+    { "text": "Three weeks is enough for one founder to build the three now features." }
+  ],
+  "sources": [
+    {
+      "title": "How to Plan an MVP",
+      "publisher": "Y Combinator",
+      "url": "https://www.ycombinator.com/library/6f-how-to-plan-an-mvp",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Basecamp",
+      "publisher": "37signals",
+      "url": "https://basecamp.com",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Frame.io",
+      "publisher": "Adobe",
+      "url": "https://frame.io",
+      "accessed": "2026-10-12"
+    },
+    {
+      "title": "Asana",
+      "publisher": "Asana",
+      "url": "https://asana.com",
+      "accessed": "2026-10-12"
+    }
+  ]
+}

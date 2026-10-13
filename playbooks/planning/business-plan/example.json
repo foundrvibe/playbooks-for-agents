@@ -45,10 +45,10 @@
     {
       "label": "Target studios",
       "figure": "Studios with 2 to 10 people",
-      "note": "Size this from Census specialized design services counts, then keep the 2 to 10 employee share."
+      "note": "Size this from official establishment counts for specialized design services, found by web search, then keep the 2 to 10 employee share."
     }
   ],
-  "market_analysis": "The addressable set is independent U.S. design studios with 2 to 10 people, not every design establishment. Apply that employee band to the Census count for specialized design services.",
+  "market_analysis": "The addressable set is independent U.S. design studios with 2 to 10 people, not every design establishment. Apply that employee band to an official establishment count for specialized design services, opened from web search.",
   "competitors": [
     {
       "name": "Asana",

@@ -1,0 +1,9 @@
+{
+  "template": "go-to-market",
+  "context": "ZedCut is a bilingual (French and English) B2B SaaS for countertop fabrication shops in Canada, priced at 199 CAD per shop per month. A first version is in beta with three Quebec shops. Marketing budget is 1000 CAD a month, and one founder spends 15 hours a week on sales. Write the go-to-market plan.",
+  "expect": {
+    "market_country": "Canada",
+    "research_mode": "web",
+    "monthly_budget": 1000
+  }
+}

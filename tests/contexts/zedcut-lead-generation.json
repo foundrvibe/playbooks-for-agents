@@ -1,0 +1,9 @@
+{
+  "template": "lead-generation",
+  "context": "ZedCut is a bilingual (French and English) B2B SaaS for countertop fabrication shops in Canada. The founder wants 10 new paying shops in the next six months from outreach by email, phone, and trade shows, and tracks leads in a spreadsheet. Three beta shops came from personal contacts. Build the lead generation plan.",
+  "expect": {
+    "market_country": "Canada",
+    "research_mode": "web",
+    "customer_goal": 10
+  }
+}

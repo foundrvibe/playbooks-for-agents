@@ -1,0 +1,8 @@
+{
+  "template": "market-research",
+  "context": "ZedCut is a bilingual (French and English) B2B SaaS for countertop fabrication shops in Canada that work with granite, quartz, and marble. The planned price is 199 CAD per shop per month. No other research yet. Do the market research and size the market.",
+  "expect": {
+    "market_country": "Canada",
+    "research_mode": "web"
+  }
+}

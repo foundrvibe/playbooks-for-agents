@@ -9,13 +9,19 @@
       "id": "planning",
       "name": "Planning",
       "description": "Playbooks that plan a company: what it sells, who it serves, and how it will operate and earn money.",
-      "templates": ["business-plan"]
+      "templates": ["business-plan", "mvp-planner", "financial-model"]
     },
     {
       "id": "validation",
       "name": "Validation",
       "description": "Playbooks that test an idea before a plan is written: the problem, the market, the competitors, and whether people are already talking about it.",
-      "templates": ["idea-validator"]
+      "templates": ["idea-validator", "customer-discovery", "market-research"]
+    },
+    {
+      "id": "growth",
+      "name": "Growth",
+      "description": "Playbooks that win the first customers: positioning, channels, launch plans, prospect lists, and outreach.",
+      "templates": ["go-to-market", "lead-generation"]
     }
   ],
   "templates": [
@@ -89,6 +95,231 @@
         "description": {
           "path": "playbooks/validation/idea-validator/description.json",
           "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/idea-validator/description.json"
+        }
+      }
+    },
+    {
+      "id": "customer-discovery",
+      "name": "Customer discovery",
+      "version": "1.0.0",
+      "status": "ready",
+      "category": "validation",
+      "description": "Plans customer interviews and reads what they found. It writes the best-fit customer, where to recruit them, screening questions, and an interview guide that asks about past behavior instead of pitching. It turns the user's own notes into an evidence table of pain, workarounds, and commitments, then names the next experiment. It never invents interviews or quotes.",
+      "intents": [
+        "customer discovery",
+        "customer interviews",
+        "interview customers",
+        "interview guide",
+        "talk to users"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/validation/customer-discovery/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/customer-discovery/template.md"
+        },
+        "schema": {
+          "path": "playbooks/validation/customer-discovery/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/customer-discovery/schema.json"
+        },
+        "example": {
+          "path": "playbooks/validation/customer-discovery/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/customer-discovery/example.json"
+        },
+        "research": {
+          "path": "playbooks/validation/customer-discovery/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/customer-discovery/research.md"
+        },
+        "description": {
+          "path": "playbooks/validation/customer-discovery/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/customer-discovery/description.json"
+        }
+      }
+    },
+    {
+      "id": "market-research",
+      "name": "Market research",
+      "version": "1.0.0",
+      "status": "ready",
+      "category": "validation",
+      "description": "A source-backed market assessment. It defines the market and its buyer segments, sizes TAM, SAM, and SOM bottom-up with the formula behind each figure and a low-to-high range, and adds trends, demand signals, and the alternatives buyers use. It rates how attractive the market is and lists the evidence still missing. Every assumed input is labeled.",
+      "intents": [
+        "market research",
+        "market size",
+        "market sizing",
+        "estimate the market",
+        "tam sam som"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/validation/market-research/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/market-research/template.md"
+        },
+        "schema": {
+          "path": "playbooks/validation/market-research/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/market-research/schema.json"
+        },
+        "example": {
+          "path": "playbooks/validation/market-research/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/market-research/example.json"
+        },
+        "research": {
+          "path": "playbooks/validation/market-research/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/market-research/research.md"
+        },
+        "description": {
+          "path": "playbooks/validation/market-research/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/validation/market-research/description.json"
+        }
+      }
+    },
+    {
+      "id": "mvp-planner",
+      "name": "MVP plan",
+      "version": "1.0.0",
+      "status": "ready",
+      "category": "planning",
+      "description": "Turns customer evidence into the smallest product a narrow first group of users can get value from. It names the first users and their most urgent problem, maps the main user journey, and sorts features into now, later, and never. It writes user stories with acceptance criteria, the steps to do by hand first, risks, a time-boxed build plan, launch metrics, and the result that would mean stop or change course.",
+      "intents": [
+        "mvp plan",
+        "plan an mvp",
+        "plan the mvp",
+        "mvp scope",
+        "first version of the product"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/planning/mvp-planner/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/mvp-planner/template.md"
+        },
+        "schema": {
+          "path": "playbooks/planning/mvp-planner/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/mvp-planner/schema.json"
+        },
+        "example": {
+          "path": "playbooks/planning/mvp-planner/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/mvp-planner/example.json"
+        },
+        "research": {
+          "path": "playbooks/planning/mvp-planner/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/mvp-planner/research.md"
+        },
+        "description": {
+          "path": "playbooks/planning/mvp-planner/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/mvp-planner/description.json"
+        }
+      }
+    },
+    {
+      "id": "financial-model",
+      "name": "Financial model",
+      "version": "1.0.0",
+      "status": "ready",
+      "category": "planning",
+      "description": "A monthly, assumption-driven startup financial model. It lists the revenue drivers, costs, and hires, then builds monthly customers, revenue, costs, net, and cash with a cash chart. It adds the annual summary, break-even, runway, unit economics, a default alive check, three scenarios, sensitivity, the funding need, and reconciliation checks. Every driver is labeled given, sourced, derived, or assumption.",
+      "intents": [
+        "financial model",
+        "financial projections",
+        "cash runway",
+        "burn rate",
+        "revenue forecast",
+        "unit economics"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/planning/financial-model/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/financial-model/template.md"
+        },
+        "schema": {
+          "path": "playbooks/planning/financial-model/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/financial-model/schema.json"
+        },
+        "example": {
+          "path": "playbooks/planning/financial-model/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/financial-model/example.json"
+        },
+        "research": {
+          "path": "playbooks/planning/financial-model/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/financial-model/research.md"
+        },
+        "description": {
+          "path": "playbooks/planning/financial-model/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/planning/financial-model/description.json"
+        }
+      }
+    },
+    {
+      "id": "go-to-market",
+      "name": "Go-to-market plan",
+      "version": "1.0.0",
+      "status": "ready",
+      "category": "growth",
+      "description": "A launch plan for the first customers. It positions the offer against what buyers use today, names the best-fit customer and the people in the buying decision, and sets offer and pricing hypotheses. It lists candidate channels, picks a few cheap tests with a budget chart, and lays out a dated launch plan with one primary metric, a weekly target, and the risks to watch.",
+      "intents": [
+        "go to market",
+        "go-to-market plan",
+        "gtm plan",
+        "launch plan",
+        "positioning",
+        "marketing channels"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/growth/go-to-market/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/go-to-market/template.md"
+        },
+        "schema": {
+          "path": "playbooks/growth/go-to-market/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/go-to-market/schema.json"
+        },
+        "example": {
+          "path": "playbooks/growth/go-to-market/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/go-to-market/example.json"
+        },
+        "research": {
+          "path": "playbooks/growth/go-to-market/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/go-to-market/research.md"
+        },
+        "description": {
+          "path": "playbooks/growth/go-to-market/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/go-to-market/description.json"
+        }
+      }
+    },
+    {
+      "id": "lead-generation",
+      "name": "Lead generation",
+      "version": "1.0.0",
+      "status": "ready",
+      "category": "growth",
+      "description": "An outbound prospecting system for founder-led sales. It writes the sales hypothesis, qualification criteria and a scorecard, the lawful lead sources to search, and the fields to record for each prospect. It adds a short outreach sequence with personalization rules, pipeline stages, a funnel worked backwards from the customer goal, and the outreach rules for the country. It does not send messages or invent contacts.",
+      "intents": [
+        "lead generation",
+        "find leads",
+        "find prospects",
+        "qualify leads",
+        "outreach sequence",
+        "cold email"
+      ],
+      "files": {
+        "template": {
+          "path": "playbooks/growth/lead-generation/template.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/lead-generation/template.md"
+        },
+        "schema": {
+          "path": "playbooks/growth/lead-generation/schema.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/lead-generation/schema.json"
+        },
+        "example": {
+          "path": "playbooks/growth/lead-generation/example.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/lead-generation/example.json"
+        },
+        "research": {
+          "path": "playbooks/growth/lead-generation/research.md",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/lead-generation/research.md"
+        },
+        "description": {
+          "path": "playbooks/growth/lead-generation/description.json",
+          "url": "https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/playbooks/growth/lead-generation/description.json"
         }
       }
     }

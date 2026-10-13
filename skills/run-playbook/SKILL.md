@@ -58,6 +58,8 @@ When the user replies, treat "I don't know", "skip", "none", or "not raising" as
 
 Before researching, check whether you can open web pages in this session. If you cannot, tell the user in one line, set `research_mode` to `offline`, leave `sources` empty, and write every research field as an `Assumption:` built from the context. Do not write a citation for a page you did not open. If you can browse, set `research_mode` to `web`.
 
+For market size, industry counts, and competitors, use **web search** and open the pages it returns. Do not call government statistics APIs (for example `api.census.gov`) or ask the user for API keys. Use normal HTML tables and reports from the search results.
+
 After you have the context, fetch the playbook's `research.md` from its catalog URL. Follow `## Steps` in order. Where a step names a field, open the shared guide linked beside that field. Fetch that guide from `https://raw.githubusercontent.com/foundrvibe/playbooks-for-agents/main/research/<name>.md` (the file name in the link, such as `market-size.md`). Fill every field whose `x-source` is `research` or `derived` before you write the result.
 
 - Research for `market_country`: its statistics agency, registries, currency, and competitors that sell there.
